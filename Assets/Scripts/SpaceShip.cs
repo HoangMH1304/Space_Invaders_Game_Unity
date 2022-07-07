@@ -5,20 +5,26 @@ using UnityEngine;
 public class SpaceShip : MonoBehaviour
 {
     public float moveSpeed;
-    void Update()
+    public GameObject bullet;
+    private Rigidbody2D rb;
+    
+    void Start() 
     {
-        movingLeftPaddle();
+        rb = GetComponent<Rigidbody2D>();    
     }
 
-    void movingLeftPaddle()
+    void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -41.5f)
+        float xDirection = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(xDirection * moveSpeed, 0);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            transform.position += new Vector3(-moveSpeed * Time.deltaTime, 0, 0);
-        }
-        if(Input.GetKey(KeyCode.RightArrow) && transform.position.x < 41.5f)
-        {
-            transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+            Instantiate(bullet, transform.position, Quaternion.identity);
         }
     }
+
 }
