@@ -7,6 +7,7 @@ public class SpaceShip : MonoBehaviour
     public float moveSpeed;
     public GameObject bullet;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     
     void Start() 
     {
@@ -24,6 +25,7 @@ public class SpaceShip : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bullet, transform.position, Quaternion.identity);
+            SoundManager.instance.PlayOneShot(SoundManager.instance.bulletFire);
         }
     }
 

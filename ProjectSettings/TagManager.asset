@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Bullet
+  - Alien
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - SpaceShip
   - Wall
   - Bullet
-  - 
-  - 
+  - Alien
+  - Shield
   - 
   - 
   - 
