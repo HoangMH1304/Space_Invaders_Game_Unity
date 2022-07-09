@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UpdateScore : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TextMeshProUGUI scoreText;
+    private int score = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateResult(Collider2D other)
     {
-        
+        if(other.tag == "Alien")
+        {
+            score += 10;
+            scoreText.text = score.ToString();
+        }
+            
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8198330544584612861}
   - component: {fileID: -1361156495483691076}
   - component: {fileID: 8309644656124267926}
+  - component: {fileID: 625441753283289074}
   m_Layer: 0
   m_Name: AlienBullet
   m_TagString: Untagged
@@ -131,3 +132,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &625441753283289074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170697368816715490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d875d23d76ab4414294e85728f5bd5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 30
+  explodeShip: {fileID: 8463096131581357343, guid: b67112a6edeb97945a475697de70f8a6, type: 3}

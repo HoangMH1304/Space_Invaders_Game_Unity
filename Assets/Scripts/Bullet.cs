@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float moveSpeed;
     private Rigidbody2D rb;
+    public Sprite explodeAlien;
 
     void Start()
     {
@@ -15,13 +16,19 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        Debug.Log("OnTriggerEnter + " + other.name);
         if(other.tag == "Wall") Destroy(gameObject);
+        if(other.tag == "Alien")
+        {
+            SoundManager.instance.PlayOneShot(SoundManager.instance.alienDies);
+            other.GetComponent<SpriteRenderer>().sprite = explodeAlien;
+            Destroy(gameObject);        //destroy bullet
+            DestroyObject(other.gameObject, 0.1f); //destroy explodeAlien after 0.5s
+        }
+        if(other.tag == "Shield")
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
-
-    // private void OnCollisionEnter2D(Collision2D other) {
-    //     Debug.Log("OnCollisionEnter + " + other.gameObject.name);
-    //     if(other.gameObject.tag == "Wall") Destroy(gameObject);
-    // }
 
 }

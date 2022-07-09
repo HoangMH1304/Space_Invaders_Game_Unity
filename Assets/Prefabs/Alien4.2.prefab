@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5875104236086502134}
   - component: {fileID: 6456357132163830292}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Alien4.2
-  m_TagString: Untagged
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
