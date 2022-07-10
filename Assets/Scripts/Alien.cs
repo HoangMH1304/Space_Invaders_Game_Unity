@@ -9,31 +9,22 @@ public class Alien : MonoBehaviour
  
 	private Rigidbody2D rb;
  
-	// Starting sprite
 	public Sprite startingImage;
  
-	// Alternative image used for the Alien
 	public Sprite altImage;
  
-	// Used to change the Alien image
 	private SpriteRenderer spriteRenderer;
  
-	// Wait time before switching sprites
 	public float secBeforeSpriteChange = 0.5f;
  
-	// Reference to bullet GameObject
 	public GameObject alienBullet;
  
-	// Minimum time to wait before firing
 	public float minFireRateTime = 1.0f;
  
-	// Maximum time to wait before firing
 	public float maxFireRateTime = 3.0f;
  
-	// Base firing wait time
 	public float baseFireWaitTime = 3.0f;
  
-	// Exploded Ship Image
 	public Sprite explodedShipImage;
 
     void Start()
