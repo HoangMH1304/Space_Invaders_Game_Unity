@@ -16,13 +16,12 @@ public class AlienBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Wall") Destroy(gameObject);
-        // if(other.tag == "Alien" && other.transform != rb.transform) Destroy(gameObject);
         if(other.tag == "Player")
         {
             SoundManager.instance.PlayOneShot(SoundManager.instance.shipExplosion);
             other.GetComponent<SpriteRenderer>().sprite = explodeShip;
             Destroy(gameObject);
-            DestroyObject(other.gameObject, 0.25f);
+            DestroyObject(other.gameObject, 0.1f);
         }
         if(other.tag == "Shield")
         {

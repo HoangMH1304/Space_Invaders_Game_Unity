@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2247834113152487740}
   - component: {fileID: 4240739157944156813}
+  - component: {fileID: 669543080701479524}
+  - component: {fileID: -63883848636529273}
+  - component: {fileID: -532752341244781137}
   m_Layer: 11
   m_Name: Alien1.1
   m_TagString: Alien
@@ -82,3 +85,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &669543080701479524
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844484855250836470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 16, y: 10}
+    newSize: {x: 16, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16, y: 10}
+  m_EdgeRadius: 0
+--- !u!50 &-63883848636529273
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844484855250836470}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &-532752341244781137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844484855250836470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4cfe6a82d636d4394e05851f095f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  startingImage: {fileID: -2324346263816543927, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
+  altImage: {fileID: 2806016448434864277, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
+  secBeforeSpriteChange: 0.5
+  alienBullet: {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
+  minFireRateTime: 1
+  maxFireRateTime: 3
+  baseFireWaitTime: 3
+  explodedShipImage: {fileID: 8463096131581357343, guid: b67112a6edeb97945a475697de70f8a6, type: 3}

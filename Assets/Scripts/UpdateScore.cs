@@ -5,16 +5,11 @@ using TMPro;
 
 public class UpdateScore : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    private int score = 0;
-
-    public void UpdateResult(Collider2D other)
+    public void IncreseScore()
     {
-        if(other.tag == "Alien")
-        {
-            score += 10;
-            scoreText.text = score.ToString();
-        }
-            
+        var textUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        int score = int.Parse(textUI.text);
+        score += 10;
+        textUI.text = score.ToString();
     }
 }
