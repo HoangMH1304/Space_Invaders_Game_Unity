@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Wall
-  - Bullet
-  - Alien
-  - Shield
-  - AlienBullet
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - SpaceShip
-  - Wall
-  - Bullet
-  - Alien
-  - Shield
-  - AlienBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
