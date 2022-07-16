@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 669543080701479524}
   - component: {fileID: -63883848636529273}
   - component: {fileID: -532752341244781137}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Alien1.1
   m_TagString: Alien
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1844484855250836470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: 15.4, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

@@ -7,26 +7,38 @@ public class SpaceShip : MonoBehaviour
     public float moveSpeed;
     public GameObject bullet;
     private Rigidbody2D rb;
-    private AudioSource audioSource;
-    
-    void Start() 
+    [SerializeField]
+    private float secToFire = 1f;
+    [SerializeField]
+    private Camera mainCamera;
+    [SerializeField]
+    private float smooth = 10f;
+    bool canShoot = true;
+
+    void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
-        float xDirection = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(xDirection * moveSpeed, 0);
+        MoveSpaceShip();
+        if (canShoot) StartCoroutine(SpawnBullet());
     }
 
-    void Update()
+    private void MoveSpaceShip()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bullet, transform.position, Quaternion.identity);
-            SoundManager.instance.PlayOneShot(SoundManager.instance.bulletFire);
-        }
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        mouseWorldPosition.y = transform.position.y;
+        transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * smooth);
     }
-
+    private IEnumerator SpawnBullet()
+    {
+        Instantiate(bullet, transform.position, Quaternion.identity);
+        SoundManager.instance.PlayOneShot(SoundManager.instance.bulletFire);
+        canShoot = false;
+        yield return new WaitForSeconds(secToFire);
+        canShoot = true;
+    }
 }

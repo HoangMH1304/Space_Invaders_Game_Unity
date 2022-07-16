@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class SpawnAlien : MonoBehaviour
 {
@@ -10,22 +11,43 @@ public class SpawnAlien : MonoBehaviour
     private const int ALIEN_WIDTH = 5;
     [SerializeField]
     private int countAliens = 25;
-    int[] alienIndex;
+    [SerializeField]
+    private TextAsset data;
+    [SerializeField]
+    private int numRow = 5;
+    [SerializeField]
+    private int numCol = 5;
+    int[,] alienMatrix = new int[5, 5];
+    char[] ignoreChar = { ' ', '\n' };
+
+
     private void Start()
     {
+        InitMatrix();
         Spawn();
     }
+
+    private void InitMatrix()
+    {
+        var readFile = data.text;
+        string[] numText = readFile.Split(ignoreChar);
+        for (int i = 0; i < numRow; i++)
+        {
+            for (int j = 0; j < numCol; j++)
+            {
+                alienMatrix[i, j] = int.Parse(numText[i * 5 + j]);
+            }
+        }
+    }
+
     void Spawn()
     {
-        alienIndex = GetAlienType();
-        for (int col = 0; col < 5; col++)
+        // alienIndex = GetAlienType();
+        for (int row = 0; row < 5; row++)
         {
-            for (int row = 0; row <= col; row++)
+            for (int col = 0; col < 5; col++)
             {
-                // if (ChooseOrNot() == 1)
-                // {
-                CreateAlien(col, row);
-                // }
+                CreateAlien(row, col);
 
             }
         }
@@ -33,24 +55,12 @@ public class SpawnAlien : MonoBehaviour
 
     private void CreateAlien(int col, int row)
     {
-        Vector2 pos = new Vector2(ALIEN_HEIGHT * col, ALIEN_WIDTH * row);
-        var alien = Instantiate(aliensType[alienIndex[5 * col + row]]);
-        alien.transform.SetParent(parent);
-        alien.transform.localPosition = pos;
-    }
-
-    private int[] GetAlienType()
-    {
-        int[] alienIndex = new int[25];
-        for (int i = 0; i < countAliens; i++)
+        if (alienMatrix[row, col] != -1)
         {
-            alienIndex[i] = Random.Range(0, 3);
+            Vector2 pos = new Vector2(ALIEN_HEIGHT * col, ALIEN_WIDTH * row);
+            var alien = Instantiate(aliensType[alienMatrix[row, col]]);
+            alien.transform.SetParent(parent);
+            alien.transform.localPosition = pos;
         }
-        return alienIndex;
-    }
-
-    private int ChooseOrNot()
-    {
-        return Random.Range(1, 100) % 2;
     }
 }

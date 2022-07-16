@@ -5,11 +5,11 @@ using TMPro;
 
 public class UpdateScore : MonoBehaviour
 {
+    int score = 0;
     public void IncreseScore()
     {
         var textUI = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        int score = int.Parse(textUI.text);
         score += 10;
-        textUI.text = score.ToString();
+        textUI.text = "Score: " + score;
     }
 }

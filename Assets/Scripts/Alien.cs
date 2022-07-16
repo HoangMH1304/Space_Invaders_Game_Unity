@@ -18,21 +18,22 @@ public class Alien : MonoBehaviour
     public float secBeforeSpriteChange = 0.5f;
 
     public GameObject alienBullet;
-
-    public float minFireRateTime = 1.0f;
-
-    public float maxFireRateTime = 3.0f;
-
-    public float baseFireWaitTime = 3.0f;
+    [SerializeField]
+    private float minFireRateTime = 3.0f;
+    [SerializeField]
+    private float maxFireRateTime = 5.0f;
+    [SerializeField]
+    private float baseFireWaitTime = 2.0f;
 
     public Sprite explodedShipImage;
-
+    private float time;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.right * speed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ChangeAlienSprite());
+        time = 0;
         baseFireWaitTime += Random.Range(minFireRateTime, maxFireRateTime);
     }
 
@@ -83,9 +84,11 @@ public class Alien : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time > baseFireWaitTime)
+        time += Time.deltaTime;
+        if (time >= baseFireWaitTime)
         {
-            baseFireWaitTime += Random.Range(minFireRateTime, maxFireRateTime);
+            time = 0;
+            baseFireWaitTime = Random.Range(minFireRateTime, maxFireRateTime);
             Instantiate(alienBullet, transform.position, Quaternion.identity);
         }
     }
