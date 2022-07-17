@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1889094503453951862}
   - component: {fileID: -167605248365314501}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: SpaceShipBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7891245185061072595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 112b656bb607b5f4bbcf3b45bfe7d61f, type: 3}
+  m_Script: {fileID: 11500000, guid: ccddd20a479325c40a1e68d327d208d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
-  explodeAlien: {fileID: -2885940107258461023, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
+  enemyTag: Alien
+  moveSpeed: -30

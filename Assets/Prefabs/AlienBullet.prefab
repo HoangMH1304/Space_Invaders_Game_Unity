@@ -141,8 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7170697368816715490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d875d23d76ab4414294e85728f5bd5dd, type: 3}
+  m_Script: {fileID: 11500000, guid: ccddd20a479325c40a1e68d327d208d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: Player
   moveSpeed: 30
-  explodeShip: {fileID: 8463096131581357343, guid: b67112a6edeb97945a475697de70f8a6, type: 3}

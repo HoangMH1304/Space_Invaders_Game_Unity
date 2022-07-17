@@ -1,2 +1,7 @@
-/UserSettings/
+/.vscode/
+/__MACOSX/
 /Library/
+/obj/
+/UserSettings/
+/Space Invader Assets/
+/Logs/

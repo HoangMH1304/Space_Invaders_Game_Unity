@@ -4,40 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -5702827010650291094
-    second: SpaceInvaderSprites_0
+    second: alien_0
   - first:
       213: -2324346263816543927
-    second: SpaceInvaderSprites_1
+    second: alien_1
   - first:
       213: 2806016448434864277
-    second: SpaceInvaderSprites_2
+    second: alien_2
   - first:
       213: 6690153140086037541
-    second: SpaceInvaderSprites_3
+    second: alien_3
   - first:
       213: 8338736988281241674
-    second: SpaceInvaderSprites_4
+    second: alien_4
   - first:
       213: 4355879928144457057
-    second: SpaceInvaderSprites_5
+    second: alien_5
   - first:
       213: -2885940107258461023
-    second: SpaceInvaderSprites_6
+    second: alien_explosion
   - first:
       213: 8463096131581357343
-    second: SpaceInvaderSprites_7
+    second: ship_explosion
   - first:
       213: 3326126146466570728
-    second: SpaceInvaderSprites_8
+    second: space_ship
   - first:
       213: 4424962381780117069
-    second: SpaceInvaderSprites_9
+    second: alien_6
   - first:
       213: -2776934763770595325
-    second: SpaceInvaderSprites_10
+    second: alien_7
   - first:
       213: 5331700054834671792
-    second: SpaceInvaderSprites_11
+    second: alien_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpaceInvaderSprites_0
+      name: alien_0
       rect:
         serializedVersion: 2
         x: 0
@@ -147,7 +147,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_1
+      name: alien_1
       rect:
         serializedVersion: 2
         x: 16
@@ -168,7 +168,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_2
+      name: alien_2
       rect:
         serializedVersion: 2
         x: 32
@@ -189,7 +189,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +202,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_3
+      name: alien_3
       rect:
         serializedVersion: 2
         x: 48
@@ -210,7 +210,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,7 +223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_4
+      name: alien_4
       rect:
         serializedVersion: 2
         x: 64
@@ -231,7 +231,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,7 +244,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_5
+      name: alien_5
       rect:
         serializedVersion: 2
         x: 80
@@ -252,7 +252,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,7 +265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_6
+      name: alien_explosion
       rect:
         serializedVersion: 2
         x: 0
@@ -273,7 +273,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,7 +286,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_7
+      name: ship_explosion
       rect:
         serializedVersion: 2
         x: 16
@@ -294,7 +294,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -307,7 +307,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_8
+      name: space_ship
       rect:
         serializedVersion: 2
         x: 32
@@ -315,7 +315,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,7 +328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_9
+      name: alien_6
       rect:
         serializedVersion: 2
         x: 48
@@ -336,7 +336,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -349,7 +349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_10
+      name: alien_7
       rect:
         serializedVersion: 2
         x: 64
@@ -357,7 +357,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -370,7 +370,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpaceInvaderSprites_11
+      name: alien_8
       rect:
         serializedVersion: 2
         x: 80
@@ -378,7 +378,7 @@ TextureImporter:
         width: 16
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

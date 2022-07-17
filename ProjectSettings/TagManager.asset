@@ -9,6 +9,7 @@ TagManager:
   - Alien
   - Bullet
   - AlienBullet
+  - Heart
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien : MonoBehaviour
+public class Alien : MonoBehaviour, IHealth
 {
 
     public float speed = 10;
@@ -24,7 +24,8 @@ public class Alien : MonoBehaviour
     private float maxFireRateTime = 5.0f;
     [SerializeField]
     private float baseFireWaitTime = 2.0f;
-
+    [SerializeField]
+    private Sprite explodeAlien;
     public Sprite explodedShipImage;
     private float time;
     void Start()
@@ -76,7 +77,7 @@ public class Alien : MonoBehaviour
             else
             {
                 spriteRenderer.sprite = startingImage;
-                SoundManager.instance.PlayOneShot(SoundManager.instance.alienBuzz2);
+                SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienBuzz2);
             }
             yield return new WaitForSeconds(secBeforeSpriteChange);
         }
@@ -97,10 +98,24 @@ public class Alien : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SoundManager.instance.PlayOneShot(SoundManager.instance.shipExplosion);
-            other.GetComponent<SpriteRenderer>().sprite = explodedShipImage;
+            var spaceShip = other.GetComponent<IHealth>();
+            spaceShip.TakeDamage(1);
             Destroy(gameObject);
-            DestroyObject(other.gameObject, 0.25f);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        GameManager.Instance.AddScore(10);
+        Die();
+    }
+
+    private void Die()
+    {
+        var spriteRender = GetComponent<SpriteRenderer>();
+        spriteRender.sprite = explodeAlien;
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienDies);
+        Destroy(gameObject, 0.1f);
+    }
+
 }

@@ -10,8 +10,6 @@ public class SpawnAlien : MonoBehaviour
     private const int ALIEN_HEIGHT = 4;
     private const int ALIEN_WIDTH = 5;
     [SerializeField]
-    private int countAliens = 25;
-    [SerializeField]
     private TextAsset data;
     [SerializeField]
     private int numRow = 5;

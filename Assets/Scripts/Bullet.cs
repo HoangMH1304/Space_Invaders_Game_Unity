@@ -1,41 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Bullet : MonoBehaviour
 {
-    public float moveSpeed;
-    public Sprite explodeAlien;
-    private Rigidbody2D rb;
-    private UpdateScore updateScore;
-
-    void Start()
+    private const string SHELD_TAG = "Shield";
+    [SerializeField]
+    private string enemyTag = "Player";
+    [SerializeField]
+    private float moveSpeed = 30;
+    virtual protected void Start()
     {
-        updateScore = GameObject.Find("Score").GetComponent<UpdateScore>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.up * moveSpeed;
+        Move();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    protected void Move()
     {
-        if(other.tag == "Wall") 
+        var rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity = Vector2.down * moveSpeed;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D other)
+    {
+        HandleTriggerEnter(other);
+    }
+
+    protected void HandleTriggerEnter(Collider2D other)
+    {
+        if (other.tag == enemyTag)
         {
-            Destroy(gameObject);
+            DealDamage(other);
         }
-        if(other.tag == "Alien")
+        if (other.tag == SHELD_TAG)
         {
-            SoundManager.instance.PlayOneShot(SoundManager.instance.alienDies);
-            other.GetComponent<SpriteRenderer>().sprite = explodeAlien;
-            Destroy(gameObject);        //destroy bullet
-            DestroyObject(other.gameObject, 0.1f); //destroy explodeAlien after 0.1s
-            updateScore.IncreseScore();
-        }
-        if(other.tag == "Shield")
-        {
-            Destroy(gameObject);
             Destroy(other.gameObject);
         }
+        Destroy(gameObject);
     }
 
+    protected void DealDamage(Collider2D other)
+    {
+        var enemy = other.GetComponent<IHealth>();
+        enemy.TakeDamage(1);
+    }
 }
