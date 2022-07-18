@@ -145,11 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  bullet: {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
+  explodeObject: {fileID: -2885940107258461023, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
+  shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
   startingImage: {fileID: 8338736988281241674, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   altImage: {fileID: -2776934763770595325, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   secBeforeSpriteChange: 0.5
-  alienBullet: {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   minFireRateTime: 1
   maxFireRateTime: 3
   baseFireWaitTime: 3
-  explodedShipImage: {fileID: 8463096131581357343, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
