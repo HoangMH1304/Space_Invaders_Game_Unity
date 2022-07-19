@@ -31,8 +31,8 @@ public class ChangeScene : MonoBehaviour
     }
     void OpenNextScene()
     {
-        Debug.Log(sceneIndex);
-        Debug.Log(gameManager?.GetLevel());
+        // Debug.Log(sceneIndex);
+        // Debug.Log(gameManager?.GetLevel());
         SceneManager.LoadScene(sceneIndex);
     }
 }

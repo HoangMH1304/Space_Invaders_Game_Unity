@@ -39,7 +39,12 @@ public class AlienManager : MonoBehaviour
         // {
         //     enemy.Die();
         // }
-        for (int i = aliens.Count - 1; i >= 0; i--)
+        // for (int i = aliens.Count - 1; i >= 0; i--)
+        // {
+        //     aliens[i].Die();
+        // }
+
+        for (int i = 0; i < aliens.Count;)
         {
             aliens[i].Die();
         }
@@ -68,6 +73,11 @@ public class AlienManager : MonoBehaviour
                 if (alien != null)
                 {
                     alien.OnDeath.AddListener(OnAlienDeath);
+                    alien.OnDeath.AddListener((ship) =>
+                    {
+                        Debug.Log("Invoke");
+                    });
+
                     aliens.Add(alien);
                 }
             }
