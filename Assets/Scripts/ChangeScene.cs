@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    private const int LOSE_SCENE = 5;
-    private const int WIN_SCENE = 4;
+    private const int LAST_SCENE = 4;
     private const int OPENING_SCENE = 0;
     public int sceneIndex;
     [SerializeField]
@@ -26,13 +25,12 @@ public class ChangeScene : MonoBehaviour
 
     public void ChangeLastScene()
     {
-        sceneIndex = LOSE_SCENE;
+        gameManager.SetResult("You Lose!");
+        sceneIndex = LAST_SCENE;
         Invoke("OpenNextScene", secTillSceneLoad);
     }
     void OpenNextScene()
     {
-        // Debug.Log(sceneIndex);
-        // Debug.Log(gameManager?.GetLevel());
         SceneManager.LoadScene(sceneIndex);
     }
 }

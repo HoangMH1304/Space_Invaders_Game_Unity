@@ -5,12 +5,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     private GameState gameState;
     private UIHandler uIHandler;
+    private TurnUpDownVolume changeVolume;
 
     protected override void Awake()
     {
         base.Awake();
         Init();
-
     }
 
     private void Init()
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void GetReferences()
     {
         uIHandler = FindObjectOfType<UIHandler>();
+        changeVolume = GameObject.Find("SoundManager").GetComponent<TurnUpDownVolume>();
     }
 
     public void InitData()
@@ -31,8 +32,30 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         gameState.playerHealth = 3;
         gameState.score = 0;
         gameState.result = "";
+        gameState.volumeMusic = 0;
+        gameState.volumeSFX = 0;
+        // changeVolume.UpdateMusicSFXValue();
     }
 
+    public float GetVolumeMusic()
+    {
+        return gameState.volumeMusic;
+    }
+
+    public void SetVolumeMusic(float x)
+    {
+        gameState.volumeMusic = x;
+    }
+
+    public float GetVolumeSFX()
+    {
+        return gameState.volumeSFX;
+    }
+
+    public void SetVolumeSFX(float x)
+    {
+        gameState.volumeSFX = x;
+    }
     public void SetResult(string result)
     {
         gameState.result = result;
@@ -52,10 +75,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return gameState.level;
     }
 
-    public void SetLevel(int level)
-    {
-        gameState.level = level;
-    }
     public void AddScore(int score)
     {
         gameState.score += score;
@@ -67,10 +86,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return gameState.score;
     }
 
-    public void SetScore(int score)
-    {
-        gameState.score = score;
-    }
 
     public int GetSpaceShipHealth()
     {

@@ -6,7 +6,7 @@ using System.IO;
 public class UIHandler : MonoBehaviour
 {
     private Player ship;
-    // int score = 0;
+    private GameManager gameManager;
     [SerializeField]
     private List<GameObject> hearts;
 
@@ -17,11 +17,27 @@ public class UIHandler : MonoBehaviour
 
     private void Init()
     {
-        ship = GameObject.Find("SpaceShip").GetComponent<Player>();
-        var value = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GetReference();
+        UpdateReference();
+    }
+
+    private void UpdateReference()
+    {
         UpdateHealth();
-        UpdateValue("Score", value.GetScore());
-        UpdateValue("Level", value.GetLevel());
+        UpdateValue("Score", gameManager.GetScore());
+        UpdateValue("Level", gameManager.GetLevel());
+
+    }
+
+    void Update()
+    {
+        // UpdateVolumeMusic(gameManager.GetVolumeMusic());
+        // UpdateVolumeSFX(gameManager.GetVolumeSFX());
+    }
+    private void GetReference()
+    {
+        ship = GameObject.Find("SpaceShip").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void UpdateValue(string target, int value)
@@ -36,5 +52,19 @@ public class UIHandler : MonoBehaviour
         {
             hearts[i].SetActive(i < ship.GetHealth());
         }
+    }
+
+    public void UpdateVolumeMusic(float value)
+    {
+        int intergerValue = (int)(value * 100);
+        var textUI = GameObject.Find("MusicText").GetComponent<TextMeshProUGUI>();
+        textUI.text = "Music: " + intergerValue.ToString();
+    }
+
+    public void UpdateVolumeSFX(float value)
+    {
+        int intergerValue = (int)(value * 100);
+        var textUI = GameObject.Find("SFXText").GetComponent<TextMeshProUGUI>();
+        textUI.text = "SFX: " + intergerValue.ToString();
     }
 }

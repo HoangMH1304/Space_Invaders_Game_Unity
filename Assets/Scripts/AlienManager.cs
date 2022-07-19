@@ -91,6 +91,7 @@ public class AlienManager : MonoBehaviour
         {
             EndLevel();
             gameManager.UpdatePlayerHealth(player.GetHealth());
+            gameManager.SetResult("You Win!");
         }
     }
 
@@ -116,6 +117,4 @@ public class AlienManager : MonoBehaviour
         }
         return null;
     }
-
-
 }
