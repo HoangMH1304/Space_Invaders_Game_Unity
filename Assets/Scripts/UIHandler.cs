@@ -29,11 +29,6 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        // UpdateVolumeMusic(gameManager.GetVolumeMusic());
-        // UpdateVolumeSFX(gameManager.GetVolumeSFX());
-    }
     private void GetReference()
     {
         ship = GameObject.Find("SpaceShip").GetComponent<Player>();
@@ -54,14 +49,14 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void UpdateVolumeMusic(float value)
+    public void UpdateUIVolumeMusic(float value)
     {
         int intergerValue = (int)(value * 100);
         var textUI = GameObject.Find("MusicText").GetComponent<TextMeshProUGUI>();
         textUI.text = "Music: " + intergerValue.ToString();
     }
 
-    public void UpdateVolumeSFX(float value)
+    public void UpdateUIVolumeSFX(float value)
     {
         int intergerValue = (int)(value * 100);
         var textUI = GameObject.Find("SFXText").GetComponent<TextMeshProUGUI>();

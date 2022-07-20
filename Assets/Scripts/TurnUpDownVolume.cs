@@ -9,6 +9,7 @@ public class TurnUpDownVolume : MonoBehaviour
     private AudioSource audioSourceMusic;
     private AudioSource audioSourceSFX;
     private GameManager gameManager;
+    private GameState gameState;
     private TextMeshProUGUI textMusicValue;
     private TextMeshProUGUI textSFXValue;
     float valueMusic;
@@ -25,30 +26,27 @@ public class TurnUpDownVolume : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    public void UpdateMusicSFXValue()
-    {
-        gameManager.SetVolumeMusic(audioSourceMusic.volume);
-        gameManager.SetVolumeSFX(audioSourceSFX.volume);
-    }
 
-    public void TurnUpDownMusic(float t)
+    public void TurnUpDownMusic(float t)        //UI
     {
+        // gameState.volumeMusic = t;
         audioSourceMusic.volume = t;
     }
 
-    public void TurnUpDownSFX(float t)
+    public void TurnUpDownSFX(float t)          //UI
     {
+        // gameState.volumeSFX = t;
         audioSourceSFX.volume = t;
     }
 
-    public void UpdateMusicValueText(float t)
+    public void UpdateMusicValueText(float t)                //UI
     {
         textMusicValue = GameObject.Find("MusicText").GetComponent<TextMeshProUGUI>();
         int value = (int)(t * 100);
         textMusicValue.text = "Music: " + value.ToString();
     }
 
-    public void UpdateSFXValueText(float t)
+    public void UpdateSFXValueText(float t)                  //UI 
     {
         textSFXValue = GameObject.Find("SFXText").GetComponent<TextMeshProUGUI>();
         int value = (int)(t * 100);

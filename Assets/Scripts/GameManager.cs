@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private GameState gameState;
     private UIHandler uIHandler;
     private TurnUpDownVolume changeVolume;
+    private AudioSource audioSourceMusic;
+    private AudioSource audioSourceSFX;
 
     protected override void Awake()
     {
@@ -22,7 +24,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void GetReferences()
     {
         uIHandler = FindObjectOfType<UIHandler>();
-        changeVolume = GameObject.Find("SoundManager").GetComponent<TurnUpDownVolume>();
+        changeVolume = FindObjectOfType<TurnUpDownVolume>();
+        audioSourceMusic = GameObject.Find("Music(Clone)").GetComponent<AudioSource>();
+        audioSourceSFX = GameObject.Find("SoundManager").GetComponent<AudioSource>();
     }
 
     public void InitData()
@@ -32,11 +36,11 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         gameState.playerHealth = 3;
         gameState.score = 0;
         gameState.result = "";
-        gameState.volumeMusic = 0;
-        gameState.volumeSFX = 0;
-        // changeVolume.UpdateMusicSFXValue();
+        gameState.volumeMusic = 0.5f;
+        gameState.volumeSFX = 0.5f;
     }
 
+    //getter, setter music
     public float GetVolumeMusic()
     {
         return gameState.volumeMusic;
@@ -44,9 +48,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void SetVolumeMusic(float x)
     {
+        Debug.Log($"SetVolumeMusic: {x}");
         gameState.volumeMusic = x;
+        audioSourceMusic.volume = x;
     }
 
+    //getter, setter sfx
     public float GetVolumeSFX()
     {
         return gameState.volumeSFX;
@@ -55,7 +62,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void SetVolumeSFX(float x)
     {
         gameState.volumeSFX = x;
+        audioSourceSFX.volume = x;
     }
+
+
     public void SetResult(string result)
     {
         gameState.result = result;

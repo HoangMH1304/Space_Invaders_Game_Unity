@@ -9,37 +9,57 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     private GameManager gameManager;
-    private TextMeshProUGUI musicVolumeText;
-    private TextMeshProUGUI sfxVolumeText;
-    private Slider sliderMusic;
-    private Slider sliderSFX;
     private TurnUpDownVolume changeVolume;
+    private UIHandler uIHandler;
+    // private MusicSliderSaver musicSliderSaver;
+    // private MusicSliderSaver sfxSliderSaver;
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        changeVolume = GameObject.Find("SoundManager").GetComponent<TurnUpDownVolume>();
+        Init();
+
     }
+
+    private void Init()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        uIHandler = FindObjectOfType<UIHandler>();
+
+    }
+
+
+
     public void Pause()
     {
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
-        changeVolume.UpdateMusicSFXValue();
-        sliderMusic = GameObject.Find("SliderMusic").GetComponent<Slider>();
-        sliderSFX = GameObject.Find("SliderSFX").GetComponent<Slider>();
-        UpdateVolumeMusic(gameManager.GetVolumeMusic());
-        UpdateVolumeSFX(gameManager.GetVolumeSFX());
-        sliderMusic.value = gameManager.GetVolumeMusic();
-        sliderSFX.value = gameManager.GetVolumeSFX();
+        AdjustVolume();
     }
 
 
+    private void AdjustVolume()
+    {
+        float volumeMusicNow = gameManager.GetVolumeMusic();
+        float volumeSFXNow = gameManager.GetVolumeSFX();
+        uIHandler.UpdateUIVolumeMusic(volumeMusicNow);
+        uIHandler.UpdateUIVolumeSFX(volumeSFXNow);
+        var musicSliderSaver = GameObject.Find("SliderMusic").GetComponent<MusicSliderSaver>();
+        var sfxSliderSaver = GameObject.Find("SliderSFX").GetComponent<MusicSliderSaver>();
+        musicSliderSaver.SetSliderChange(volumeMusicNow);
+        sfxSliderSaver.SetSliderChange(volumeSFXNow);
+        musicSliderSaver.GetSliderChange();
+        sfxSliderSaver.GetSliderChange();
+    }
 
+
+    //
     public void Resume()
     {
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
     }
+
+
 
     public void Restart()
     {
@@ -52,17 +72,4 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void UpdateVolumeMusic(float value)
-    {
-        int intergerValue = (int)(value * 100);
-        var textUI = GameObject.Find("MusicText").GetComponent<TextMeshProUGUI>();
-        textUI.text = "Music: " + intergerValue.ToString();
-    }
-
-    public void UpdateVolumeSFX(float value)
-    {
-        int intergerValue = (int)(value * 100);
-        var textUI = GameObject.Find("SFXText").GetComponent<TextMeshProUGUI>();
-        textUI.text = "SFX: " + intergerValue.ToString();
-    }
 }
