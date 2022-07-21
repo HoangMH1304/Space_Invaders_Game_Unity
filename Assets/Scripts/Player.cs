@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : Ship
 {
-    private const float topRange = -12f;
-    private const float bottomRange = -30f;
+    private const float TOP_RANGE = -12f;
+    private const float BOTTOM_RANGE = -30f;
+    private const int RATE = 5;
     [SerializeField]
     private Camera mainCamera;
 
@@ -14,7 +15,6 @@ public class Player : Ship
     private int health = 3;
     private bool dead = false;
     private UIHandler uIHandler;
-
 
     void Start()
     {
@@ -26,21 +26,29 @@ public class Player : Ship
         rb = GetComponent<Rigidbody2D>();
         uIHandler = GameObject.FindObjectOfType<UIHandler>();
         health = GameManager.Instance.GetSpaceShipHealth();
+
+    }
+    private void Update()
+    {
+        ChangeGun();
     }
 
     void FixedUpdate()
     {
         MoveSpaceShip();
-        if (canShoot) Shoot();
-        // health = GameManager.Instance.GetSpaceShipHealth();
+        if (canShoot)
+        {
+            Shoot();
+            // Reload();
+        }
     }
+
 
     private void MoveSpaceShip()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0f;
-        // mouseWorldPosition.y = transform.position.y;
-        if (mouseWorldPosition.y > topRange || mouseWorldPosition.y < bottomRange) mouseWorldPosition.y = transform.position.y;
+        if (mouseWorldPosition.y > TOP_RANGE || mouseWorldPosition.y < BOTTOM_RANGE) mouseWorldPosition.y = transform.position.y;
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * smooth);
     }
 

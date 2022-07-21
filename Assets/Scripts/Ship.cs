@@ -7,7 +7,6 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
 {
     [SerializeField]
     protected int speed = 10;
-    public GameObject bullet;
     protected Rigidbody2D rb;
     [SerializeField]
     private Sprite explodeObject;
@@ -16,6 +15,10 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     protected bool canShoot = true;
     [SerializeField]
     protected Gun gun;
+    private GunStore gunStore;
+
+    // [SerializeField]
+    // protected List<Gun> guns;
     [SerializeField]
     private float reloadTime = 1f;
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
@@ -29,7 +32,25 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         OnDeath?.Invoke(this);
     }
 
+    public bool GetChance(int rate)
+    {
+        return Random.Range(1, 100) <= rate;
+    }
+
+
     public abstract void TakeDamage(int damage);
+
+    public void ChangeGun()
+    {
+        var gunStore = FindObjectOfType<GunStore>();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space");
+            gun = gunStore.RandomGun();
+
+        }
+    }
+
     private IEnumerator ReloadIEnumerator()
     {
         canShoot = false;

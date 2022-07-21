@@ -35,10 +35,6 @@ public class AlienManager : MonoBehaviour
 
     private void GetReference()
     {
-        // changeScene = GameObject.Find("Main Camera").GetComponent<ChangeScene>();
-        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // player = GameObject.Find("SpaceShip").GetComponent<Player>();
-
         changeScene = FindObjectOfType<ChangeScene>();
         gameManager = FindObjectOfType<GameManager>();
         uIHandler = FindObjectOfType<UIHandler>();

@@ -36,6 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\IHunter.cs" />
      <Compile Include="Assets\Scripts\MonoBehaviourSingleton.cs" />
      <Compile Include="Assets\Scripts\BackGroundMusicManager.cs" />
      <Compile Include="Assets\Scripts\IHealth.cs" />
@@ -52,11 +54,10 @@
      <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GunStore.cs" />
      <Compile Include="Assets\Scripts\ContinuePlayMusic.cs" />
      <Compile Include="Assets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\Gun.cs" />
-     <Compile Include="Assets\Scripts\IHunter.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

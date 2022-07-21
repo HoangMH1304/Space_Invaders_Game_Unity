@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour
     List<GameObject> bullets;
     [SerializeField]
     private AudioClip fireAudioClip;
+    [SerializeField]
+    private float reloadTime = 1f;
 
     public void Shoot()
     {

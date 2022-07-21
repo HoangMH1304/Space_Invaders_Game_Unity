@@ -93,6 +93,4 @@ public class Alien : Ship
         GameManager.Instance.AddScore(10);
         Die();
     }
-
-
 }
