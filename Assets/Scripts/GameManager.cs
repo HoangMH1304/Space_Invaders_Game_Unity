@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         gameState.result = "";
         gameState.volumeMusic = 0.5f;
         gameState.volumeSFX = 0.5f;
+        // gameState.volumeMusic = audioSourceMusic.volume;
+        // gameState.volumeSFX = audioSourceSFX.volume;
     }
 
     //getter, setter music

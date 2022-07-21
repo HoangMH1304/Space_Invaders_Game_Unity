@@ -7,12 +7,11 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
     public AudioClip alienBuzz1;
     public AudioClip alienBuzz2;
     public AudioClip alienDies;
-    public AudioClip bulletFire;
     private AudioSource soundEffectAudio;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         soundEffectAudio = GetComponent<AudioSource>();
 
     }

@@ -41,14 +41,14 @@ public class PauseMenu : MonoBehaviour
     {
         float volumeMusicNow = gameManager.GetVolumeMusic();
         float volumeSFXNow = gameManager.GetVolumeSFX();
-        uIHandler.UpdateUIVolumeMusic(volumeMusicNow);
-        uIHandler.UpdateUIVolumeSFX(volumeSFXNow);
-        var musicSliderSaver = GameObject.Find("SliderMusic").GetComponent<MusicSliderSaver>();
-        var sfxSliderSaver = GameObject.Find("SliderSFX").GetComponent<MusicSliderSaver>();
-        musicSliderSaver.SetSliderChange(volumeMusicNow);
-        sfxSliderSaver.SetSliderChange(volumeSFXNow);
-        musicSliderSaver.GetSliderChange();
-        sfxSliderSaver.GetSliderChange();
+        // uIHandler.UpdateUIVolumeMusic(volumeMusicNow);
+        // uIHandler.UpdateUIVolumeSFX(volumeSFXNow);
+        var soundSliderSaver = GameObject.Find("Canvas").GetComponent<MusicSliderSaver>();
+        soundSliderSaver.SetMusicSliderChange(volumeMusicNow);
+        soundSliderSaver.SetSFXSliderChange(volumeSFXNow);
+        soundSliderSaver.GetMusicSliderChange();
+        soundSliderSaver.GetSFXSliderChange();
+
     }
 
 

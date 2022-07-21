@@ -7,16 +7,15 @@ public class Player : Ship
     private const float topRange = -12f;
     private const float bottomRange = -30f;
     [SerializeField]
-    private float secToFire = 1f;
-    [SerializeField]
     private Camera mainCamera;
 
     [SerializeField]
     private float smooth = 10f;
     private int health = 3;
     private bool dead = false;
-    bool canShoot = true;
     private UIHandler uIHandler;
+
+
     void Start()
     {
         Init();
@@ -32,7 +31,7 @@ public class Player : Ship
     void FixedUpdate()
     {
         MoveSpaceShip();
-        if (canShoot) StartCoroutine(SpawnBullet());
+        if (canShoot) Shoot();
         // health = GameManager.Instance.GetSpaceShipHealth();
     }
 
@@ -43,14 +42,6 @@ public class Player : Ship
         // mouseWorldPosition.y = transform.position.y;
         if (mouseWorldPosition.y > topRange || mouseWorldPosition.y < bottomRange) mouseWorldPosition.y = transform.position.y;
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * smooth);
-    }
-    private IEnumerator SpawnBullet()
-    {
-        Instantiate(bullet, transform.position, Quaternion.identity);
-        SoundManager.Instance.PlayOneShot(SoundManager.Instance.bulletFire);
-        canShoot = false;
-        yield return new WaitForSeconds(secToFire);
-        canShoot = true;
     }
 
     override public void TakeDamage(int damage)

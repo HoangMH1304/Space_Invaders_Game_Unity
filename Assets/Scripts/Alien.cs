@@ -8,28 +8,16 @@ public class Alien : Ship
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
     public Sprite startingImage;
-
     public Sprite altImage;
-
     private SpriteRenderer spriteRenderer;
-
     public float secBeforeSpriteChange = 0.5f;
 
-    [SerializeField]
-    private float minFireRateTime = 3.0f;
-    [SerializeField]
-    private float maxFireRateTime = 5.0f;
-    [SerializeField]
-    private float baseFireWaitTime = 2.0f;
-    private float time;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.right * speed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ChangeAlienSprite());
-        time = 0;
-        baseFireWaitTime += Random.Range(minFireRateTime, maxFireRateTime);
     }
 
     void TurnDirection(int direction)
@@ -77,14 +65,16 @@ public class Alien : Ship
         }
     }
 
+    private bool GetChance()
+    {
+        return Random.Range(1, 100) <= 1;
+    }
+
     private void FixedUpdate()
     {
-        time += Time.deltaTime;
-        if (time >= baseFireWaitTime)
+        if (canShoot && GetChance())
         {
-            time = 0;
-            baseFireWaitTime = Random.Range(minFireRateTime, maxFireRateTime);
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            Shoot();
         }
     }
 
@@ -103,4 +93,6 @@ public class Alien : Ship
         GameManager.Instance.AddScore(10);
         Die();
     }
+
+
 }

@@ -8,6 +8,8 @@ public class UIHandler : MonoBehaviour
     private Player ship;
     private GameManager gameManager;
     [SerializeField]
+    private GameObject incresePoint;
+    [SerializeField]
     private List<GameObject> hearts;
 
     private void Start()
@@ -47,6 +49,12 @@ public class UIHandler : MonoBehaviour
         {
             hearts[i].SetActive(i < ship.GetHealth());
         }
+    }
+
+    public void IncreaseHealth()
+    {
+        incresePoint.SetActive(true);
+        hearts[ship.GetHealth()].SetActive(true);
     }
 
     public void UpdateUIVolumeMusic(float value)

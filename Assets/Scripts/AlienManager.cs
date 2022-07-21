@@ -9,6 +9,7 @@ public class AlienManager : MonoBehaviour
     public Transform parent;
     private const int ALIEN_HEIGHT = 4;
     private const int ALIEN_WIDTH = 5;
+    private const int MAX_HEALTH = 3;
     [SerializeField]
     private TextAsset data;
     [SerializeField]
@@ -19,6 +20,7 @@ public class AlienManager : MonoBehaviour
     char[] ignoreChar = { ' ', '\n' };
     private ChangeScene changeScene;
     private GameManager gameManager;
+    private UIHandler uIHandler;
     private Player player;
     [SerializeField]
     private List<Ship> aliens;
@@ -28,8 +30,18 @@ public class AlienManager : MonoBehaviour
         aliens = new List<Ship>();
         InitMatrix();
         Spawn();
-        changeScene = GameObject.Find("Main Camera").GetComponent<ChangeScene>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GetReference();
+    }
+
+    private void GetReference()
+    {
+        // changeScene = GameObject.Find("Main Camera").GetComponent<ChangeScene>();
+        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // player = GameObject.Find("SpaceShip").GetComponent<Player>();
+
+        changeScene = FindObjectOfType<ChangeScene>();
+        gameManager = FindObjectOfType<GameManager>();
+        uIHandler = FindObjectOfType<UIHandler>();
         player = GameObject.Find("SpaceShip").GetComponent<Player>();
     }
 
@@ -90,7 +102,13 @@ public class AlienManager : MonoBehaviour
         if (IsWin())
         {
             EndLevel();
-            gameManager.UpdatePlayerHealth(player.GetHealth());
+            int hearts = player.GetHealth();
+            if (hearts < MAX_HEALTH)
+            {
+                hearts++;
+                uIHandler.IncreaseHealth();
+            }
+            gameManager.UpdatePlayerHealth(hearts);
             gameManager.SetResult("You Win!");
         }
     }

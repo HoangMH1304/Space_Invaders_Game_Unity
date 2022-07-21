@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ContinuePlayMusic : MonoBehaviourSingleton<ContinuePlayMusic>
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 }

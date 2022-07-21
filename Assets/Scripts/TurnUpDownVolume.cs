@@ -12,8 +12,6 @@ public class TurnUpDownVolume : MonoBehaviour
     private GameState gameState;
     private TextMeshProUGUI textMusicValue;
     private TextMeshProUGUI textSFXValue;
-    float valueMusic;
-    float valueSFX;
     private void Start()
     {
         GetReference();
@@ -29,14 +27,13 @@ public class TurnUpDownVolume : MonoBehaviour
 
     public void TurnUpDownMusic(float t)        //UI
     {
-        // gameState.volumeMusic = t;
-        audioSourceMusic.volume = t;
+        gameManager.SetVolumeMusic(t);
+
     }
 
     public void TurnUpDownSFX(float t)          //UI
     {
-        // gameState.volumeSFX = t;
-        audioSourceSFX.volume = t;
+        gameManager.SetVolumeSFX(t);
     }
 
     public void UpdateMusicValueText(float t)                //UI

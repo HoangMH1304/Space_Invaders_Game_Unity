@@ -8,16 +8,18 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private string enemyTag = "Player";
     [SerializeField]
+    public Vector2 direction;
+    [SerializeField]
     private float moveSpeed = 30;
     virtual protected void Start()
     {
         Move();
     }
 
-    protected void Move()
+    virtual protected void Move()
     {
         var rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = Vector2.down * moveSpeed;
+        rigidbody.velocity = direction * moveSpeed;
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

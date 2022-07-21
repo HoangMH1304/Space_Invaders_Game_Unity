@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Ship : MonoBehaviour, IHealth
+public abstract class Ship : MonoBehaviour, IHealth, IHunter
 {
     [SerializeField]
     protected int speed = 10;
@@ -13,6 +13,11 @@ public abstract class Ship : MonoBehaviour, IHealth
     private Sprite explodeObject;
     [SerializeField]
     private AudioClip shipExplosion;
+    protected bool canShoot = true;
+    [SerializeField]
+    protected Gun gun;
+    [SerializeField]
+    private float reloadTime = 1f;
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
 
     virtual public void Die()
@@ -24,5 +29,22 @@ public abstract class Ship : MonoBehaviour, IHealth
         OnDeath?.Invoke(this);
     }
 
-    abstract public void TakeDamage(int damage);
+    public abstract void TakeDamage(int damage);
+    private IEnumerator ReloadIEnumerator()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(reloadTime);
+        canShoot = true;
+    }
+
+    public void Shoot()
+    {
+        gun.Shoot();
+        Reload();
+    }
+
+    public void Reload()
+    {
+        StartCoroutine(ReloadIEnumerator());
+    }
 }

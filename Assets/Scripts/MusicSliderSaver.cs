@@ -5,14 +5,26 @@ using UnityEngine.UI;
 public class MusicSliderSaver : MonoBehaviour
 {
     [SerializeField]
-    private Slider slider;
-    public void GetSliderChange()
+    private Slider musicSlider;
+    [SerializeField]
+    private Slider sfxSlider;
+    public void GetMusicSliderChange()
     {
-        slider.value = PlayerPrefs.GetFloat("SliderSaver1");
+        musicSlider.value = PlayerPrefs.GetFloat("MusicSliderSaver");
     }
 
-    public void SetSliderChange(float value)
+    public void SetMusicSliderChange(float value)
     {
-        PlayerPrefs.SetFloat("SliderSaver1", value);
+        PlayerPrefs.SetFloat("MusicSliderSaver", value);
+    }
+
+    public void GetSFXSliderChange()
+    {
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXSliderSaver");
+    }
+
+    public void SetSFXSliderChange(float value)
+    {
+        PlayerPrefs.SetFloat("SFXSliderSaver", value);
     }
 }
