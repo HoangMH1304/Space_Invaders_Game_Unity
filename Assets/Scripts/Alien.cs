@@ -16,6 +16,7 @@ public class Alien : Ship
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.right * speed;
+        // rb.velocity = Vector2.down * 10;
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ChangeAlienSprite());
     }

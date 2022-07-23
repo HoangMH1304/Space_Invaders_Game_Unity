@@ -6,17 +6,35 @@ using System.IO;
 public class UIHandler : MonoBehaviour
 {
     private Player ship;
-    private GameManager gameManager;
+    private AlienManager alienManager;
+    // private GameManager gameManager;
     [SerializeField]
     private GameObject incresePoint;
     [SerializeField]
     private List<GameObject> hearts;
+    const int WAVE = 3;
+
+    private void Awake()
+    {
+        Init();
+        // if (alienManager == null)
+        //     Debug.Log("alienManager null");
+        // if (alienManager.OnCall == null)
+        //     Debug.Log("oncall null");
+        alienManager.OnCall.AddListener(CountWave);
+        // alienManager.OnCall.AddListener((wave) =>
+        // {
+        //     Debug.Log($"on new waves callback!");
+        // });
+
+        // Debug.Log("Add listener");
+    }
 
     private void Start()
     {
-        Init();
+        UpdateHealth();
+        Debug.Log(GameManager.Instance.GetSpaceShipHealth());
     }
-
     private void Init()
     {
         GetReference();
@@ -25,16 +43,34 @@ public class UIHandler : MonoBehaviour
 
     private void UpdateReference()
     {
-        UpdateHealth();
-        UpdateValue("Score", gameManager.GetScore());
-        UpdateValue("Level", gameManager.GetLevel());
+        // UpdateHealth();
+        // UpdateValue("Score", gameManager.GetScore());
+        // UpdateValue("Level", gameManager.GetLevel());
+
+        UpdateValue("Score", GameManager.Instance.GetScore());
+        UpdateValue("Level", GameManager.Instance.GetLevel());
 
     }
 
     private void GetReference()
     {
         ship = GameObject.Find("SpaceShip").GetComponent<Player>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // gameManager = FindObjectOfType<GameManager>();
+        alienManager = FindObjectOfType<AlienManager>();
+        // Debug.LogError($"alien manager: {alienManager.gameObject.name}");
+
+    }
+
+    public void DestroyButton()
+    {
+        alienManager.DestroyAliens();
+    }
+
+    public void CountWave(int waves)
+    {
+        // Debug.Log($"Update wave: {waves}");
+        var textUI = GameObject.Find("Wave").GetComponent<TextMeshProUGUI>();
+        textUI.text = (WAVE - waves).ToString() + " wave(s) left";
     }
 
     public void UpdateValue(string target, int value)
@@ -55,19 +91,5 @@ public class UIHandler : MonoBehaviour
     {
         incresePoint.SetActive(true);
         hearts[ship.GetHealth()].SetActive(true);
-    }
-
-    public void UpdateUIVolumeMusic(float value)
-    {
-        int intergerValue = (int)(value * 100);
-        var textUI = GameObject.Find("MusicText").GetComponent<TextMeshProUGUI>();
-        textUI.text = "Music: " + intergerValue.ToString();
-    }
-
-    public void UpdateUIVolumeSFX(float value)
-    {
-        int intergerValue = (int)(value * 100);
-        var textUI = GameObject.Find("SFXText").GetComponent<TextMeshProUGUI>();
-        textUI.text = "SFX: " + intergerValue.ToString();
     }
 }

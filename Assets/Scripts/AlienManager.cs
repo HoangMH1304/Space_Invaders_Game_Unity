@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+using UnityEngine.Events;
 
 public class AlienManager : MonoBehaviour
 {
@@ -10,8 +10,10 @@ public class AlienManager : MonoBehaviour
     private const int ALIEN_HEIGHT = 4;
     private const int ALIEN_WIDTH = 5;
     private const int MAX_HEALTH = 3;
+    private const int WAVES = 3;
+
     [SerializeField]
-    private TextAsset data;
+    private List<TextAsset> datas;
     [SerializeField]
     private int numRow = 5;
     [SerializeField]
@@ -19,24 +21,49 @@ public class AlienManager : MonoBehaviour
     int[,] alienMatrix = new int[5, 5];
     char[] ignoreChar = { ' ', '\n' };
     private ChangeScene changeScene;
-    private GameManager gameManager;
     private UIHandler uIHandler;
     private Player player;
     [SerializeField]
     private List<Ship> aliens;
+    [SerializeField]
+    private int wave;
+    public UnityEvent<int> OnCall = new UnityEvent<int>();
+    // public UnityEvent<int> OnCall
+    // {
+    //     get
+    //     {
+    //         if (_onCall == null)
+    //             _onCall = new UnityEvent<int>();
+    //         Debug.Log($"oncall listeners: {_onCall.GetPersistentEventCount()}");
+    //         return _onCall;
+    //     }
+    // }
+    // private UnityEvent<int> _onCall;
 
     private void Start()
     {
         aliens = new List<Ship>();
-        InitMatrix();
-        Spawn();
+        Init();
         GetReference();
+        SpawnAlien();
+        OnCall?.Invoke(wave);
+        // _onCall?.Invoke(wave);          //updateWaveUI
+        // Debug.Log($"OnCall is null: {OnCall == null}");
+        // Debug.Log($"The current wave: {wave}");
+        // UpdateWaveUI();
+        // if (OnCall == null) OnCall = new UnityEvent<int>();
+        // OnCall.Invoke(wave);
     }
 
+    private void Init()
+    {
+        wave = 1;
+        InitMatrix();
+    }
     private void GetReference()
     {
         changeScene = FindObjectOfType<ChangeScene>();
-        gameManager = FindObjectOfType<GameManager>();
+        // gameManager = FindObjectOfType<GameManager>();
         uIHandler = FindObjectOfType<UIHandler>();
         player = GameObject.Find("SpaceShip").GetComponent<Player>();
     }
@@ -59,7 +86,7 @@ public class AlienManager : MonoBehaviour
     }
     private void InitMatrix()
     {
-        var readFile = data.text;
+        var readFile = datas[wave - 1].text;
         string[] numText = readFile.Split(ignoreChar);
         for (int i = 0; i < numRow; i++)
         {
@@ -70,32 +97,59 @@ public class AlienManager : MonoBehaviour
         }
     }
 
-    void Spawn()
+    void SpawnAlien()
     {
+        for (int row = 0; row < 5; row++)
+        {
+            for (int col = 0; col < 5; col++)
+            {
+                SpawnAlien(row, col);
+            }
+        }
+    }
+
+    IEnumerator SpawnAliensCoroutine()
+    {
+        yield return new WaitForSeconds(1);
         // alienIndex = GetAlienType();
         for (int row = 0; row < 5; row++)
         {
             for (int col = 0; col < 5; col++)
             {
-                var alien = CreateAlien(col, row);
-                if (alien != null)
-                {
-                    alien.OnDeath.AddListener(OnAlienDeath);
-                    alien.OnDeath.AddListener((ship) =>
-                    {
-                        Debug.Log("Invoke");
-                    });
-
-                    aliens.Add(alien);
-                }
+                SpawnAlien(row, col);
             }
+        }
+    }
+
+    private void SpawnAlien(int row, int col)
+    {
+        var alien = CreateAlien(col, row);
+        if (alien != null)
+        {
+            alien.OnDeath.AddListener(OnAlienDeath);
+            aliens.Add(alien);
         }
     }
 
     private void OnAlienDeath(Ship alien)
     {
         aliens.Remove(alien);
-        if (IsWin())
+        if (IsClearWave())
+        {
+            wave++;
+            // Debug.Log(wave);
+            InitMatrix();
+            // Debug.Log("new wave");
+            OnCall?.Invoke(wave);
+            // Debug.Log($"OnCall is null: {OnCall == null}");
+            // Debug.Log($"The current wave: {wave}");
+            // _onCall?.Invoke(wave);
+            // Debug.Log($"message: {_onCall == null}");
+            // uIHandler.CountWave(WAVES - wave);
+            // Spawn();  // need delay
+            StartCoroutine(SpawnAliensCoroutine());
+        }
+        else if (IsWin())
         {
             EndLevel();
             int hearts = player.GetHealth();
@@ -104,8 +158,8 @@ public class AlienManager : MonoBehaviour
                 hearts++;
                 uIHandler.IncreaseHealth();
             }
-            gameManager.UpdatePlayerHealth(hearts);
-            gameManager.SetResult("You Win!");
+            GameManager.Instance.UpdatePlayerHealth(hearts);
+            GameManager.Instance.SetResultState(true);
         }
     }
 
@@ -116,7 +170,12 @@ public class AlienManager : MonoBehaviour
 
     private bool IsWin()
     {
-        return aliens.Count <= 0;
+        return aliens.Count <= 0 && wave == WAVES;
+    }
+
+    private bool IsClearWave()
+    {
+        return aliens.Count <= 0 && wave < WAVES;
     }
 
     private Ship CreateAlien(int col, int row)

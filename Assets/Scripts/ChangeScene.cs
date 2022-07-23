@@ -14,20 +14,20 @@ public class ChangeScene : MonoBehaviour
     private GameState gameState;
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
     public void ChangeNextScene()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0) gameManager.IncreaseLevel();
-        else if (gameManager != null && SceneManager.GetActiveScene().buildIndex == 0) gameManager.InitData();
+        if (SceneManager.GetActiveScene().buildIndex != 0) GameManager.Instance.IncreaseLevel();
+        else if (gameManager != null && SceneManager.GetActiveScene().buildIndex == 0) GameManager.Instance.InitData();
         Invoke("OpenNextScene", secTillSceneLoad);
     }
 
     public void ChangeLastScene()
     {
-        gameManager.SetResult("You Lose!");
+        GameManager.Instance.SetResultState(false);
         sceneIndex = LAST_SCENE;
-        Invoke("OpenNextScene", secTillSceneLoad);
+        Invoke("OpenNextScene", 0.5f);
     }
     void OpenNextScene()
     {

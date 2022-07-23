@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class PauseMenu : MonoBehaviour
+public class PauseHandler : MonoBehaviour
 {
     public GameObject pauseMenu;
     private GameManager gameManager;
+    private SoundManager soundManager;
     private TurnUpDownVolume changeVolume;
     private UIHandler uIHandler;
     // private MusicSliderSaver musicSliderSaver;
@@ -24,7 +25,7 @@ public class PauseMenu : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         uIHandler = FindObjectOfType<UIHandler>();
-
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
 
@@ -33,16 +34,14 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
-        AdjustVolume();
+        VolumeHandler();
     }
 
 
-    private void AdjustVolume()
+    private void VolumeHandler()
     {
-        float volumeMusicNow = gameManager.GetVolumeMusic();
-        float volumeSFXNow = gameManager.GetVolumeSFX();
-        // uIHandler.UpdateUIVolumeMusic(volumeMusicNow);
-        // uIHandler.UpdateUIVolumeSFX(volumeSFXNow);
+        float volumeMusicNow, volumeSFXNow;
+        AdjustSound(out volumeMusicNow, out volumeSFXNow);
         var soundSliderSaver = GameObject.Find("Canvas").GetComponent<MusicSliderSaver>();
         soundSliderSaver.SetMusicSliderChange(volumeMusicNow);
         soundSliderSaver.SetSFXSliderChange(volumeSFXNow);
@@ -51,8 +50,14 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+    private void AdjustSound(out float volumeMusicNow, out float volumeSFXNow)
+    {
+        volumeMusicNow = soundManager.GetVolumeMusic();
+        volumeSFXNow = soundManager.GetVolumeSFX();
+        // uIHandler.UpdateUIVolumeMusic(volumeMusicNow);
+        // uIHandler.UpdateUIVolumeSFX(volumeSFXNow);
+    }
 
-    //
     public void Resume()
     {
         Time.timeScale = 1f;

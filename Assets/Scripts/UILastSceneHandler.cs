@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameOver : MonoBehaviour
+public class UILastSceneHandler : MonoBehaviour
 {
     private GameManager gameManager;
     void Start()
@@ -15,6 +15,13 @@ public class GameOver : MonoBehaviour
     void UpdateUI()
     {
         var textUI = FindObjectOfType<TextMeshProUGUI>();
-        textUI.text = gameManager.GetResult();
+        if (GameManager.Instance.GetResultState() == true)
+        {
+            textUI.text = "You Win";
+        }
+        else
+        {
+            textUI.text = "You Lose";
+        }
     }
 }
