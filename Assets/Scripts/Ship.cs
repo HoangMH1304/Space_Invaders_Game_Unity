@@ -8,8 +8,8 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     [SerializeField]
     protected int speed = 10;
     protected Rigidbody2D rb;
-    [SerializeField]
-    private Sprite explodeObject;
+    // [SerializeField]
+    // private Sprite explodeObject;
     [SerializeField]
     private AudioClip shipExplosion;
     protected bool canShoot = true;
@@ -25,10 +25,10 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
 
     virtual public void Die()
     {
-        var spriteRender = GetComponent<SpriteRenderer>();
-        spriteRender.sprite = explodeObject;
+        // var spriteRender = GetComponent<SpriteRenderer>();
+        // spriteRender.sprite = explodeObject;
         SoundManager.Instance.PlayOneShot(shipExplosion);
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.2f);
         OnDeath?.Invoke(this);
     }
 

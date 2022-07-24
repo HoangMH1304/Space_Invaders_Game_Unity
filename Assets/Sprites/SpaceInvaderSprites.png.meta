@@ -4,22 +4,22 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -5702827010650291094
-    second: alien_0
+    second: alien_boss
   - first:
       213: -2324346263816543927
-    second: alien_1
+    second: alien1.1
   - first:
       213: 2806016448434864277
-    second: alien_2
+    second: alien1.2
   - first:
       213: 6690153140086037541
-    second: alien_3
+    second: alien2.2
   - first:
       213: 8338736988281241674
-    second: alien_4
+    second: alien4.1
   - first:
       213: 4355879928144457057
-    second: alien_5
+    second: alien3.1
   - first:
       213: -2885940107258461023
     second: alien_explosion
@@ -31,13 +31,13 @@ TextureImporter:
     second: space_ship
   - first:
       213: 4424962381780117069
-    second: alien_6
+    second: alien2.1
   - first:
       213: -2776934763770595325
-    second: alien_7
+    second: alien4.2
   - first:
       213: 5331700054834671792
-    second: alien_8
+    second: alien3.2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: alien_0
+      name: alien_boss
       rect:
         serializedVersion: 2
         x: 0
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_1
+      name: alien1.1
       rect:
         serializedVersion: 2
         x: 16
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_2
+      name: alien1.2
       rect:
         serializedVersion: 2
         x: 32
@@ -202,7 +202,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_3
+      name: alien2.2
       rect:
         serializedVersion: 2
         x: 48
@@ -223,7 +223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_4
+      name: alien4.1
       rect:
         serializedVersion: 2
         x: 64
@@ -244,7 +244,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_5
+      name: alien3.1
       rect:
         serializedVersion: 2
         x: 80
@@ -328,7 +328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_6
+      name: alien2.1
       rect:
         serializedVersion: 2
         x: 48
@@ -349,7 +349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_7
+      name: alien4.2
       rect:
         serializedVersion: 2
         x: 64
@@ -370,7 +370,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: alien_8
+      name: alien3.2
       rect:
         serializedVersion: 2
         x: 80

@@ -10,15 +10,17 @@ public class Alien : Ship
     public Sprite startingImage;
     public Sprite altImage;
     private SpriteRenderer spriteRenderer;
+    private HandleAnimation handleAnimation;
     public float secBeforeSpriteChange = 0.5f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        handleAnimation = FindObjectOfType<HandleAnimation>();
         rb.velocity = Vector2.right * speed;
         // rb.velocity = Vector2.down * 10;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        StartCoroutine(ChangeAlienSprite());
+        // spriteRenderer = GetComponent<SpriteRenderer>();
+        // StartCoroutine(ChangeAlienSprite());
     }
 
     void TurnDirection(int direction)
@@ -31,7 +33,7 @@ public class Alien : Ship
     void MoveDown()
     {
         Vector2 position = transform.position;
-        position.y -= 1;
+        position.y -= 2;
         transform.position = position;
     }
 
@@ -49,22 +51,22 @@ public class Alien : Ship
         }
     }
 
-    public IEnumerator ChangeAlienSprite()
-    {
-        while (true)
-        {
-            if (spriteRenderer.sprite == startingImage)
-            {
-                spriteRenderer.sprite = altImage;
-            }
-            else
-            {
-                spriteRenderer.sprite = startingImage;
-                SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienBuzz2);
-            }
-            yield return new WaitForSeconds(secBeforeSpriteChange);
-        }
-    }
+    // public IEnumerator ChangeAlienSprite()
+    // {
+    //     while (true)
+    //     {
+    //         if (spriteRenderer.sprite == startingImage)
+    //         {
+    //             spriteRenderer.sprite = altImage;
+    //         }
+    //         else
+    //         {
+    //             spriteRenderer.sprite = startingImage;
+    //             SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienBuzz2);
+    //         }
+    //         yield return new WaitForSeconds(secBeforeSpriteChange);
+    //     }
+    // }
 
     private bool GetChance()
     {
@@ -92,6 +94,7 @@ public class Alien : Ship
     override public void TakeDamage(int damage)
     {
         GameManager.Instance.AddScore(10);
+        handleAnimation.OnDeadAnimation(this.gameObject);
         Die();
     }
 }

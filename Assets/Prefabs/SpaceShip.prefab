@@ -49,7 +49,6 @@ MonoBehaviour:
   - {fileID: 7328502556462894680, guid: cc8bec280ae427d419da2a5ab848b301, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
   reloadTime: 1
-  canShoot: 1
 --- !u!1 &8562477055924507880
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +97,6 @@ MonoBehaviour:
   - {fileID: 7891245185061072595, guid: 0cd0e5a3ea3fb42428e3d6fcefc4b421, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
   reloadTime: 1
-  canShoot: 1
 --- !u!1 &8562477056145577701
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +147,6 @@ MonoBehaviour:
   - {fileID: 8562477055924507862}
   - {fileID: 8562477055116472720}
   - {fileID: 8562477056296536057}
-  index: 0
 --- !u!1 &8562477056251073766
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +160,7 @@ GameObject:
   - component: {fileID: 8562477056251073764}
   - component: {fileID: 8562477056251073761}
   - component: {fileID: 8562477056251073765}
+  - component: {fileID: 8562477057010748281}
   m_Layer: 11
   m_Name: SpaceShip
   m_TagString: Player
@@ -296,15 +294,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  explodeObject: {fileID: 8463096131581357343, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
   gun: {fileID: 8562477055924507862}
-  reloadTime: 10
+  reloadTime: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
   mainCamera: {fileID: 0}
   smooth: 10
+--- !u!95 &8562477057010748281
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562477056251073766}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dcefd2e000774b444a64b5cd0398fd35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8562477056296536059
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,4 +371,3 @@ MonoBehaviour:
   - {fileID: 1406364673811936281, guid: e6d6f90040139f443a8ef82a703c057c, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
   reloadTime: 1
-  canShoot: 1

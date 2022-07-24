@@ -27,7 +27,7 @@ public class ChangeScene : MonoBehaviour
     {
         GameManager.Instance.SetResultState(false);
         sceneIndex = LAST_SCENE;
-        Invoke("OpenNextScene", 0.5f);
+        Invoke("OpenNextScene", 1.5f);
     }
     void OpenNextScene()
     {

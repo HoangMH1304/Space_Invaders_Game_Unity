@@ -47,6 +47,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
+  reloadTime: 1
 --- !u!1 &5642292888326220086
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 662641557582137467}
   - component: {fileID: 1416679524985448193}
   - component: {fileID: -2615660574797821368}
+  - component: {fileID: 1580434847}
   m_Layer: 8
   m_Name: Alien3.1
   m_TagString: Alien
@@ -193,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bullet: {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   explodeObject: {fileID: -2885940107258461023, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
   gun: {fileID: 7890718017432481359}
@@ -204,3 +205,22 @@ MonoBehaviour:
   startingImage: {fileID: 4355879928144457057, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   altImage: {fileID: 5331700054834671792, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   secBeforeSpriteChange: 0.5
+--- !u!95 &1580434847
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642292888326220086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e29f7efd2c87e63438e964544f077931, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

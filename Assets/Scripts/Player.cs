@@ -60,6 +60,8 @@ public class Player : Ship
         uIHandler.UpdateHealth();
         if (health <= 0)
         {
+            var animator = GetComponent<Animator>();
+            animator.enabled = !animator.enabled;
             dead = true;
             Die();
             var changeScene = mainCamera.GetComponent<ChangeScene>();

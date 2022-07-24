@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5242885130654375125}
   - component: {fileID: 1417729464017546748}
   - component: {fileID: -4619109086725249771}
+  - component: {fileID: 7368930147726893401}
   m_Layer: 8
   m_Name: Alien2.1
   m_TagString: Alien
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bullet: {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   explodeObject: {fileID: -2885940107258461023, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
   gun: {fileID: 4409265751649792891}
@@ -157,6 +157,25 @@ MonoBehaviour:
   startingImage: {fileID: 4424962381780117069, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   altImage: {fileID: 6690153140086037541, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
   secBeforeSpriteChange: 0.5
+--- !u!95 &7368930147726893401
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706757561245995020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c098eac148e9f194d91f84d5951080bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8755378280052573431
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,3 +223,4 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
+  reloadTime: 1
