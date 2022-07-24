@@ -33,7 +33,7 @@ public class UIHandler : MonoBehaviour
     private void Start()
     {
         UpdateHealth();
-        Debug.Log(GameManager.Instance.GetSpaceShipHealth());
+        // Debug.Log(GameManager.Instance.GetSpaceShipHealth());
     }
     private void Init()
     {

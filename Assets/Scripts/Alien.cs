@@ -12,15 +12,14 @@ public class Alien : Ship
     private SpriteRenderer spriteRenderer;
     private HandleAnimation handleAnimation;
     public float secBeforeSpriteChange = 0.5f;
-
+    private int health;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         handleAnimation = FindObjectOfType<HandleAnimation>();
         rb.velocity = Vector2.right * speed;
-        // rb.velocity = Vector2.down * 10;
-        // spriteRenderer = GetComponent<SpriteRenderer>();
-        // StartCoroutine(ChangeAlienSprite());
+        health = GetAlienHealth();
+        Debug.Log($"Health: {health}");
     }
 
     void TurnDirection(int direction)
@@ -93,8 +92,12 @@ public class Alien : Ship
 
     override public void TakeDamage(int damage)
     {
-        GameManager.Instance.AddScore(10);
-        handleAnimation.OnDeadAnimation(this.gameObject);
-        Die();
+        health--;
+        if (health <= 0)
+        {
+            GameManager.Instance.AddScore(10);
+            handleAnimation.OnDeadAnimation(this.gameObject);
+            Die();
+        }
     }
 }

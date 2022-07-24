@@ -19,6 +19,7 @@ public class Player : Ship
     void Start()
     {
         Init();
+
     }
 
     private void Init()

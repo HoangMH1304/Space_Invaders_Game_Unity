@@ -42,6 +42,10 @@ public class AlienManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Blue: 1");
+        Debug.Log("Orange: 2");
+        Debug.Log("Green: 3");
+        Debug.Log("Yellow: 4");
         aliens = new List<Ship>();
         Init();
         GetReference();
@@ -186,7 +190,9 @@ public class AlienManager : MonoBehaviour
             var alien = Instantiate(aliensType[alienMatrix[row, col]]);
             alien.transform.SetParent(parent);
             alien.transform.localPosition = pos;
-            return alien.GetComponent<Ship>();
+            Ship ship = alien.GetComponent<Ship>();
+            ship.SetAlienHealth(alienMatrix[row, col] + 1);
+            return ship;
         }
         return null;
     }

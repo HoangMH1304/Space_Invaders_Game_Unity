@@ -22,7 +22,7 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     [SerializeField]
     private float reloadTime = 1f;
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
-
+    private int health;
     virtual public void Die()
     {
         // var spriteRender = GetComponent<SpriteRenderer>();
@@ -32,6 +32,15 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         OnDeath?.Invoke(this);
     }
 
+    public void SetAlienHealth(int hp)
+    {
+        health = hp;
+    }
+
+    public int GetAlienHealth()
+    {
+        return health;
+    }
     public bool GetChance(int rate)
     {
         return Random.Range(1, 100) <= rate;
