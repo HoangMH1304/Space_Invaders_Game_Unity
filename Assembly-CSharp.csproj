@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\HandleAnimation.cs" />
+     <Compile Include="Assets\Intro.cs" />
      <Compile Include="Assets\Scripts\IHunter.cs" />
      <Compile Include="Assets\Scripts\MonoBehaviourSingleton.cs" />
      <Compile Include="Assets\Scripts\BackGroundMusicManager.cs" />
@@ -60,7 +61,6 @@
      <Compile Include="Assets\Scripts\ContinuePlayMusic.cs" />
      <Compile Include="Assets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Intro.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -92,7 +92,8 @@ public class Alien : Ship
 
     override public void TakeDamage(int damage)
     {
-        health--;
+        health -= damage;
+        Debug.Log($"Alien Health: {health}");
         if (health <= 0)
         {
             GameManager.Instance.AddScore(10);

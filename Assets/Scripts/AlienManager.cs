@@ -88,6 +88,14 @@ public class AlienManager : MonoBehaviour
             aliens[i].Die();
         }
     }
+
+    public void DamageAliens()
+    {
+        for (int i = aliens.Count - 1; i >= 0; i--)
+        {
+            aliens[i].TakeDamage(1);
+        }
+    }
     private void InitMatrix()
     {
         var readFile = datas[wave - 1].text;

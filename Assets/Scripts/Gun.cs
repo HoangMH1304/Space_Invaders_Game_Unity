@@ -11,7 +11,6 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private AudioClip fireAudioClip;
     [SerializeField]
-    private float reloadTime = 1f;
 
     public void Shoot()
     {
@@ -21,4 +20,5 @@ public class Gun : MonoBehaviour
         }
         SoundManager.Instance.PlayOneShot(fireAudioClip);
     }
+
 }
