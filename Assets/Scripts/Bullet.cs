@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     [SerializeField]
     private float moveSpeed = 30;
+    [SerializeField]
+    private int damage;
     virtual protected void Start()
     {
         Move();
@@ -43,6 +45,6 @@ public class Bullet : MonoBehaviour
     protected void DealDamage(Collider2D other)
     {
         var enemy = other.GetComponent<IHealth>();
-        enemy.TakeDamage(1);
+        enemy.TakeDamage(damage);
     }
 }

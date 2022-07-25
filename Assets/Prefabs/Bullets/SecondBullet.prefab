@@ -147,3 +147,4 @@ MonoBehaviour:
   enemyTag: Alien
   direction: {x: 1, y: -2}
   moveSpeed: -30
+  damage: 1

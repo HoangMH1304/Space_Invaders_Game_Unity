@@ -64,11 +64,10 @@ public class PauseHandler : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-
-
     public void Restart()
     {
-        Time.timeScale = 1f;
+        // Time.timeScale = 1f;
+        Time.timeScale = 2f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

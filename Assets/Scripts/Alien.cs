@@ -7,11 +7,7 @@ public class Alien : Ship
     private const string PLAYER_TAG = "Player";
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
-    public Sprite startingImage;
-    public Sprite altImage;
-    private SpriteRenderer spriteRenderer;
     private HandleAnimation handleAnimation;
-    public float secBeforeSpriteChange = 0.5f;
     private int health;
     void Start()
     {
@@ -72,12 +68,27 @@ public class Alien : Ship
         return Random.Range(1, 100) <= 1;
     }
 
+    // override public void ChangeGun()
+    // {
+    //     var gunStore = FindObjectOfType<GunStore>();
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         Debug.Log("Space");
+    //         gun = gunStore.RandomGun();
+
+    //     }
+    // }
+
     private void FixedUpdate()
     {
         if (canShoot && GetChance())
         {
             Shoot();
         }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     ChangeGun();
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -86,7 +97,8 @@ public class Alien : Ship
         {
             var spaceShip = other.GetComponent<IHealth>();
             spaceShip.TakeDamage(1);
-            Destroy(gameObject);
+            Die();
+            // Destroy(gameObject);
         }
     }
 

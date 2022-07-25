@@ -25,8 +25,6 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     private int health;
     virtual public void Die()
     {
-        // var spriteRender = GetComponent<SpriteRenderer>();
-        // spriteRender.sprite = explodeObject;
         SoundManager.Instance.PlayOneShot(shipExplosion);
         Destroy(gameObject, 0.2f);
         OnDeath?.Invoke(this);
@@ -49,7 +47,7 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
 
     public abstract void TakeDamage(int damage);
 
-    public void ChangeGun()
+    virtual public void ChangeGun()
     {
         var gunStore = FindObjectOfType<GunStore>();
         if (Input.GetKeyDown(KeyCode.Space))

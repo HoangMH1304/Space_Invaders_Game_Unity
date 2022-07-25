@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour
     List<GameObject> bullets;
     [SerializeField]
     private AudioClip fireAudioClip;
-    [SerializeField]
+
 
     public void Shoot()
     {

@@ -45,10 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 8562477056251073766}
   bullets:
-  - {fileID: 1406364673811936281, guid: e6d6f90040139f443a8ef82a703c057c, type: 3}
-  - {fileID: 7328502556462894680, guid: cc8bec280ae427d419da2a5ab848b301, type: 3}
+  - {fileID: 4353407328930127324, guid: 559a19594194aa044bf79747e1c7a71f, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 1
 --- !u!1 &8562477055924507880
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +94,6 @@ MonoBehaviour:
   bullets:
   - {fileID: 7891245185061072595, guid: 0cd0e5a3ea3fb42428e3d6fcefc4b421, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 1
 --- !u!1 &8562477056145577701
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +105,7 @@ GameObject:
   - component: {fileID: 8562477056145577699}
   - component: {fileID: 8562477056145577700}
   m_Layer: 11
-  m_Name: GunStore
+  m_Name: SpaceShipGunContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +124,6 @@ Transform:
   m_Children:
   - {fileID: 8562477055924507863}
   - {fileID: 8562477055116472721}
-  - {fileID: 8562477056296536058}
   m_Father: {fileID: 8562477056251073762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,7 +142,7 @@ MonoBehaviour:
   guns:
   - {fileID: 8562477055924507862}
   - {fileID: 8562477055116472720}
-  - {fileID: 8562477056296536057}
+  - {fileID: 0}
 --- !u!1 &8562477056251073766
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,53 +317,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &8562477056296536059
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8562477056296536058}
-  - component: {fileID: 8562477056296536057}
-  m_Layer: 11
-  m_Name: Gun3Shot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8562477056296536058
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8562477056296536059}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8562477056145577699}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8562477056296536057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8562477056296536059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a444bca7acdbdc4e8aa068e09e976de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 8562477056251073766}
-  bullets:
-  - {fileID: 7891245185061072595, guid: 0cd0e5a3ea3fb42428e3d6fcefc4b421, type: 3}
-  - {fileID: 7328502556462894680, guid: cc8bec280ae427d419da2a5ab848b301, type: 3}
-  - {fileID: 1406364673811936281, guid: e6d6f90040139f443a8ef82a703c057c, type: 3}
-  fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 1

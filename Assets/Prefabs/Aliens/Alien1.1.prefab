@@ -1,5 +1,99 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1444624731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444624733}
+  - component: {fileID: 1444624732}
+  m_Layer: 0
+  m_Name: Gun1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444624733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444624731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6385599348079396983}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444624732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444624731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a444bca7acdbdc4e8aa068e09e976de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 1844484855250836470}
+  bullets:
+  - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
+  fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
+--- !u!1 &1672284843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1672284845}
+  - component: {fileID: 1672284844}
+  m_Layer: 0
+  m_Name: Gun2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1672284845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672284843}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6385599348079396983}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1672284844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672284843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a444bca7acdbdc4e8aa068e09e976de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 1844484855250836470}
+  bullets:
+  - {fileID: 7170697368816715490, guid: f13b4d59a75e9bd47848e7ff988d796d, type: 3}
+  fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
 --- !u!1 &1844484855250836470
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,14 +242,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
-  gun: {fileID: 518232504635353620}
+  gun: {fileID: 1444624732}
   reloadTime: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  startingImage: {fileID: -2324346263816543927, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
-  altImage: {fileID: 2806016448434864277, guid: b67112a6edeb97945a475697de70f8a6, type: 3}
-  secBeforeSpriteChange: 0.5
 --- !u!95 &5553653450901170531
 Animator:
   serializedVersion: 3
@@ -184,9 +275,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6385599348079396983}
-  - component: {fileID: 518232504635353620}
+  - component: {fileID: 524750125}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: AlienGunContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,11 +293,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1444624733}
+  - {fileID: 1672284845}
   m_Father: {fileID: 2247834113152487740}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &518232504635353620
+--- !u!114 &524750125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,11 +308,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2773834995708287484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a444bca7acdbdc4e8aa068e09e976de, type: 3}
+  m_Script: {fileID: 11500000, guid: bbfbf58f4cc3d3b409b263845824b333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 1844484855250836470}
-  bullets:
-  - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
-  fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 1
+  guns:
+  - {fileID: 1444624732}
+  - {fileID: 1672284844}

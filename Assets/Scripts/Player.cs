@@ -29,6 +29,17 @@ public class Player : Ship
         health = GameManager.Instance.GetSpaceShipHealth();
 
     }
+
+    public override void ChangeGun()
+    {
+        var gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space");
+            gun = gunStore.RandomGun();
+
+        }
+    }
     private void Update()
     {
         ChangeGun();

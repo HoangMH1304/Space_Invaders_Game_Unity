@@ -51,12 +51,6 @@ public class AlienManager : MonoBehaviour
         GetReference();
         SpawnAlien();
         OnCall?.Invoke(wave);
-        // _onCall?.Invoke(wave);          //updateWaveUI
-        // Debug.Log($"OnCall is null: {OnCall == null}");
-        // Debug.Log($"The current wave: {wave}");
-        // UpdateWaveUI();
-        // if (OnCall == null) OnCall = new UnityEvent<int>();
-        // OnCall.Invoke(wave);
     }
 
     private void Init()
