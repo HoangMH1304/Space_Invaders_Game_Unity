@@ -44,7 +44,32 @@ public class Bullet : MonoBehaviour
 
     protected void DealDamage(Collider2D other)
     {
+        // if (damage == -1)
+        // {
+        //     Alien[] aliens = FindObjectsOfType<Alien>();
+        //     for (int i = aliens.Length - 1; i >= 0; i--)
+        //     {
+        //         if (aliens[i].name == other.name) aliens[i].Die();
+        //     }
+        // }
+        // else
+        // {
+        //     var enemy = other.GetComponent<IHealth>();
+        //     enemy.TakeDamage(damage);
+        // }
         var enemy = other.GetComponent<IHealth>();
-        enemy.TakeDamage(damage);
+        if (damage == -1)
+        {
+            Alien[] aliens = FindObjectsOfType<Alien>();
+            for (int i = aliens.Length - 1; i >= 0; i--)
+            {
+                if (aliens[i].name == other.name) aliens[i].TakeDamage(100);
+            }
+            enemy.TakeDamage(100);
+        }
+        else
+        {
+            enemy.TakeDamage(damage);
+        }
     }
 }

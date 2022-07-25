@@ -21,4 +21,5 @@ public class Gun : MonoBehaviour
         SoundManager.Instance.PlayOneShot(fireAudioClip);
     }
 
+
 }

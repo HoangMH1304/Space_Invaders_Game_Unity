@@ -7,10 +7,11 @@ public class GunStore : MonoBehaviour
 {
     [SerializeField]
     private List<Gun> guns;
-
     public Gun RandomGun()
     {
-
-        return guns[Random.Range(1, guns.Count)];
+        // int index = Random.Range(0, guns.Count);
+        int index = Random.Range(0, guns.Count * 100) % guns.Count;
+        Debug.Log($"Index: {index}");
+        return guns[index];
     }
 }

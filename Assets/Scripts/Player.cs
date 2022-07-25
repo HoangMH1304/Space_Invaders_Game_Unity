@@ -15,7 +15,7 @@ public class Player : Ship
     private int health = 3;
     private bool dead = false;
     private UIHandler uIHandler;
-
+    int index = 0;
     void Start()
     {
         Init();
@@ -32,12 +32,12 @@ public class Player : Ship
 
     public override void ChangeGun()
     {
+
         var gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space");
             gun = gunStore.RandomGun();
-
         }
     }
     private void Update()

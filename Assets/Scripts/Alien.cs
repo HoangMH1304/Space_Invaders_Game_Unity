@@ -15,7 +15,7 @@ public class Alien : Ship
         handleAnimation = FindObjectOfType<HandleAnimation>();
         rb.velocity = Vector2.right * speed;
         health = GetAlienHealth();
-        Debug.Log($"Health: {health}");
+        // Debug.Log($"Health: {health}");
     }
 
     void TurnDirection(int direction)
@@ -46,22 +46,15 @@ public class Alien : Ship
         }
     }
 
-    // public IEnumerator ChangeAlienSprite()
-    // {
-    //     while (true)
-    //     {
-    //         if (spriteRenderer.sprite == startingImage)
-    //         {
-    //             spriteRenderer.sprite = altImage;
-    //         }
-    //         else
-    //         {
-    //             spriteRenderer.sprite = startingImage;
-    //             SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienBuzz2);
-    //         }
-    //         yield return new WaitForSeconds(secBeforeSpriteChange);
-    //     }
-    // }
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void SetHealth(int hp)
+    {
+        health = hp;
+    }
 
     private bool GetChance()
     {
@@ -105,7 +98,7 @@ public class Alien : Ship
     override public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log($"Alien Health: {health}");
+        // Debug.Log($"Alien Health: {health}");
         if (health <= 0)
         {
             GameManager.Instance.AddScore(10);

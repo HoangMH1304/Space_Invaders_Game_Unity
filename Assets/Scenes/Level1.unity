@@ -4979,10 +4979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8562477056145577700, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
-      propertyPath: guns.Array.size
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 210011632, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
+      propertyPath: bullets.Array.data[0]
+      value: 
+      objectReference: {fileID: 7478346302274003099, guid: 09840e6791be51c4790c8ad4c070728d, type: 3}
     - target: {fileID: 8562477056251073762, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
       propertyPath: m_RootOrder
       value: 0

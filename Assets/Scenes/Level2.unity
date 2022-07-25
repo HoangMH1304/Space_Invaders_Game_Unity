@@ -2562,10 +2562,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 8562477056251073765, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
-      propertyPath: reloadTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8562477056251073766, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
       propertyPath: m_Name
       value: SpaceShip

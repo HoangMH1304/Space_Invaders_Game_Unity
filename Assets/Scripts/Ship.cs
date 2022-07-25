@@ -8,8 +8,6 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     [SerializeField]
     protected int speed = 10;
     protected Rigidbody2D rb;
-    // [SerializeField]
-    // private Sprite explodeObject;
     [SerializeField]
     private AudioClip shipExplosion;
     protected bool canShoot = true;

@@ -146,5 +146,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Alien
   direction: {x: 0, y: -1}
-  moveSpeed: -30
+  moveSpeed: -40
   damage: 1
