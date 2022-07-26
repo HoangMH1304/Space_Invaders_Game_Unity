@@ -48,11 +48,7 @@ public class Player : Ship
     void FixedUpdate()
     {
         MoveSpaceShip();
-        if (canShoot)
-        {
-            Shoot();
-            // Reload();
-        }
+        Shoot();
     }
 
 

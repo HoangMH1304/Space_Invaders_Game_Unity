@@ -7,15 +7,14 @@ public class Alien : Ship
     private const string PLAYER_TAG = "Player";
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
-    private HandleAnimation handleAnimation;
+    private AnimationHandler handleAnimation;
     private int health;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        handleAnimation = FindObjectOfType<HandleAnimation>();
+        handleAnimation = FindObjectOfType<AnimationHandler>();
         rb.velocity = Vector2.right * speed;
         health = GetAlienHealth();
-        // Debug.Log($"Health: {health}");
     }
 
     void TurnDirection(int direction)
@@ -46,31 +45,10 @@ public class Alien : Ship
         }
     }
 
-    public int GetHealth()
-    {
-        return health;
-    }
-
-    public void SetHealth(int hp)
-    {
-        health = hp;
-    }
-
     private bool GetChance()
     {
         return Random.Range(1, 100) <= 1;
     }
-
-    // override public void ChangeGun()
-    // {
-    //     var gunStore = FindObjectOfType<GunStore>();
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         Debug.Log("Space");
-    //         gun = gunStore.RandomGun();
-
-    //     }
-    // }
 
     private void FixedUpdate()
     {
@@ -78,6 +56,10 @@ public class Alien : Ship
         {
             Shoot();
         }
+        // if (GameObject.Find("TargetBullet(Clone)") == null)
+        // {
+        //     handleAnimation.ExitTargetAnimation(this.gameObject);
+        // }
         // if (Input.GetKeyDown(KeyCode.P))
         // {
         //     ChangeGun();

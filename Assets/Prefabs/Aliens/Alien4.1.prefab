@@ -47,6 +47,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: f13b4d59a75e9bd47848e7ff988d796d, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
+  reloadTime: 100
 --- !u!1 &524842466
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
+  reloadTime: 100
 --- !u!1 &2086892479838224787
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +293,6 @@ MonoBehaviour:
   speed: 10
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
   gun: {fileID: 460300284}
-  reloadTime: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

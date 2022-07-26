@@ -15,12 +15,9 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     protected Gun gun;
     private GunStore gunStore;
 
-    // [SerializeField]
-    // protected List<Gun> guns;
-    [SerializeField]
-    private float reloadTime = 1f;
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
     private int health;
+    private Vector2 coordinate;
     virtual public void Die()
     {
         SoundManager.Instance.PlayOneShot(shipExplosion);
@@ -37,11 +34,16 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     {
         return health;
     }
-    public bool GetChance(int rate)
+
+    public void SetCoordinate(Vector2 vt)
     {
-        return Random.Range(1, 100) <= rate;
+        coordinate = vt;
     }
 
+    public Vector2 GetCoordinate()
+    {
+        return coordinate;
+    }
 
     public abstract void TakeDamage(int damage);
 
@@ -56,21 +58,9 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         }
     }
 
-    private IEnumerator ReloadIEnumerator()
-    {
-        canShoot = false;
-        yield return new WaitForSeconds(reloadTime);
-        canShoot = true;
-    }
-
     public void Shoot()
     {
         gun.Shoot();
-        Reload();
     }
 
-    public void Reload()
-    {
-        StartCoroutine(ReloadIEnumerator());
-    }
 }

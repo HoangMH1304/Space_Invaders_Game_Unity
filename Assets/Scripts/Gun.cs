@@ -10,16 +10,29 @@ public class Gun : MonoBehaviour
     List<GameObject> bullets;
     [SerializeField]
     private AudioClip fireAudioClip;
-
+    [SerializeField]
+    private float reloadTime;
+    private bool canShoot = true;
 
     public void Shoot()
     {
-        for (int i = 0; i < bullets.Count; i++)
+        if (canShoot)
         {
-            Instantiate(bullets[i], ship.transform.position, Quaternion.identity);
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                Instantiate(bullets[i], ship.transform.position, Quaternion.identity);
+            }
+            SoundManager.Instance.PlayOneShot(fireAudioClip);
         }
-        SoundManager.Instance.PlayOneShot(fireAudioClip);
+        else return;
+        StartCoroutine(ReloadIEnumerator());
     }
 
+    private IEnumerator ReloadIEnumerator()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(reloadTime);
+        canShoot = true;
+    }
 
 }

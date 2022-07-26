@@ -37,9 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Gun.cs" />
-     <Compile Include="Assets\Scripts\HandleAnimation.cs" />
+     <Compile Include="Assets\Scripts\AnimationHandler.cs" />
      <Compile Include="Assets\Intro.cs" />
      <Compile Include="Assets\Scripts\IHunter.cs" />
+     <Compile Include="Assets\Scripts\SpaceShipBullet.cs" />
      <Compile Include="Assets\Scripts\MonoBehaviourSingleton.cs" />
      <Compile Include="Assets\Scripts\BackGroundMusicManager.cs" />
      <Compile Include="Assets\Scripts\IHealth.cs" />
@@ -52,6 +53,7 @@
      <Compile Include="Assets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\Scripts\TurnUpDownVolume.cs" />
      <Compile Include="Assets\Scripts\Ship.cs" />
+     <Compile Include="Assets\Scripts\EffectBullet.cs" />
      <Compile Include="Assets\Scripts\UIHandler.cs" />
      <Compile Include="Assets\Scripts\SoundState.cs" />
      <Compile Include="Assets\Scripts\ChangeScene.cs" />
@@ -61,7 +63,6 @@
      <Compile Include="Assets\Scripts\ContinuePlayMusic.cs" />
      <Compile Include="Assets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\EffectBullet.cs" />
      <None Include="Assets\Data\alien1.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

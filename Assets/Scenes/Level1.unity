@@ -773,8 +773,8 @@ MonoBehaviour:
   parent: {fileID: 125494710}
   datas:
   - {fileID: 4900000, guid: 10f97133cf14b95438cf31fb88d37a36, type: 3}
-  - {fileID: 4900000, guid: 63e6cd1d42d919c48a1216b01d16707e, type: 3}
-  - {fileID: 4900000, guid: f03b2b73e0c9ce147a760159276b5e42, type: 3}
+  - {fileID: 4900000, guid: 47b72906de6ada545b3879d17c9a35b6, type: 3}
+  - {fileID: 4900000, guid: 068d9f46ac970d8408d96fe07aa34be0, type: 3}
   numRow: 5
   numCol: 5
   aliens: []
@@ -4979,10 +4979,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 210011632, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
-      propertyPath: bullets.Array.data[0]
-      value: 
-      objectReference: {fileID: 7478346302274003099, guid: 09840e6791be51c4790c8ad4c070728d, type: 3}
     - target: {fileID: 8562477056251073762, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}
       propertyPath: m_RootOrder
       value: 0

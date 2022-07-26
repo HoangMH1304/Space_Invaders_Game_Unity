@@ -19,26 +19,17 @@ public class AlienManager : MonoBehaviour
     [SerializeField]
     private int numCol = 5;
     int[,] alienMatrix = new int[5, 5];
+    public Ship[,] alienInMatrix = new Ship[5, 5];
     char[] ignoreChar = { ' ', '\n' };
     private ChangeScene changeScene;
     private UIHandler uIHandler;
     private Player player;
     [SerializeField]
-    private List<Ship> aliens;
+    public List<Ship> aliens;
     [SerializeField]
     private int wave;
     public UnityEvent<int> OnCall = new UnityEvent<int>();
-    // public UnityEvent<int> OnCall
-    // {
-    //     get
-    //     {
-    //         if (_onCall == null)
-    //             _onCall = new UnityEvent<int>();
-    //         Debug.Log($"oncall listeners: {_onCall.GetPersistentEventCount()}");
-    //         return _onCall;
-    //     }
-    // }
-    // private UnityEvent<int> _onCall;
+
 
     private void Start()
     {
@@ -66,7 +57,12 @@ public class AlienManager : MonoBehaviour
         player = GameObject.Find("SpaceShip").GetComponent<Player>();
     }
 
-    public void DestroyAliens()
+    public List<Ship> GetList()
+    {
+        return aliens;
+    }
+
+    public void DestroyAliens()                 //Destroy Button
     {
         // foreach (var enemy in aliens)
         // {
@@ -83,7 +79,8 @@ public class AlienManager : MonoBehaviour
         }
     }
 
-    public void DamageAliens()
+
+    public void DamageAliens()                   // -1 Button
     {
         for (int i = aliens.Count - 1; i >= 0; i--)
         {
@@ -117,7 +114,6 @@ public class AlienManager : MonoBehaviour
     IEnumerator SpawnAliensCoroutine()
     {
         yield return new WaitForSeconds(1);
-        // alienIndex = GetAlienType();
         for (int row = 0; row < 5; row++)
         {
             for (int col = 0; col < 5; col++)
@@ -134,7 +130,14 @@ public class AlienManager : MonoBehaviour
         {
             alien.OnDeath.AddListener(OnAlienDeath);
             aliens.Add(alien);
+            alienInMatrix[row, col] = alien;
         }
+    }
+
+    public Ship GetAlienInMatrix(int row, int col)
+    {
+        if (alienMatrix[row, col] != -1) return alienInMatrix[row, col];
+        return null;
     }
 
     private void OnAlienDeath(Ship alien)
@@ -143,16 +146,8 @@ public class AlienManager : MonoBehaviour
         if (IsClearWave())
         {
             wave++;
-            // Debug.Log(wave);
             InitMatrix();
-            // Debug.Log("new wave");
             OnCall?.Invoke(wave);
-            // Debug.Log($"OnCall is null: {OnCall == null}");
-            // Debug.Log($"The current wave: {wave}");
-            // _onCall?.Invoke(wave);
-            // Debug.Log($"message: {_onCall == null}");
-            // uIHandler.CountWave(WAVES - wave);
-            // Spawn();  // need delay
             StartCoroutine(SpawnAliensCoroutine());
         }
         else if (IsWin())
@@ -184,7 +179,7 @@ public class AlienManager : MonoBehaviour
         return aliens.Count <= 0 && wave < WAVES;
     }
 
-    private Ship CreateAlien(int col, int row)
+    public Ship CreateAlien(int col, int row)
     {
         if (alienMatrix[row, col] != -1)
         {
@@ -194,8 +189,10 @@ public class AlienManager : MonoBehaviour
             alien.transform.localPosition = pos;
             Ship ship = alien.GetComponent<Ship>();
             ship.SetAlienHealth(alienMatrix[row, col] + 1);
+            ship.SetCoordinate(new Vector2(row, col));
             return ship;
         }
         return null;
     }
+
 }
