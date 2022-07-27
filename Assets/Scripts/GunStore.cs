@@ -12,6 +12,6 @@ public class GunStore : MonoBehaviour
         int index = Random.Range(0, guns.Count * 100) % guns.Count;
         Debug.Log($"Index: {index}");
         return guns[index];
-        // return guns[3];
+        // return guns[2];
     }
 }

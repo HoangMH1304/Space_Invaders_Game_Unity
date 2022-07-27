@@ -10,8 +10,8 @@ public class Alien : Ship
     private AnimationHandler handleAnimation;
     [SerializeField]
     private GameObject powerUp;
-    private int health;
     bool IsPowerUpAlien = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,14 +60,6 @@ public class Alien : Ship
         {
             Shoot();
         }
-        // if (GameObject.Find("TargetBullet(Clone)") == null)
-        // {
-        //     handleAnimation.ExitTargetAnimation(this.gameObject);
-        // }
-        // if (Input.GetKeyDown(KeyCode.P))
-        // {
-        //     ChangeGun();
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,5 +86,10 @@ public class Alien : Ship
             }
             Die();
         }
+    }
+
+    public void Kill()
+    {
+        TakeDamage(health);
     }
 }

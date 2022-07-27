@@ -6,51 +6,25 @@ public class Bullet : MonoBehaviour
 {
     private const string SHIELD_TAG = "Shield";
     private const string POWER_UP = "PowerUp";
+    private const string BULLET_TAG = "Bullet";
+    private const string ALIENBULLET_TAG = "AlienBullet";
     [SerializeField]
     private string enemyTag = "Player";
     [SerializeField]
     public Vector2 direction;
     [SerializeField]
-    private float moveSpeed = 30;
+    protected float moveSpeed = 30;
     [SerializeField]
     private int damage;
-    private AlienManager alienManager;
-    private Alien[] aliens;
-    // private List<Ship> ship;
+    protected AlienManager alienManager;
+    protected Alien[] aliens;
     private Player player;
-    private Alien chooseAlien;
     private AnimationHandler animationHandler;
-    // Type of Bullets:
-    // 1: TargetBullet(Clone)
-    // 2: BombBullet(Clone)
-    // 3: DestroyBullet(Clone)
-    private int typeBullet;
-    int[] dx = { -1, 0, 1, -1, 0, 1, -1, 0, 1 };
-    int[] dy = { -1, -1, -1, 0, 0, 0, 1, 1, 1 };
-    int minn = 10;
-    virtual protected void Start()
+
+    protected void Start()
     {
-        if (gameObject.tag.Equals("Alien")) Debug.Log(this.gameObject.name);  //test
         aliens = FindObjectsOfType<Alien>();
-        if (this.gameObject.name.Equals("TargetBullet(Clone)"))
-        {
-            typeBullet = 1;
-        }
-        else if (this.gameObject.name.Equals("BombBullet(Clone)"))
-        {
-            typeBullet = 2;
-        }
-        else if (this.gameObject.name.Equals("DestroyBullet(Clone)"))
-        {
-            typeBullet = 3;
-        }
-        else
-        {
-            //not special bullet
-            typeBullet = 0;
-        }
         GetReference();
-        // ship = alienManager.GetList();
         Move();
     }
 
@@ -61,40 +35,13 @@ public class Bullet : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
-    virtual protected void Update()
-    {
-        if (typeBullet == 1)
-        {
-            if (chooseAlien == null) chooseAlien = FindAlien();
-            // animationHandler.OnTargetAnimation(chooseAlien.gameObject);
-            transform.position = Vector2.MoveTowards(transform.position,
-            chooseAlien.transform.position, -moveSpeed * Time.deltaTime);
-            minn = 10;
-            // else Destroy(gameObject);
-        }
-    }
-
-
-    private Alien FindAlien()
-    {
-        for (int i = aliens.Length - 1; i >= 0; i--)
-        {
-            if (aliens[i].GetAlienHealth() < minn)
-            {
-                minn = aliens[i].GetAlienHealth();
-                chooseAlien = aliens[i];
-            }
-        }
-        return chooseAlien;
-    }
-
     virtual protected void Move()
     {
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         HandleTriggerEnter(other);
     }
@@ -103,14 +50,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == enemyTag)
         {
-            if (this.tag == POWER_UP)
-            {
-                player.ChangeGun();
-            }
-            else
-            {
-                DealDamage(other);
-            }
+            DealDamage(other);
         }
         if (other.tag == SHIELD_TAG)
         {
@@ -119,39 +59,31 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected void DealDamage(Collider2D other)
+    protected virtual void DealDamage(Collider2D other)
     {
-        if (typeBullet == 3)
+        var enemy = other.GetComponent<IHealth>();
+        enemy.TakeDamage(damage);
+    }
+
+    protected void DealDamageAlien(Collider2D other)
+    {
+        if (this.name == "FreezeBullet(Clone)")
         {
-            for (int i = aliens.Length - 1; i >= 0; i--)
-            {
-                if (aliens[i].name == other.name)
-                    if (aliens[i] != null)
-                        aliens[i].TakeDamage(aliens[i].GetAlienHealth());
-            }
+            var player = FindObjectOfType<Player>();
+            StartCoroutine(DelayCoroutine(player));
         }
-        else if (typeBullet == 2)
-        {
-            Vector2 pos = other.gameObject.GetComponent<Ship>().GetCoordinate();
-            Debug.Log($"Coordinate: {pos.x} {pos.y}");
-            Debug.Log(pos.x);
-            Debug.Log(pos.y);
-            for (int i = 0; i < 8; i++)
-            {
-                int dirX = (int)pos.x + dx[i];
-                int dirY = (int)pos.y + dy[i];
-                if (dirX >= 0 && dirX < 5 && dirY >= 0 && dirY < 5 && alienManager.GetAlienInMatrix(dirX, dirY) != null)
-                {
-                    var alien = alienManager.GetAlienInMatrix(dirX, dirY);
-                    alien.TakeDamage(alien.GetAlienHealth());
-                }
-            }
-        }
-        else
-        {
-            // if (typeBullet == 1) animationHandler.ExitTargetAn+imation(chooseAlien.gameObject);
-            var enemy = other.GetComponent<IHealth>();
-            enemy.TakeDamage(damage);
-        }
+        var enemy = other.GetComponent<IHealth>();
+        enemy.TakeDamage(damage);
+    }
+
+    IEnumerator DelayCoroutine(Player player)
+    {
+        float speedBefore = player.GetMoveSpeed() / 2;
+        player.SetMoveSpeed(speedBefore);
+        Debug.Log($"Speed before: {speedBefore}");
+        yield return new WaitForSeconds(5);
+        float speedAfter = player.GetMoveSpeed() * 2;
+        Debug.Log($"Speed after: {speedAfter}");
+        player.SetMoveSpeed(speedAfter);
     }
 }

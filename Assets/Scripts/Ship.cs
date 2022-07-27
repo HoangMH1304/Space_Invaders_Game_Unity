@@ -16,7 +16,7 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     private GunStore gunStore;
 
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
-    private int health;
+    protected int health;
     private Vector2 coordinate;
     virtual public void Die()
     {

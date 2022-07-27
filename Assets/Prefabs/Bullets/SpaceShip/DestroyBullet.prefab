@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7478346302274003096}
   - component: {fileID: 8636174483443330587}
   - component: {fileID: 7469217654312223684}
-  - component: {fileID: 3669570452585976018}
+  - component: {fileID: -373221292162514692}
   m_Layer: 9
   m_Name: DestroyBullet
   m_TagString: Bullet
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3669570452585976018
+--- !u!114 &-373221292162514692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7478346302274003099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccddd20a479325c40a1e68d327d208d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f5e48b439f84f842b95772f644f31ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Alien
-  direction: {x: 0, y: -1}
-  moveSpeed: -10
-  damage: -1
+  direction: {x: 0, y: 1}
+  moveSpeed: 10
+  damage: 0

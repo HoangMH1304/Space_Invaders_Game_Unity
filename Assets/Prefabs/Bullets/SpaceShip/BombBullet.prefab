@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2730275070568097961}
   - component: {fileID: -6218626895158909559}
   - component: {fileID: 3506138255013740599}
-  - component: {fileID: 7138858592323798128}
+  - component: {fileID: -8572029610403913661}
   m_Layer: 9
   m_Name: BombBullet
   m_TagString: Bullet
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7138858592323798128
+--- !u!114 &-8572029610403913661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8269572227454408867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccddd20a479325c40a1e68d327d208d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 523e84faef852184f8b7296293fc7c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Alien
-  direction: {x: 0, y: -1}
-  moveSpeed: -30
-  damage: 1
+  direction: {x: 0, y: 1}
+  moveSpeed: 20
+  damage: 0

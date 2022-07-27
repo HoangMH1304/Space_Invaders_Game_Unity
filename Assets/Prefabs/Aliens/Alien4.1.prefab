@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   shipExplosion: {fileID: 8300000, guid: 204604461f144da469b475f984b7cc50, type: 3}
-  gun: {fileID: 460300284}
+  gun: {fileID: 1317252677}
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

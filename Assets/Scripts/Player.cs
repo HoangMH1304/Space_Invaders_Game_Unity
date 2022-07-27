@@ -12,10 +12,8 @@ public class Player : Ship
 
     [SerializeField]
     private float smooth = 10f;
-    private int health = 3;
     private bool dead = false;
     private UIHandler uIHandler;
-    int index = 0;
     void Start()
     {
         Init();
@@ -47,14 +45,14 @@ public class Player : Ship
         Shoot();
     }
 
-    public int GetMoveSpeed()
+    public float GetMoveSpeed()
     {
-        return this.speed;
+        return smooth;
     }
 
-    public void SetMoveSpeed(int moveSpeed)
+    public void SetMoveSpeed(float moveSpeed)
     {
-        speed = moveSpeed;
+        smooth = moveSpeed;
     }
     private void MoveSpaceShip()
     {

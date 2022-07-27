@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Alien
-  direction: {x: 0, y: -1}
-  moveSpeed: -20
+  direction: {x: 0, y: 1}
+  moveSpeed: 20
   damage: 1
 --- !u!1 &4353407328930127324
 GameObject:
@@ -325,6 +325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Alien
-  direction: {x: 0, y: -1}
-  moveSpeed: -20
+  direction: {x: 0, y: 1}
+  moveSpeed: 20
   damage: 1
