@@ -50,17 +50,11 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     virtual public void ChangeGun()
     {
         var gunStore = FindObjectOfType<GunStore>();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Space");
-            gun = gunStore.RandomGun();
-
-        }
+        gun = gunStore.RandomGun();
     }
 
     public void Shoot()
     {
         gun.Shoot();
     }
-
 }

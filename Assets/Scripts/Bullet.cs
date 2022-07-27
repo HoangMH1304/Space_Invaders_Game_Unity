@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const string SHELD_TAG = "Shield";
+    private const string SHIELD_TAG = "Shield";
+    private const string POWER_UP = "PowerUp";
     [SerializeField]
     private string enemyTag = "Player";
     [SerializeField]
@@ -15,14 +16,15 @@ public class Bullet : MonoBehaviour
     private int damage;
     private AlienManager alienManager;
     private Alien[] aliens;
-    private List<Ship> ship;
-    private Alien chooseAlien = null;
+    // private List<Ship> ship;
+    private Player player;
+    private Alien chooseAlien;
     private AnimationHandler animationHandler;
     // Type of Bullets:
     // 1: TargetBullet(Clone)
     // 2: BombBullet(Clone)
     // 3: DestroyBullet(Clone)
-    int typeBullet;
+    private int typeBullet;
     int[] dx = { -1, 0, 1, -1, 0, 1, -1, 0, 1 };
     int[] dy = { -1, -1, -1, 0, 0, 0, 1, 1, 1 };
     int minn = 10;
@@ -48,7 +50,7 @@ public class Bullet : MonoBehaviour
             typeBullet = 0;
         }
         GetReference();
-        ship = alienManager.GetList();
+        // ship = alienManager.GetList();
         Move();
     }
 
@@ -56,6 +58,7 @@ public class Bullet : MonoBehaviour
     {
         animationHandler = FindObjectOfType<AnimationHandler>();
         alienManager = FindObjectOfType<AlienManager>();
+        player = FindObjectOfType<Player>();
     }
 
     virtual protected void Update()
@@ -63,7 +66,7 @@ public class Bullet : MonoBehaviour
         if (typeBullet == 1)
         {
             if (chooseAlien == null) chooseAlien = FindAlien();
-            animationHandler.OnTargetAnimation(chooseAlien.gameObject);
+            // animationHandler.OnTargetAnimation(chooseAlien.gameObject);
             transform.position = Vector2.MoveTowards(transform.position,
             chooseAlien.transform.position, -moveSpeed * Time.deltaTime);
             minn = 10;
@@ -74,16 +77,15 @@ public class Bullet : MonoBehaviour
 
     private Alien FindAlien()
     {
-        Alien temp = new Alien();
-        for (int i = ship.Count - 1; i >= 0; i--)
+        for (int i = aliens.Length - 1; i >= 0; i--)
         {
-            if (ship[i].GetAlienHealth() < minn)
+            if (aliens[i].GetAlienHealth() < minn)
             {
-                minn = ship[i].GetAlienHealth();
-                temp = aliens[i];
+                minn = aliens[i].GetAlienHealth();
+                chooseAlien = aliens[i];
             }
         }
-        return temp;
+        return chooseAlien;
     }
 
     virtual protected void Move()
@@ -101,9 +103,16 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == enemyTag)
         {
-            DealDamage(other);
+            if (this.tag == POWER_UP)
+            {
+                player.ChangeGun();
+            }
+            else
+            {
+                DealDamage(other);
+            }
         }
-        if (other.tag == SHELD_TAG)
+        if (other.tag == SHIELD_TAG)
         {
             Destroy(other.gameObject);
         }
@@ -116,7 +125,9 @@ public class Bullet : MonoBehaviour
         {
             for (int i = aliens.Length - 1; i >= 0; i--)
             {
-                if (aliens[i].name == other.name) aliens[i].TakeDamage(aliens[i].GetAlienHealth());
+                if (aliens[i].name == other.name)
+                    if (aliens[i] != null)
+                        aliens[i].TakeDamage(aliens[i].GetAlienHealth());
             }
         }
         else if (typeBullet == 2)
@@ -138,7 +149,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if (typeBullet == 1) animationHandler.ExitTargetAnimation(chooseAlien.gameObject);
+            // if (typeBullet == 1) animationHandler.ExitTargetAn+imation(chooseAlien.gameObject);
             var enemy = other.GetComponent<IHealth>();
             enemy.TakeDamage(damage);
         }

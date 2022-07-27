@@ -57,10 +57,10 @@ public class AlienManager : MonoBehaviour
         player = GameObject.Find("SpaceShip").GetComponent<Player>();
     }
 
-    public List<Ship> GetList()
-    {
-        return aliens;
-    }
+    // public List<Ship> GetList()
+    // {
+    //     return aliens;
+    // }
 
     public void DestroyAliens()                 //Destroy Button
     {

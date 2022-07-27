@@ -47,7 +47,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: 8e61c6a8c14a9a24ab4fa1e8aa058ec0, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 100
+  reloadTime: 5
 --- !u!1 &1672284843
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7170697368816715490, guid: f13b4d59a75e9bd47848e7ff988d796d, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 100
+  reloadTime: 10
 --- !u!1 &1844484855250836470
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  powerUp: {fileID: 1704980673096859280, guid: acfffa003cd66b8418a7557e03c96f08, type: 3}
 --- !u!95 &5553653450901170531
 Animator:
   serializedVersion: 3

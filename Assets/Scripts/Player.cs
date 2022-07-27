@@ -32,17 +32,13 @@ public class Player : Ship
 
     public override void ChangeGun()
     {
-
         var gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
-        if (Input.GetKeyDown(KeyCode.Space))
+        Gun temp = gunStore.RandomGun();
+        while (gun == temp)
         {
-            Debug.Log("Space");
-            gun = gunStore.RandomGun();
+            temp = gunStore.RandomGun();
         }
-    }
-    private void Update()
-    {
-        ChangeGun();
+        gun = temp;
     }
 
     void FixedUpdate()
@@ -51,7 +47,15 @@ public class Player : Ship
         Shoot();
     }
 
+    public int GetMoveSpeed()
+    {
+        return this.speed;
+    }
 
+    public void SetMoveSpeed(int moveSpeed)
+    {
+        speed = moveSpeed;
+    }
     private void MoveSpaceShip()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);

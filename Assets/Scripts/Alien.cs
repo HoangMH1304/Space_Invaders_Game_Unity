@@ -8,13 +8,17 @@ public class Alien : Ship
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
     private AnimationHandler handleAnimation;
+    [SerializeField]
+    private GameObject powerUp;
     private int health;
+    bool IsPowerUpAlien = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         handleAnimation = FindObjectOfType<AnimationHandler>();
         rb.velocity = Vector2.right * speed;
         health = GetAlienHealth();
+        if (health == 1) IsPowerUpAlien = true;
     }
 
     void TurnDirection(int direction)
@@ -80,11 +84,14 @@ public class Alien : Ship
     override public void TakeDamage(int damage)
     {
         health -= damage;
-        // Debug.Log($"Alien Health: {health}");
         if (health <= 0)
         {
             GameManager.Instance.AddScore(10);
             handleAnimation.OnDeadAnimation(this.gameObject);
+            if (IsPowerUpAlien)
+            {
+                Instantiate(powerUp, this.transform.position, Quaternion.identity);
+            }
             Die();
         }
     }
