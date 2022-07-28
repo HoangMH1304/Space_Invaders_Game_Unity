@@ -9,16 +9,21 @@ public class Alien : Ship
     private const string RIGHTWALL_TAG = "RightWall";
     private AnimationHandler handleAnimation;
     [SerializeField]
-    private GameObject powerUp;
+    // private GameObject powerUp;
     bool IsPowerUpAlien = false;
+    private PowerUpContainer powerUp;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         handleAnimation = FindObjectOfType<AnimationHandler>();
         rb.velocity = Vector2.right * speed;
-        health = GetAlienHealth();
-        if (health == 1) IsPowerUpAlien = true;
+        health = GetHealth();
+        if (health == 1)
+        {
+            IsPowerUpAlien = true;
+            powerUp = FindObjectOfType<PowerUpContainer>();
+        }
     }
 
     void TurnDirection(int direction)
@@ -82,7 +87,7 @@ public class Alien : Ship
             handleAnimation.OnDeadAnimation(this.gameObject);
             if (IsPowerUpAlien)
             {
-                Instantiate(powerUp, this.transform.position, Quaternion.identity);
+                Instantiate(powerUp.RandomPowerUp().gameObject, this.transform.position, Quaternion.identity);
             }
             Die();
         }

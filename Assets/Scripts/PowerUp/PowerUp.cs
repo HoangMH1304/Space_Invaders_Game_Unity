@@ -35,8 +35,6 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // var player = FindObjectOfType<Player>();
-            // player.ChangeGun();
             Destroy(gameObject);
         }
     }

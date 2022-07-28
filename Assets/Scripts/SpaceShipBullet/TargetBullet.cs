@@ -22,9 +22,9 @@ public class TargetBullet : Bullet
     {
         for (int i = aliens.Length - 1; i >= 0; i--)
         {
-            if (aliens[i].GetAlienHealth() < minn)
+            if (aliens[i].GetHealth() < minn)
             {
-                minn = aliens[i].GetAlienHealth();
+                minn = aliens[i].GetHealth();
                 chooseAlien = aliens[i];
             }
         }

@@ -8,5 +8,8 @@ public class FreezeBullet : Bullet
     {
         var player = other.GetComponent<Player>();
         player.TurnIntoFreeze();
+        var slowEffect = other.GetComponent<SlowEffect>();
+        slowEffect.TurnColor();
+        // if () return;
     }
 }

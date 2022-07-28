@@ -147,15 +147,13 @@ public class AlienManager : MonoBehaviour
         else if (IsWin())
         {
             EndLevel();
-            uIHandler.IncreaseHealth();
-            //
+            // uIHandler.IncreaseHealth();
             int hearts = player.GetHealth();
             if (hearts < MAX_HEALTH)
             {
                 hearts++;
                 uIHandler.IncreaseHealth();
             }
-            //
             GameManager.Instance.UpdatePlayerHealth(hearts);
             GameManager.Instance.SetResultState(true);
         }
@@ -185,7 +183,7 @@ public class AlienManager : MonoBehaviour
             alien.transform.SetParent(parent);
             alien.transform.localPosition = pos;
             Ship ship = alien.GetComponent<Ship>();
-            ship.SetAlienHealth(alienMatrix[row, col] + 1);
+            ship.SetHealth(alienMatrix[row, col] + 1);
             ship.SetCoordinate(new Vector2(row, col));
             return ship;
         }

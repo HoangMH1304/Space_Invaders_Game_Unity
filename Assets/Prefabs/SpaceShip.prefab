@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 8562477056251073764}
   - component: {fileID: 8562477056251073761}
   - component: {fileID: 8562477056251073765}
-  - component: {fileID: 8562477057010748281}
+  - component: {fileID: 3705789962196143000}
   m_Layer: 11
   m_Name: SpaceShip
   m_TagString: Player
@@ -448,22 +448,17 @@ MonoBehaviour:
       m_Calls: []
   mainCamera: {fileID: 0}
   smooth: 10
---- !u!95 &8562477057010748281
-Animator:
-  serializedVersion: 3
+--- !u!114 &3705789962196143000
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8562477056251073766}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dcefd2e000774b444a64b5cd0398fd35, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf54c84cea1c67b44acceb085378db0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameobject: {fileID: 8562477056251073765}
+  dead: {fileID: -2885940107258461023, guid: b67112a6edeb97945a475697de70f8a6, type: 3}

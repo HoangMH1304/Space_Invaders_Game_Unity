@@ -38,7 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\AnimationHandler.cs" />
-     <Compile Include="Assets\Intro.cs" />
+     <Compile Include="Assets\Scripts\Intro.cs" />
      <Compile Include="Assets\Scripts\IHunter.cs" />
      <Compile Include="Assets\Scripts\PowerUp\ChangeGunPowerUp.cs" />
      <Compile Include="Assets\Scripts\SpaceShipBullet.cs" />
@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\PowerUp\ShieldPowerUp.cs" />
      <Compile Include="Assets\Scripts\PowerUp\EnergyShield.cs" />
      <Compile Include="Assets\Scripts\PowerUp\BonusHealth.cs" />
+     <Compile Include="Assets\Scripts\SlowEffect.cs" />
      <None Include="Assets\Data\alien1.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

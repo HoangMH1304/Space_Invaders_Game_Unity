@@ -25,12 +25,12 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         OnDeath?.Invoke(this);
     }
 
-    public void SetAlienHealth(int hp)
+    public void SetHealth(int hp)
     {
         health = hp;
     }
 
-    public int GetAlienHealth()
+    public int GetHealth()
     {
         return health;
     }

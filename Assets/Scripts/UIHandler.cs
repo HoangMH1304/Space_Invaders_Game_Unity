@@ -79,8 +79,17 @@ public class UIHandler : MonoBehaviour
     {
         if (ship.GetHealth() < 3)
         {
+            StartCoroutine(Delay());
             incresePoint.SetActive(true);
             hearts[ship.GetHealth()].SetActive(true);
+            // ship.SetHealth(ship.GetHealth() + 1);
         }
+    }
+
+    IEnumerator Delay()
+    {
+        incresePoint.SetActive(true);
+        yield return new WaitForSeconds(2);
+        incresePoint.SetActive(false);
     }
 }

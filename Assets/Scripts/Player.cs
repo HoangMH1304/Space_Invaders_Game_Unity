@@ -12,21 +12,24 @@ public class Player : Ship
     private float smooth = 10f;
     private bool dead = false;
     private UIHandler uIHandler;
-    private Animator animator;
+    private SlowEffect slowEffect;
+    private SpriteRenderer spriteRenderer;
     float time = 0;
 
     void Start()
     {
         Init();
         uIHandler.UpdateHealth();
+        // slowEffect.TurnColor()
     }
 
     private void Init()
     {
         rb = GetComponent<Rigidbody2D>();
-        uIHandler = GameObject.FindObjectOfType<UIHandler>();
+        uIHandler = FindObjectOfType<UIHandler>();
         health = GameManager.Instance.GetSpaceShipHealth();
-        animator = GetComponent<Animator>();
+        slowEffect = FindObjectOfType<SlowEffect>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public override void ChangeGun()
@@ -51,14 +54,14 @@ public class Player : Ship
     {
         if (smooth == 1)
         {
-            animator.SetBool("IsFreeze", true);
+            // slowEffect.TurnColor();
             time += Time.deltaTime;
         }
         if (time >= 5f)
         {
+            // slowEffect.OriginColor();
             smooth = 10;
             time = 0;
-            animator.SetBool("IsFreeze", false);
         }
     }
 
@@ -83,17 +86,11 @@ public class Player : Ship
         uIHandler.UpdateHealth();
         if (health <= 0)
         {
-            var animator = FindObjectOfType<AnimationHandler>();
-            animator.OnDeadAnimation(this.gameObject);
+            slowEffect.OnDead();
             dead = true;
             Die();
             var changeScene = mainCamera.GetComponent<ChangeScene>();
             changeScene.ChangeLastScene();
         }
-    }
-
-    public int GetHealth()
-    {
-        return health;
     }
 }
