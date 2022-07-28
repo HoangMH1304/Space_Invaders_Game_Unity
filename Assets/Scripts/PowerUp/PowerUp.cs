@@ -27,10 +27,23 @@ public class PowerUp : MonoBehaviour
 
     private void HandleTriggerEnter(Collider2D other)
     {
+        CollideWithPlayer(other);
+        CollideWithWall(other);
+    }
+
+    protected virtual void CollideWithPlayer(Collider2D other)
+    {
         if (other.tag == "Player")
         {
-            var player = FindObjectOfType<Player>();
-            player.ChangeGun();
+            // var player = FindObjectOfType<Player>();
+            // player.ChangeGun();
+            Destroy(gameObject);
+        }
+    }
+    private void CollideWithWall(Collider2D other)
+    {
+        if (other.tag == "Wall")
+        {
             Destroy(gameObject);
         }
     }

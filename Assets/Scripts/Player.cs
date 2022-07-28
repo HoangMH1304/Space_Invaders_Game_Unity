@@ -6,18 +6,19 @@ public class Player : Ship
 {
     private const float TOP_RANGE = -12f;
     private const float BOTTOM_RANGE = -30f;
-    private const int RATE = 5;
     [SerializeField]
     private Camera mainCamera;
-
     [SerializeField]
     private float smooth = 10f;
     private bool dead = false;
     private UIHandler uIHandler;
+    private Animator animator;
+    float time = 0;
+
     void Start()
     {
         Init();
-
+        uIHandler.UpdateHealth();
     }
 
     private void Init()
@@ -25,7 +26,7 @@ public class Player : Ship
         rb = GetComponent<Rigidbody2D>();
         uIHandler = GameObject.FindObjectOfType<UIHandler>();
         health = GameManager.Instance.GetSpaceShipHealth();
-
+        animator = GetComponent<Animator>();
     }
 
     public override void ChangeGun()
@@ -41,19 +42,31 @@ public class Player : Ship
 
     void FixedUpdate()
     {
+        IsFreeze();
         MoveSpaceShip();
         Shoot();
     }
 
-    public float GetMoveSpeed()
+    private void IsFreeze()
     {
-        return smooth;
+        if (smooth == 1)
+        {
+            animator.SetBool("IsFreeze", true);
+            time += Time.deltaTime;
+        }
+        if (time >= 5f)
+        {
+            smooth = 10;
+            time = 0;
+            animator.SetBool("IsFreeze", false);
+        }
     }
 
-    public void SetMoveSpeed(float moveSpeed)
+    public void TurnIntoFreeze()
     {
-        smooth = moveSpeed;
+        smooth = 1;
     }
+
     private void MoveSpaceShip()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -70,8 +83,8 @@ public class Player : Ship
         uIHandler.UpdateHealth();
         if (health <= 0)
         {
-            var animator = GetComponent<Animator>();
-            animator.enabled = !animator.enabled;
+            var animator = FindObjectOfType<AnimationHandler>();
+            animator.OnDeadAnimation(this.gameObject);
             dead = true;
             Die();
             var changeScene = mainCamera.GetComponent<ChangeScene>();
@@ -83,5 +96,4 @@ public class Player : Ship
     {
         return health;
     }
-
 }

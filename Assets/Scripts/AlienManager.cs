@@ -52,15 +52,9 @@ public class AlienManager : MonoBehaviour
     private void GetReference()
     {
         changeScene = FindObjectOfType<ChangeScene>();
-        // gameManager = FindObjectOfType<GameManager>();
         uIHandler = FindObjectOfType<UIHandler>();
         player = GameObject.Find("SpaceShip").GetComponent<Player>();
     }
-
-    // public List<Ship> GetList()
-    // {
-    //     return aliens;
-    // }
 
     public void DestroyAliens()                 //Destroy Button
     {
@@ -153,12 +147,15 @@ public class AlienManager : MonoBehaviour
         else if (IsWin())
         {
             EndLevel();
+            uIHandler.IncreaseHealth();
+            //
             int hearts = player.GetHealth();
             if (hearts < MAX_HEALTH)
             {
                 hearts++;
                 uIHandler.IncreaseHealth();
             }
+            //
             GameManager.Instance.UpdatePlayerHealth(hearts);
             GameManager.Instance.SetResultState(true);
         }
@@ -194,5 +191,4 @@ public class AlienManager : MonoBehaviour
         }
         return null;
     }
-
 }

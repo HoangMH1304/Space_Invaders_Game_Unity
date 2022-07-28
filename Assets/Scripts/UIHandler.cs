@@ -17,23 +17,12 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         Init();
-        // if (alienManager == null)
-        //     Debug.Log("alienManager null");
-        // if (alienManager.OnCall == null)
-        //     Debug.Log("oncall null");
         alienManager.OnCall.AddListener(CountWave);
-        // alienManager.OnCall.AddListener((wave) =>
-        // {
-        //     Debug.Log($"on new waves callback!");
-        // });
-
-        // Debug.Log("Add listener");
     }
 
     private void Start()
     {
         UpdateHealth();
-        // Debug.Log(GameManager.Instance.GetSpaceShipHealth());
     }
     private void Init()
     {
@@ -43,7 +32,6 @@ public class UIHandler : MonoBehaviour
 
     private void UpdateReference()
     {
-        // UpdateHealth();
         // UpdateValue("Score", gameManager.GetScore());
         // UpdateValue("Level", gameManager.GetLevel());
 
@@ -89,7 +77,10 @@ public class UIHandler : MonoBehaviour
 
     public void IncreaseHealth()
     {
-        incresePoint.SetActive(true);
-        hearts[ship.GetHealth()].SetActive(true);
+        if (ship.GetHealth() < 3)
+        {
+            incresePoint.SetActive(true);
+            hearts[ship.GetHealth()].SetActive(true);
+        }
     }
 }

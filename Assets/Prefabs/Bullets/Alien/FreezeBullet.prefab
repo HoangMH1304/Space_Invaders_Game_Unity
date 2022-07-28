@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8198330544584612861}
   - component: {fileID: -1361156495483691076}
   - component: {fileID: 8309644656124267926}
-  - component: {fileID: 625441753283289074}
   - component: {fileID: 1344021393}
+  - component: {fileID: 375186219}
   m_Layer: 10
   m_Name: FreezeBullet
   m_TagString: AlienBullet
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7170697368816715490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -133,22 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &625441753283289074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7170697368816715490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccddd20a479325c40a1e68d327d208d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTag: Player
-  direction: {x: 0, y: -1}
-  moveSpeed: 15
-  damage: 1
 --- !u!95 &1344021393
 Animator:
   serializedVersion: 3
@@ -168,3 +152,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &375186219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170697368816715490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a88bd1cc59dfb4ca2e9505aa6b147f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Player
+  direction: {x: 0, y: -1}
+  moveSpeed: 20
+  damage: 0

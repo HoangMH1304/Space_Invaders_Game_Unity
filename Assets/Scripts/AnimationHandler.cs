@@ -21,4 +21,5 @@ public class AnimationHandler : MonoBehaviour
         Animator animator = other.GetComponent<Animator>();
         animator.SetBool("IsTarget", false);
     }
+
 }

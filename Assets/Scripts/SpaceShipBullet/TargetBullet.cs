@@ -30,10 +30,4 @@ public class TargetBullet : Bullet
         }
         return chooseAlien;
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     HandleTriggerEnter(other);
-    // }
-
 }

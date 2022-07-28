@@ -6,8 +6,6 @@ public class Bullet : MonoBehaviour
 {
     private const string SHIELD_TAG = "Shield";
     private const string POWER_UP = "PowerUp";
-    private const string BULLET_TAG = "Bullet";
-    private const string ALIENBULLET_TAG = "AlienBullet";
     [SerializeField]
     private string enemyTag = "Player";
     [SerializeField]
@@ -15,7 +13,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     protected float moveSpeed = 30;
     [SerializeField]
-    private int damage;
+    protected int damage;
     protected AlienManager alienManager;
     protected Alien[] aliens;
     private Player player;
@@ -56,6 +54,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.tag == "EnergyShield" && this.tag == "AlienBullet")
+        {
+            Destroy(other.gameObject);
+        }
         Destroy(gameObject);
     }
 
@@ -65,25 +67,25 @@ public class Bullet : MonoBehaviour
         enemy.TakeDamage(damage);
     }
 
-    protected void DealDamageAlien(Collider2D other)
-    {
-        if (this.name == "FreezeBullet(Clone)")
-        {
-            var player = FindObjectOfType<Player>();
-            StartCoroutine(DelayCoroutine(player));
-        }
-        var enemy = other.GetComponent<IHealth>();
-        enemy.TakeDamage(damage);
-    }
+    // protected void DealDamageAlien(Collider2D other)
+    // {
+    //     if (this.name == "FreezeBullet(Clone)")
+    //     {
+    //         var player = FindObjectOfType<Player>();
+    //         StartCoroutine(DelayCoroutine(player));
+    //     }
+    //     var enemy = other.GetComponent<IHealth>();
+    //     enemy.TakeDamage(damage);
+    // }
 
-    IEnumerator DelayCoroutine(Player player)
-    {
-        float speedBefore = player.GetMoveSpeed() / 2;
-        player.SetMoveSpeed(speedBefore);
-        Debug.Log($"Speed before: {speedBefore}");
-        yield return new WaitForSeconds(5);
-        float speedAfter = player.GetMoveSpeed() * 2;
-        Debug.Log($"Speed after: {speedAfter}");
-        player.SetMoveSpeed(speedAfter);
-    }
+    // IEnumerator DelayCoroutine(Player player)
+    // {
+    //     float speedBefore = player.GetMoveSpeed() / 2;
+    //     player.SetMoveSpeed(speedBefore);
+    //     Debug.Log($"Speed before: {speedBefore}");
+    //     yield return new WaitForSeconds(5);
+    //     float speedAfter = player.GetMoveSpeed() * 2;
+    //     Debug.Log($"Speed after: {speedAfter}");
+    //     player.SetMoveSpeed(speedAfter);
+    // }
 }

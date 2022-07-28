@@ -7,11 +7,6 @@ public class BombBullet : Bullet
     int[] dx = { -1, 0, 1, -1, 0, 1, -1, 0, 1 };
     int[] dy = { -1, -1, -1, 0, 0, 0, 1, 1, 1 };
 
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     HandleTriggerEnter(other);
-    // }
-
     override protected void DealDamage(Collider2D other)
     {
         Vector2 pos = other.gameObject.GetComponent<Ship>().GetCoordinate();

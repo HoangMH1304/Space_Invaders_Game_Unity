@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class DestroyBullet : Bullet
 {
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     HandleTriggerEnter(other);
-    // }
     override protected void DealDamage(Collider2D other)
     {
         for (int i = aliens.Length - 1; i >= 0; i--)
