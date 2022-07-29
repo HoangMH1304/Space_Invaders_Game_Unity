@@ -35,6 +35,7 @@ public class SlowEffect : MonoBehaviour
             if (time > 5) break;
             yield return new WaitForSeconds(0.5f);
             time += 0.5f;
+            Debug.Log($"Time: {time}");
         }
     }
 

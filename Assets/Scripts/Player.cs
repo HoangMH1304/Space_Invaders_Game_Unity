@@ -57,7 +57,7 @@ public class Player : Ship
             // slowEffect.TurnColor();
             time += Time.deltaTime;
         }
-        if (time >= 5f)
+        if (time >= 5.5f)
         {
             // slowEffect.OriginColor();
             smooth = 10;
