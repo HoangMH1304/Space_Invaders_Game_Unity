@@ -18,6 +18,7 @@ public class Player : Ship
     private float time = 0f;
     private float reloadShoot;
     bool isChangeReloadTime = false;
+    bool isEnableMagnet = false;
 
     void Start()
     {
@@ -58,6 +59,16 @@ public class Player : Ship
         gun.SetReloadTime(x);
         reloadShoot = x;
         isChangeReloadTime = true;
+    }
+
+    public void SetMagnetItem(bool condition)
+    {
+        isEnableMagnet = condition;
+    }
+
+    public bool GetMagnetItem()
+    {
+        return isEnableMagnet;
     }
 
     void FixedUpdate()

@@ -9,15 +9,36 @@ public class PowerUp : MonoBehaviour
     protected float moveSpeed = 30f;
     [SerializeField]
     private Vector2 direction;
+    private Player player;
+    bool isMagnet = false;
     private void Start()
     {
-        Move();
+        GetReference();
+        isMagnet = player.GetMagnetItem();
+        if (isMagnet == false) Move();
+    }
+
+    private void GetReference()
+    {
+        player = FindObjectOfType<Player>();
     }
 
     private void Move()
     {
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
+    }
+
+    public void SetCondition(bool condition)
+    {
+        isMagnet = true;
+    }
+
+    private void Update()
+    {
+        if (isMagnet == false) return;
+        transform.position = Vector2.MoveTowards(transform.position,
+        player.transform.position, moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

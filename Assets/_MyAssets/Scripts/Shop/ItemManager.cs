@@ -9,6 +9,8 @@ public class ItemManager : MonoBehaviour
     private Player player;
     [SerializeField]
     private GameObject shield;
+    [SerializeField]
+    private GameObject magnet;
     bool isPurchase = true;
 
     private void Start()
@@ -75,7 +77,7 @@ public class ItemManager : MonoBehaviour
     }
     private void MagnetItem()
     {
-        throw new NotImplementedException();
+        player.SetMagnetItem(true);
+        magnet.SetActive(true);
     }
-
 }
