@@ -18,6 +18,7 @@ public class ItemManager : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
     }
+
     public void Buy(Item item)
     {
         int price = item.price;

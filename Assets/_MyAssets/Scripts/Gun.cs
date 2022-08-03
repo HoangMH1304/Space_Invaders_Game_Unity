@@ -14,11 +14,6 @@ public class Gun : MonoBehaviour
     private float reloadTime;
     private bool canShoot = true;
 
-    public void SpeedUpBullet()
-    {
-        bullets[0].GetComponent<Bullet>().GetSpeed();
-    }
-
     public void Shoot()
     {
         if (canShoot)

@@ -321,7 +321,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7891245185061072595, guid: 0cd0e5a3ea3fb42428e3d6fcefc4b421, type: 3}
   fireAudioClip: {fileID: 8300000, guid: ad9a237c98b8dab45a623e5b2bf6f14d, type: 3}
-  reloadTime: 1
+  reloadTime: 2
 --- !u!1 &8562477056145577701
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +530,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   mainCamera: {fileID: 0}
-  smooth: 10
+  dead: 0
 --- !u!114 &3705789962196143000
 MonoBehaviour:
   m_ObjectHideFlags: 0

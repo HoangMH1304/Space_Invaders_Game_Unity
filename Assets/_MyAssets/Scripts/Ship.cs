@@ -55,9 +55,4 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
     {
         gun.Shoot();
     }
-
-    public void TurnUpSpeed()
-    {
-        gun.SpeedUpBullet();
-    }
 }

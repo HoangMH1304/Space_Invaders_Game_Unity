@@ -36,6 +36,7 @@ public class UiItemHandler : MonoBehaviour
             item.quantity = 0;
         }
     }
+
     public void UpdateUIQuantity()
     {
         textUI.text = item.quantity.ToString();

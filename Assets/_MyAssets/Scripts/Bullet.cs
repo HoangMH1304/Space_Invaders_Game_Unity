@@ -39,9 +39,6 @@ public class Bullet : MonoBehaviour
     public float GetSpeed()
     {
         return moveSpeed;
-        // if (this.gameObject.tag == "Bullet") moveSpeed *= 1.1f;
-        // else return;
-        // Debug.Log($"New Speed: {moveSpeed}");
     }
 
     public void SetSpeed(float x)

@@ -17,9 +17,6 @@ public class Player : Ship
     private SpaceShipEffect spaceshipEffect;
     private SpriteRenderer spriteRenderer;
     private float time = 0f;
-    private float reloadShoot;    //-10% reload time
-    private float bulletSpeed;    //+10% bullet speed
-    bool isChangeReloadTime = false;
     bool isEnableMagnet = false;
 
     void Start()
@@ -49,14 +46,13 @@ public class Player : Ship
         // speed = 1;
         speed = 10f;
         health = GameManager.Instance.GetSpaceShipHealth();
-        reloadShoot = gun.GetReloadTime();
-        bulletSpeed = gun.GetBulletSpeed();
         uIHandler.UpdateHealth();
     }
 
     public override void ChangeGun()
     {
-        // if (isChangeReloadTime == true) gun.SetReloadTime(reloadShoot * 2);
+        float speedBefore = GetSpeedBullet();
+        float reloadBefore = GetReloadTime();
         var gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
         Gun temp = gunStore.RandomGun();
         while (gun == temp)
@@ -64,41 +60,38 @@ public class Player : Ship
             temp = gunStore.RandomGun();
         }
         gun = temp;
-        reloadShoot = gun.GetReloadTime();
+        SetSpeedBullet(speedBefore);
+        SetReloadTime(reloadBefore);
     }
 
-    public void SetSpeed(float x)
-    {
-        speed = x;
-    }
+    // public void SetSpeed(float x)
+    // {
+    //     speed = x;
+    // }
 
-    public void ShowSpeedText(float x)
-    {
-        var textUI = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-        textUI.text = "Speed: " + x.ToString();
-    }
+    // public void ShowSpeedText(float x)
+    // {
+    //     var textUI = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
+    //     textUI.text = "Speed: " + x.ToString();
+    // }
     public float GetReloadTime()
     {
-        return reloadShoot;
+        return gun.GetReloadTime();
     }
 
     public void SetReloadTime(float x)
     {
         gun.SetReloadTime(x);
-        reloadShoot = x;
-        isChangeReloadTime = true;
     }
 
     public float GetSpeedBullet()
     {
-        return bulletSpeed;
+        return gun.GetBulletSpeed();
     }
 
     public void SetSpeedBullet(float x)
     {
         gun.SetBulletSpeed(x);
-        bulletSpeed = x; //
-        // isChangeReloadTime = true; //
     }
 
     public void SetMagnetItem(bool condition)
@@ -129,24 +122,6 @@ public class Player : Ship
         speed = 1;
     }
 
-    // private void IsFreeze()
-    // {
-    //     if (speed != oldSpeed)
-    //     {
-    //         time += Time.deltaTime;
-    //     }
-    //     if (time >= 5.5f)
-    //     {
-    //         speed = oldSpeed;
-    //         time = 0;
-    //     }
-    // }
-
-    // public void TurnIntoFreeze()
-    // {
-    //     speed /= 2;
-    // }
-
     private void MoveSpaceShip()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -155,19 +130,20 @@ public class Player : Ship
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * speed);
     }
 
-    private void MoveSpaceShip1()
-    {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
-                transform.position = new Vector3(transform.position.x +
-                touch.deltaPosition.x * Time.deltaTime * speed, transform.position.y +
-                touch.deltaPosition.y * Time.deltaTime * speed, transform.position.z);
-            }
-        }
-    }
+    //Build for Mobile
+    // private void MoveSpaceShip1()
+    // {
+    //     if (Input.touchCount > 0)
+    //     {
+    //         touch = Input.GetTouch(0);
+    //         if (touch.phase == TouchPhase.Moved)
+    //         {
+    //             transform.position = new Vector3(transform.position.x +
+    //             touch.deltaPosition.x * Time.deltaTime * speed, transform.position.y +
+    //             touch.deltaPosition.y * Time.deltaTime * speed, transform.position.z);
+    //         }
+    //     }
+    // }
 
     override public void TakeDamage(int damage)
     {
