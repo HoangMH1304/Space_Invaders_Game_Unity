@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public class AlienManager : MonoBehaviour
 {
+    public UnityEvent<int> OnCall = new UnityEvent<int>();
     public GameObject[] aliensType;
     public Transform parent;
     private const int ALIEN_HEIGHT = 4;
     private const int ALIEN_WIDTH = 5;
     private const int WAVES = 3;
-
     [SerializeField]
     private List<TextAsset> datas;
     [SerializeField]
@@ -27,8 +27,7 @@ public class AlienManager : MonoBehaviour
     public List<Ship> aliens;
     [SerializeField]
     private int wave;
-    public UnityEvent<int> OnCall = new UnityEvent<int>();
-
+    private ItemManager itemManager;
 
     private void Start()
     {
@@ -51,8 +50,9 @@ public class AlienManager : MonoBehaviour
     private void GetReference()
     {
         changeScene = FindObjectOfType<ChangeScene>();
+        itemManager = FindObjectOfType<ItemManager>();
         uIHandler = FindObjectOfType<UIHandler>();
-        player = GameObject.Find("SpaceShip").GetComponent<Player>();
+        player = FindObjectOfType<Player>();
     }
 
     public void DestroyAliens()                 //Destroy Button
@@ -137,6 +137,7 @@ public class AlienManager : MonoBehaviour
         aliens.Remove(alien);
         if (IsClearWave())
         {
+            //insert menu items
             wave++;
             InitMatrix();
             OnCall?.Invoke(wave);

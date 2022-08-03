@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UiItemHandler : MonoBehaviour
 {
     [SerializeField]
     private Item item;
+    [SerializeField]
+    private TextMeshProUGUI textUI;
     private ItemMenu itemMenu;
     private ItemManager itemManager;
     void Start()
@@ -22,6 +25,19 @@ public class UiItemHandler : MonoBehaviour
     public void OnClick()
     {
         itemManager.Buy(item);
-        itemMenu.StoreToggle();
+        UpdateUIQuantity();
+        // itemMenu.StoreToggle();
+    }
+
+    public void ResetItem()
+    {
+        if (GameObject.Find("Store") != null && item.id == 0)
+        {
+            item.quantity = 0;
+        }
+    }
+    public void UpdateUIQuantity()
+    {
+        textUI.text = item.quantity.ToString();
     }
 }

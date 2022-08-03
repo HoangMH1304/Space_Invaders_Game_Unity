@@ -5,16 +5,22 @@ using UnityEngine;
 public class EnergyShield : MonoBehaviour
 {
     private GameObject spaceship;
-    float time = 0;
+    private float time = 0;
+    private float endTime;
     void Start()
     {
         spaceship = GameObject.Find("SpaceShip");
+    }
+
+    public void SetEndTime(int t)
+    {
+        endTime = t;
     }
     void Update()
     {
         time += Time.deltaTime;
         Debug.Log(time);
-        if (time > 5)
+        if (time > endTime)
         {
             Destroy(gameObject);
             return;

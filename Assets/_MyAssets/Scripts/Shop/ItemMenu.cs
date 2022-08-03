@@ -6,7 +6,6 @@ public class ItemMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject menu;
-
     public void StoreToggle()
     {
         if (menu.activeSelf == false)

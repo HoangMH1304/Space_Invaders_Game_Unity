@@ -47,6 +47,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\Shop\UiItemHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemMenu.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\DestroyNormalAlien.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\DeathZone.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUpContainer.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\BackGroundMusicManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\IHealth.cs" />

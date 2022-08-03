@@ -17,7 +17,7 @@ public class GunStore : MonoBehaviour
     public Gun RandomGun()
     {
         int index = Random.Range(0, guns.Count * 100) % guns.Count;
-        Debug.Log($"Index: {index}");
+        // Debug.Log($"Index: {index}");
         switch (index)
         {
             case (int)Guns.Gun1Shot:

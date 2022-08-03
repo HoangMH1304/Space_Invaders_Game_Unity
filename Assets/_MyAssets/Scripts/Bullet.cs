@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const string SHIELD_TAG = "Shield";
-    private const string POWER_UP = "PowerUp";
+    protected const string SHIELD_TAG = "Shield";
+    protected const string POWER_UP = "PowerUp";
+    protected const string ENERGY_SHIELD = "EnergyShield";
+    protected const string ALIEN_BULLET = "AlienBullet";
     [SerializeField]
-    private string enemyTag = "Player";
+    protected string ENEMY_TAG = "Player";
     [SerializeField]
     public Vector2 direction;
     [SerializeField]
@@ -17,11 +19,11 @@ public class Bullet : MonoBehaviour
     protected AlienManager alienManager;
     protected Alien[] aliens;
     private Player player;
-    private bool boosting = false;
-    private float boostTimer = 0f;
+    private ItemManager itemManager;
 
     protected void Start()
     {
+        if (this.gameObject.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
         aliens = FindObjectsOfType<Alien>();
         GetReference();
         Move();
@@ -30,29 +32,27 @@ public class Bullet : MonoBehaviour
     private void GetReference()
     {
         alienManager = FindObjectOfType<AlienManager>();
+        itemManager = FindObjectOfType<ItemManager>();
         player = FindObjectOfType<Player>();
     }
 
-    public void NewSpeed()
+    public float GetSpeed()
     {
-        moveSpeed *= 4f;
-        Debug.Log($"Speed after: {moveSpeed}");
+        return moveSpeed;
+        // if (this.gameObject.tag == "Bullet") moveSpeed *= 1.1f;
+        // else return;
+        // Debug.Log($"New Speed: {moveSpeed}");
+    }
+
+    public void SetSpeed(float x)
+    {
+        moveSpeed = x;
     }
 
     virtual protected void Move()
     {
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
-        if (boosting)
-        {
-            boostTimer += Time.deltaTime;
-            if (boostTimer > 10f)
-            {
-                moveSpeed =
-                boostTimer = 0;
-                boosting = false;
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -60,9 +60,9 @@ public class Bullet : MonoBehaviour
         HandleTriggerEnter(other);
     }
 
-    protected void HandleTriggerEnter(Collider2D other)
+    protected virtual void HandleTriggerEnter(Collider2D other)
     {
-        if (other.tag == enemyTag)
+        if (other.tag == ENEMY_TAG)
         {
             DealDamage(other);
         }
@@ -70,7 +70,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        if (other.tag == "EnergyShield" && this.tag == "AlienBullet")
+        if (other.tag == ENERGY_SHIELD && this.tag == ALIEN_BULLET)
         {
             Destroy(other.gameObject);
         }

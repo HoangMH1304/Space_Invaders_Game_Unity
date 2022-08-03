@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5e48b439f84f842b95772f644f31ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: Alien
+  ENEMY_TAG: Alien
   direction: {x: 0, y: 1}
   moveSpeed: 10
   damage: 0

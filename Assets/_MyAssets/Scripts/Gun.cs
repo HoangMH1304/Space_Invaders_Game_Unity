@@ -14,21 +14,10 @@ public class Gun : MonoBehaviour
     private float reloadTime;
     private bool canShoot = true;
 
-    public void NewShoot()
+    public void SpeedUpBullet()
     {
-        if (canShoot)
-        {
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                GameObject bullet = Instantiate(bullets[i], ship.transform.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>().NewSpeed();
-            }
-            SoundManager.Instance.PlayOneShot(fireAudioClip);
-        }
-        else return;
-        StartCoroutine(ReloadIEnumerator());
+        bullets[0].GetComponent<Bullet>().GetSpeed();
     }
-
 
     public void Shoot()
     {
@@ -36,7 +25,7 @@ public class Gun : MonoBehaviour
         {
             for (int i = 0; i < bullets.Count; i++)
             {
-                Instantiate(bullets[i], ship.transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(bullets[i], ship.transform.position, Quaternion.identity);
             }
             SoundManager.Instance.PlayOneShot(fireAudioClip);
         }
@@ -59,5 +48,15 @@ public class Gun : MonoBehaviour
     public float GetReloadTime()
     {
         return reloadTime;
+    }
+
+    public void SetBulletSpeed(float x)
+    {
+        bullets[0].GetComponent<Bullet>().SetSpeed(x);
+    }
+
+    public float GetBulletSpeed()
+    {
+        return bullets[0].GetComponent<Bullet>().GetSpeed();
     }
 }

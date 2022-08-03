@@ -6,15 +6,13 @@ using UnityEngine.Events;
 public abstract class Ship : MonoBehaviour, IHealth, IHunter
 {
     [SerializeField]
-    protected int speed = 10;
+    protected float speed = 10f;
     protected Rigidbody2D rigidBody;
     [SerializeField]
     private AudioClip shipExplosion;
     protected bool canShoot = true;
     [SerializeField]
     protected Gun gun;
-    private GunStore gunStore;
-
     public UnityEvent<Ship> OnDeath = new UnityEvent<Ship>();
     protected int health;
     private Vector2 coordinate;
@@ -58,8 +56,8 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         gun.Shoot();
     }
 
-    public void FasterShoot()
+    public void TurnUpSpeed()
     {
-        gun.NewShoot();
+        gun.SpeedUpBullet();
     }
 }

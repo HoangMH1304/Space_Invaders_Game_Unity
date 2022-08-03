@@ -7,8 +7,6 @@ public class Alien : Ship
     private const string PLAYER_TAG = "Player";
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
-    // [SerializeField]
-    // private GameObject powerUp;
     bool isPowerUpAlien;
     private PowerUpContainer powerUp;
     private AlienEffect alienEffect;
@@ -18,6 +16,14 @@ public class Alien : Ship
     {
         GetReference();
         Init();
+    }
+
+    private void FixedUpdate()
+    {
+        if (canShoot && GetChance())
+        {
+            Shoot();
+        }
     }
 
     private void Init()
@@ -33,7 +39,6 @@ public class Alien : Ship
             // Debug.Log($"Health: {health}, x: {coordinateOfAlien.y}, y: {coordinateOfAlien.x}");
             // Debug.Log(coordinateOfAlien);
         }
-        // else Destroy(gameObject);
     }
 
     public void DestroyNormalAlien()
@@ -90,14 +95,6 @@ public class Alien : Ship
         return Random.Range(1, 100) <= 1;
     }
 
-    private void FixedUpdate()
-    {
-        if (canShoot && GetChance())
-        {
-            Shoot();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == PLAYER_TAG)
@@ -105,7 +102,6 @@ public class Alien : Ship
             var spaceShip = other.GetComponent<IHealth>();
             spaceShip.TakeDamage(1);
             Die();
-            // Destroy(gameObject);
         }
     }
 

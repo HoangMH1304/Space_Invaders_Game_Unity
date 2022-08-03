@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ItemManager : MonoBehaviour
     private GameObject shield;
     [SerializeField]
     private GameObject magnet;
-    bool isPurchase = true;
+    private bool isPurchase = true;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class ItemManager : MonoBehaviour
         switch (item.id)
         {
             case 0:
-                AddShield();
+                AddShield(item.quantity);
                 break;
             case 1:
                 IncreseHealth();
@@ -44,13 +45,24 @@ public class ItemManager : MonoBehaviour
             default:
                 break;
         }
-        if (isPurchase == true) GameManager.Instance.AddScore(-price);
+        if (isPurchase == true)
+        {
+            item.quantity++;
+            GameManager.Instance.AddScore(-price);
+        }
     }
 
-    private void AddShield()
+    private void AddShield(int num)
     {
         GameObject player = GameObject.Find("SpaceShip");
-        Instantiate(shield, player.transform.position, Quaternion.identity);
+        var energyShield = FindObjectOfType<EnergyShield>();
+        if (energyShield == null)
+        {
+            Instantiate(shield, player.transform.position, Quaternion.identity);
+            energyShield = FindObjectOfType<EnergyShield>();
+        }
+        energyShield.SetEndTime((num + 1) * 5);
+        Debug.Log($"Time left: {(num + 1) * 5}");
     }
 
     private void IncreseHealth()
@@ -67,12 +79,16 @@ public class ItemManager : MonoBehaviour
 
     private void IncreseBulletSpeed()
     {
-        player.SetCondition(true);
+        float speed = player.GetSpeedBullet();
+        speed *= 1.1f;
+        Debug.Log($"Bullet Speed: {speed}");
+        player.SetSpeedBullet(speed);
     }
     private void IncreseReloadSpeed()
     {
         float reloadTime = player.GetReloadTime();
-        reloadTime /= 2;
+        reloadTime *= 0.9f;
+        Debug.Log($"Reload Time: {reloadTime}");
         player.SetReloadTime(reloadTime);
     }
     private void MagnetItem()

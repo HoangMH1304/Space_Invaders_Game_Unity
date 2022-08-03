@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a88bd1cc59dfb4ca2e9505aa6b147f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: Player
+  ENEMY_TAG: Player
   direction: {x: 0, y: -1}
-  moveSpeed: 20
+  moveSpeed: 10
   damage: 0
