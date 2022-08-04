@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     private AudioClip fireAudioClip;
     [SerializeField]
     private float reloadTime;
+    private float bulletSpeed;
     private bool canShoot = true;
 
     public void Shoot()

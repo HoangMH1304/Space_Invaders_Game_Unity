@@ -14,6 +14,11 @@ public class GunStore : MonoBehaviour
     }
     [SerializeField]
     private List<Gun> guns;
+
+    public Gun ChooseGun(int index)
+    {
+        return guns[index];
+    }
     public Gun RandomGun()
     {
         int index = Random.Range(0, guns.Count * 100) % guns.Count;
@@ -36,6 +41,8 @@ public class GunStore : MonoBehaviour
                 Debug.Log("BombGun");
                 break;
         }
+        PlayerPrefs.SetInt("GunIndex", index);
+        PlayerPrefs.Save();
         return guns[index];
         // return guns[2];
     }

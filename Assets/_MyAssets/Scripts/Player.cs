@@ -9,11 +9,10 @@ public class Player : Ship
     private const float BOTTOM_RANGE = -30f;
     [SerializeField]
     private Camera mainCamera;
-    [SerializeField]
-    // private float smooth = 10f;
     private bool dead = false;
     private Touch touch;
     private UIHandler uIHandler;
+    private GunStore gunStore;
     private SpaceShipEffect spaceshipEffect;
     private SpriteRenderer spriteRenderer;
     private float time = 0f;
@@ -39,12 +38,15 @@ public class Player : Ship
         uIHandler = FindObjectOfType<UIHandler>();
         spaceshipEffect = FindObjectOfType<SpaceShipEffect>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
     }
 
     private void Init()
     {
         // speed = 1;
         speed = 10f;
+        Debug.Log(PlayerPrefs.GetInt("GunIndex"));
+        gun = gunStore.ChooseGun(PlayerPrefs.GetInt("GunIndex"));
         health = GameManager.Instance.GetSpaceShipHealth();
         uIHandler.UpdateHealth();
     }
@@ -53,7 +55,6 @@ public class Player : Ship
     {
         float speedBefore = GetSpeedBullet();
         float reloadBefore = GetReloadTime();
-        var gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
         Gun temp = gunStore.RandomGun();
         while (gun == temp)
         {
@@ -62,11 +63,9 @@ public class Player : Ship
         gun = temp;
         SetSpeedBullet(speedBefore);
         SetReloadTime(reloadBefore);
-        // var target = GameObject.Find("Target");
-        // if (target != null)
-        // {
-        //     target.SetActive(false);
-        // }
+        // PlayerPrefs.SetFloat("BulletSpeed", GetSpeedBullet());
+        // PlayerPrefs.SetFloat("ReloadTime", GetReloadTime());
+        // PlayerPrefs.Save();
     }
 
     // public void SetSpeed(float x)

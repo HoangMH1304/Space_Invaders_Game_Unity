@@ -7,12 +7,16 @@ public class TargetBullet : Bullet
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
-    private GameObject target1;
+    private GameObject target;
+    [SerializeField]
+    private Sprite deathImage;
     private GameObject targetIcon;
     private const int BIG_NUM = 100;
+    private const string WALL_TAG = "Wall";
     private Alien chooseAlien;
     // private GameObject temp = null;
     private Rigidbody2D rigidBody;
+    private Vector3 position;
     int minn = BIG_NUM;
 
     private void Awake()
@@ -21,21 +25,48 @@ public class TargetBullet : Bullet
     }
     protected void Update()
     {
+        // if (chooseAlien == null) chooseAlien = FindAlien();
+        // if (chooseAlien == null)
+        // {
+        //     var image = GetComponent<SpriteRenderer>();
+        //     image.sprite = deathImage;
+        //     Destroy(gameObject, 0.1f); //
+        //     return;
+        // }
+        // transform.position = Vector2.MoveTowards(transform.position,
+        // chooseAlien.transform.position, moveSpeed * Time.deltaTime);
+
+        Vector3 moveDirection = new Vector3();
         if (chooseAlien == null) chooseAlien = FindAlien();
         if (chooseAlien == null)
         {
-            Destroy(gameObject);
-            return;
+            // rigidBody.gravityScale = 10;
+            // return;
+            transform.position = Vector2.MoveTowards(transform.position,
+            position, moveSpeed * Time.deltaTime);
+            moveDirection = (position - transform.position).normalized;
+            if (transform.position == position)
+            {
+                var image = GetComponent<SpriteRenderer>();
+                image.sprite = deathImage;
+                Destroy(gameObject, 0.1f); //
+            }
         }
-        transform.position = Vector2.MoveTowards(transform.position,
-        chooseAlien.transform.position, moveSpeed * Time.deltaTime);
-        // if (transform.position != Vector3.zero)
-        // {
-        //     Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, transform.position);
-        //     transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        // }
-        // Vector2 moveDirection = transform.position.normalized;
-        // if (moveDirection != Vector2.zero)
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position,
+            chooseAlien.transform.position, moveSpeed * Time.deltaTime);
+            position = chooseAlien.transform.position;
+            moveDirection = (chooseAlien.transform.position - transform.position).normalized;
+        }
+
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        // if (moveDirection != Vector3.zero)
         // {
         //     float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         //     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -44,33 +75,6 @@ public class TargetBullet : Bullet
         minn = BIG_NUM;
         // else Destroy(gameObject);
     }
-
-    // private Alien FindAlien()
-    // {
-    //     Alien targetAlien = null;
-    //     for (int i = aliens.Length - 1; i >= 0; i--)
-    //     {
-    //         if (aliens[i].GetHealth() < minn)
-    //         {
-    //             minn = aliens[i].GetHealth();
-    //             targetAlien = aliens[i];
-    //         }
-    //     }
-    //     if (targetAlien != null)
-    //     {
-    //         // if (temp != null) temp.SetActive(false);
-    //         if (temp != null && temp != targetAlien) Destroy()
-
-
-    //         // var target = targetAlien.transform.Find("Target");
-    //         // temp = target.gameObject;
-    //         GameObject targetIcon = Instantiate(targetAlien.gameObject);
-    //         targetIcon.transform.SetParent(targetAlien.transform);
-    //         temp = targetIcon;
-    //         // target.gameObject.SetActive(true);
-    //     }
-    //     return targetAlien;
-    // }
 
     private Alien FindAlien()
     {
@@ -87,7 +91,7 @@ public class TargetBullet : Bullet
         {
             GameObject[] junks = GameObject.FindGameObjectsWithTag("Aim");
             foreach (var junk in junks) Destroy(junk);
-            targetIcon = Instantiate(target1);
+            targetIcon = Instantiate(target);
             Debug.Log("Aim");
             targetIcon.transform.SetParent(targetAlien.transform);
             targetIcon.transform.localPosition = new Vector2(0, 0);
@@ -97,8 +101,8 @@ public class TargetBullet : Bullet
 
     protected override void HandleTriggerEnter(Collider2D other)
     {
-        if (other.gameObject != chooseAlien.gameObject)
-            Destroy(targetIcon);
+        // if (GameObject.FindGameObjectWithTag("Aim") != null && other.gameObject != chooseAlien.gameObject)
+        //     Destroy(targetIcon);
         if (other.tag == ENEMY_TAG)
         {
             DealDamage(other);
@@ -107,16 +111,12 @@ public class TargetBullet : Bullet
         {
             Destroy(other.gameObject);
         }
-        if (other.tag == ENERGY_SHIELD)
-        {
-            Destroy(other.gameObject);
-        }
         Destroy(gameObject);
     }
 
     override protected void DealDamage(Collider2D other)
     {
-        if (other.gameObject != chooseAlien.gameObject) Destroy(targetIcon);
+        // if (other.gameObject != chooseAlien.gameObject) Destroy(targetIcon);
         other.GetComponent<Alien>().Kill();
     }
 }
