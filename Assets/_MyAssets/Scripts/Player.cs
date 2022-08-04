@@ -62,6 +62,11 @@ public class Player : Ship
         gun = temp;
         SetSpeedBullet(speedBefore);
         SetReloadTime(reloadBefore);
+        // var target = GameObject.Find("Target");
+        // if (target != null)
+        // {
+        //     target.SetActive(false);
+        // }
     }
 
     // public void SetSpeed(float x)

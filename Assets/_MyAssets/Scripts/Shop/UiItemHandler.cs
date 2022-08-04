@@ -26,14 +26,14 @@ public class UiItemHandler : MonoBehaviour
     {
         itemManager.Buy(item);
         UpdateUIQuantity();
-        // itemMenu.StoreToggle();
     }
 
     public void ResetItem()
     {
-        if (GameObject.Find("Store") != null && item.id == 0)
+        if (GameObject.Find("Store") != null && item.quantity != 0)
         {
             item.quantity = 0;
+            UpdateUIQuantity();
         }
     }
 

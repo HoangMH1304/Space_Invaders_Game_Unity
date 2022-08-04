@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
 
     protected void Start()
     {
-        if (this.gameObject.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
+        if (this.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
         aliens = FindObjectsOfType<Alien>();
         GetReference();
         Move();

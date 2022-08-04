@@ -7,6 +7,7 @@ public class Alien : Ship
     private const string PLAYER_TAG = "Player";
     private const string LEFTWALL_TAG = "LeftWall";
     private const string RIGHTWALL_TAG = "RightWall";
+    private const string SHIELD_TAG = "Shield";
     bool isPowerUpAlien;
     private PowerUpContainer powerUp;
     private AlienEffect alienEffect;
@@ -97,6 +98,8 @@ public class Alien : Ship
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == SHIELD_TAG)
+            Destroy(other.gameObject);
         if (other.tag == PLAYER_TAG)
         {
             var spaceShip = other.GetComponent<IHealth>();
@@ -114,7 +117,8 @@ public class Alien : Ship
             GameManager.Instance.AddScore(10);
             if (isPowerUpAlien)
             {
-                Instantiate(powerUp.RandomPowerUp().gameObject, this.transform.position, Quaternion.identity);
+                Instantiate(powerUp.RandomPowerUp().gameObject,
+                this.transform.position, Quaternion.identity);
             }
             Die();
         }

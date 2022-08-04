@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeathZone : MonoBehaviour
 {
     private const string SHIELD_TAG = "Shield";
+    private const string WALL_TAG = "Wall";
 
     // [SerializeField]
     // public Vector2 direction;
@@ -19,9 +20,8 @@ public class DeathZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == SHIELD_TAG) Destroy(other.gameObject);
-        // Debug.Log("Trigger");
         var alien = other.GetComponent<Alien>();
         if (alien != null) other.GetComponent<Alien>().Kill();
-        else Destroy(other.gameObject);
+        else if (other.tag != WALL_TAG) Destroy(other.gameObject);
     }
 }

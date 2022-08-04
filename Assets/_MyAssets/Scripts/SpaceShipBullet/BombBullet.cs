@@ -38,7 +38,6 @@ public class BombBullet : Bullet
     protected override void DealDamage(Collider2D other)
     {
         GameObject dz = Instantiate(deathZone, transform.position, Quaternion.identity);
-        // Debug.LogError("Hoang");
         Destroy(dz, 0.1f);
     }
 }

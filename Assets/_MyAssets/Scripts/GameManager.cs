@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         gameState = new GameState();
         gameState.level = 1;
         gameState.playerHealth = 3;
-        gameState.score = 10000;
+        gameState.score = 8000;
         gameState.result = "";
         gameState.IsWin = false;
         // gameState.volumeMusic = 0.5f;

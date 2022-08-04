@@ -6,15 +6,20 @@ public class EnergyShield : MonoBehaviour
 {
     private GameObject spaceship;
     private float time = 0;
-    private float endTime;
+    private float endTime = 5;
     void Start()
     {
         spaceship = GameObject.Find("SpaceShip");
     }
 
-    public void SetEndTime(int t)
+    public void SetEndTime(float t)
     {
         endTime = t;
+    }
+
+    public float GetEndTime()
+    {
+        return endTime;
     }
     void Update()
     {

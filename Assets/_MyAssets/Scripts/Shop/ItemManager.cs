@@ -53,18 +53,26 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    //
     private void AddShield(int num)
     {
         GameObject player = GameObject.Find("SpaceShip");
         var energyShield = FindObjectOfType<EnergyShield>();
+        float time = 0;
         if (energyShield == null)
         {
             Instantiate(shield, player.transform.position, Quaternion.identity);
             energyShield = FindObjectOfType<EnergyShield>();
+            time = (num + 1) * 5;
         }
-        energyShield.SetEndTime((num + 1) * 5);
-        Debug.Log($"Time left: {(num + 1) * 5}");
+        else
+        {
+            time = energyShield.GetEndTime() + 5;
+        }
+        energyShield.SetEndTime(time);
+        Debug.Log($"Time left: {time}");
     }
+    //
 
     private void IncreseHealth()
     {
