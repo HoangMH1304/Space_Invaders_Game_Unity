@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2027b2d554f8b743aeda726500ec7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceship: {fileID: 8562477056251073766, guid: 4c0dd98bc3b600f45a4de1546d1953d2, type: 3}

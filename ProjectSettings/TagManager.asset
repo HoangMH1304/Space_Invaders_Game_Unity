@@ -13,6 +13,7 @@ TagManager:
   - Music
   - PowerUp
   - EnergyShield
+  - Aim
   layers:
   - Default
   - TransparentFX

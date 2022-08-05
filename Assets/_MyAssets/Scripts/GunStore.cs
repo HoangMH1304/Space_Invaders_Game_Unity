@@ -41,8 +41,6 @@ public class GunStore : MonoBehaviour
                 Debug.Log("BombGun");
                 break;
         }
-        PlayerPrefs.SetInt("GunIndex", index);
-        PlayerPrefs.Save();
         return guns[index];
         // return guns[2];
     }
