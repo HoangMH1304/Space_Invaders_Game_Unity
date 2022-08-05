@@ -30,12 +30,14 @@ public class Player : Ship
         // MoveSpaceShip1();
         MoveSpaceShip();
         Shoot();
+        // Shoot1();
     }
 
     private void GetReference()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         uIHandler = FindObjectOfType<UIHandler>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         spaceshipEffect = FindObjectOfType<SpaceShipEffect>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
@@ -45,8 +47,7 @@ public class Player : Ship
     {
         // speed = 1;
         speed = 10f;
-        Debug.Log(PlayerPrefs.GetInt("GunIndex"));
-        gun = gunStore.ChooseGun(PlayerPrefs.GetInt("GunIndex"));
+        gun = gunStore.ChooseGun(GunManager.Instance.GetGun());
         health = GameManager.Instance.GetSpaceShipHealth();
         uIHandler.UpdateHealth();
     }
@@ -61,8 +62,9 @@ public class Player : Ship
             temp = gunStore.RandomGun();
         }
         gun = temp;
-        SetSpeedBullet(speedBefore);
-        SetReloadTime(reloadBefore);
+        // GunManager.Instantiate.SetBulletSpeed()
+        // SetSpeedBullet(speedBefore);
+        // SetReloadTime(reloadBefore);
     }
 
     // public void SetSpeed(float x)

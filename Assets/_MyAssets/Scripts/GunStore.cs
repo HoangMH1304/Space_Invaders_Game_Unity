@@ -41,6 +41,7 @@ public class GunStore : MonoBehaviour
                 Debug.Log("BombGun");
                 break;
         }
+        GunManager.Instance.ChangeGun(index);
         return guns[index];
         // return guns[2];
     }

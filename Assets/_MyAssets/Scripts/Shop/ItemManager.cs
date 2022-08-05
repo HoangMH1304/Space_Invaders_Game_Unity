@@ -38,7 +38,7 @@ public class ItemManager : MonoBehaviour
                 IncreseBulletSpeed();
                 break;
             case 3:
-                IncreseReloadSpeed();
+                DecreaseReloadSpeed();
                 break;
             case 4:
                 MagnetItem();
@@ -88,16 +88,20 @@ public class ItemManager : MonoBehaviour
 
     private void IncreseBulletSpeed()
     {
-        float speed = player.GetSpeedBullet();
+        // float speed = player.GetSpeedBullet();
+        float speed = GunManager.Instance.GetSpeed();
         speed *= 1.1f;
         Debug.Log($"Bullet Speed: {speed}");
+        GunManager.Instance.SetSpeed(speed);
         player.SetSpeedBullet(speed);
     }
-    private void IncreseReloadSpeed()
+    private void DecreaseReloadSpeed()
     {
-        float reloadTime = player.GetReloadTime();
+        // float reloadTime = player.GetReloadTime();
+        float reloadTime = GunManager.Instance.GetReloadTime();
         reloadTime *= 0.9f;
         Debug.Log($"Reload Time: {reloadTime}");
+        GunManager.Instance.SetReloadTime(reloadTime);
         player.SetReloadTime(reloadTime);
     }
     private void MagnetItem()

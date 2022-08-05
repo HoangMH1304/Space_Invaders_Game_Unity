@@ -39,7 +39,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\Gun.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\Item.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemManager.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\Intro.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\UI\Animation\Intro.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\IHunter.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\ChangeGunPowerUp.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet.cs" />
@@ -63,7 +63,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\GameState.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Alien.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\TestMenu.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\PauseHandler.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\UI\PauseHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\BombBullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\TurnUpDownVolume.cs" />
@@ -77,7 +77,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\GunDetail\GunState.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\Immortal.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\AlienEffect.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\UILastSceneHandler.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\UI\UILastSceneHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\PowerUp.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GameManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GunStore.cs" />

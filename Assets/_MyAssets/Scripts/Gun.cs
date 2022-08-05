@@ -15,6 +15,11 @@ public class Gun : MonoBehaviour
     private float bulletSpeed;
     private bool canShoot = true;
 
+    private void Start()
+    {
+        reloadTime = GunManager.Instance.GetReloadTime();
+    }
+
     public void Shoot()
     {
         if (canShoot)

@@ -48,6 +48,7 @@ public class Bullet : MonoBehaviour
 
     virtual protected void Move()
     {
+        if (this.tag == "Bullet") moveSpeed = GunManager.Instance.GetSpeed();
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
     }

@@ -19,7 +19,11 @@ public class ChangeScene : MonoBehaviour
     public void ChangeNextScene()
     {
         if (SceneManager.GetActiveScene().buildIndex != 0) GameManager.Instance.IncreaseLevel();
-        else if (gameManager != null && SceneManager.GetActiveScene().buildIndex == 0) GameManager.Instance.InitData();
+        else if (gameManager != null && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            GameManager.Instance.InitData();
+            GunManager.Instance.InitData();
+        }
         Invoke("OpenNextScene", secTillSceneLoad);
     }
 
