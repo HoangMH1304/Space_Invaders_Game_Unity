@@ -6,22 +6,26 @@ public class DeathZone : MonoBehaviour
 {
     private const string SHIELD_TAG = "Shield";
     private const string WALL_TAG = "Wall";
+    private SpriteRenderer spriteRenderer;
 
-    // [SerializeField]
-    // public Vector2 direction;
-    // [SerializeField]
-    // protected float moveSpeed = 30f;
-    // void Start()
-    // {
-    //     var rigidbody = GetComponent<Rigidbody2D>();
-    //     rigidbody.velocity = direction * moveSpeed;
-    // }
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == SHIELD_TAG) Destroy(other.gameObject);
+        if (other.tag == SHIELD_TAG)
+        {
+            Destroy(other.gameObject);
+            spriteRenderer.enabled = true;
+        }
         var alien = other.GetComponent<Alien>();
-        if (alien != null) other.GetComponent<Alien>().Kill();
+        if (alien != null)
+        {
+            other.GetComponent<Alien>().Kill();
+            spriteRenderer.enabled = true;
+        }
         else if (other.tag != WALL_TAG) Destroy(other.gameObject);
     }
 }

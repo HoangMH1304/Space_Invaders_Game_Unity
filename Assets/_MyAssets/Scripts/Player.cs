@@ -63,9 +63,6 @@ public class Player : Ship
         gun = temp;
         SetSpeedBullet(speedBefore);
         SetReloadTime(reloadBefore);
-        // PlayerPrefs.SetFloat("BulletSpeed", GetSpeedBullet());
-        // PlayerPrefs.SetFloat("ReloadTime", GetReloadTime());
-        // PlayerPrefs.Save();
     }
 
     // public void SetSpeed(float x)

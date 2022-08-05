@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviourSingleton<GunManager>
 {
+    [SerializeField]
     private GunState gunState;
 
     protected override void Awake()
@@ -16,6 +17,5 @@ public class GunManager : MonoBehaviourSingleton<GunManager>
     private void InitData()
     {
         gunState = new GunState();
-
     }
 }

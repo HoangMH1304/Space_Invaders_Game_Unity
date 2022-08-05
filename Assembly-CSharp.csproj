@@ -64,7 +64,6 @@
      <Compile Include="Assets\_MyAssets\Scripts\Alien.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\TestMenu.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PauseHandler.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\BulletType.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\BombBullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\TurnUpDownVolume.cs" />

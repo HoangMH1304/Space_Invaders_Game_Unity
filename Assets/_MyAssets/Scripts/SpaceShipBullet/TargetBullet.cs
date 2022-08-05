@@ -9,6 +9,8 @@ public class TargetBullet : Bullet
     [SerializeField]
     private GameObject target;
     [SerializeField]
+    private GameObject deathPos;
+    [SerializeField]
     private Sprite deathImage;
     private GameObject targetIcon;
     private const int BIG_NUM = 100;
@@ -117,6 +119,11 @@ public class TargetBullet : Bullet
     override protected void DealDamage(Collider2D other)
     {
         // if (other.gameObject != chooseAlien.gameObject) Destroy(targetIcon);
+        if (chooseAlien != null && other.gameObject == chooseAlien.gameObject)
+        {
+            var aim = Instantiate(deathPos, other.transform.position, Quaternion.identity);
+            Destroy(aim, 1.5f);
+        }
         other.GetComponent<Alien>().Kill();
     }
 }

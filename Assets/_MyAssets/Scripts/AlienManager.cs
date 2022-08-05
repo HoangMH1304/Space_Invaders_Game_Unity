@@ -105,7 +105,7 @@ public class AlienManager : MonoBehaviour
 
     IEnumerator SpawnAliensCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         for (int row = 0; row < 5; row++)
         {
             for (int col = 0; col < 5; col++)

@@ -38,6 +38,6 @@ public class BombBullet : Bullet
     protected override void DealDamage(Collider2D other)
     {
         GameObject dz = Instantiate(deathZone, transform.position, Quaternion.identity);
-        Destroy(dz, 0.1f);
+        Destroy(dz, 0.15f);
     }
 }
