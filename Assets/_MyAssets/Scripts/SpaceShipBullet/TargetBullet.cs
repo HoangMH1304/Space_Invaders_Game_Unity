@@ -119,11 +119,11 @@ public class TargetBullet : Bullet
     override protected void DealDamage(Collider2D other)
     {
         // if (other.gameObject != chooseAlien.gameObject) Destroy(targetIcon);
-        if (chooseAlien != null && other.gameObject == chooseAlien.gameObject)
-        {
-            var aim = Instantiate(deathPos, other.transform.position, Quaternion.identity);
-            Destroy(aim, 1.5f);
-        }
+        // if (chooseAlien != null && other.gameObject == chooseAlien.gameObject)
+        // {
+        //     var aim = Instantiate(deathPos, other.transform.position, Quaternion.identity);
+        //     Destroy(aim, 1.5f);
+        // }
         other.GetComponent<Alien>().Kill();
     }
 }

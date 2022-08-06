@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MyAssets/Scenes/LastScene.unity
     guid: 8700efb0a17167e49a9fc2577bee47a6
+  - enabled: 1
+    path: Assets/_MyAssets/Scenes/TestScene.unity
+    guid: 27a4863fac755b4419d0e68b1e21a417
   m_configObjects: {}

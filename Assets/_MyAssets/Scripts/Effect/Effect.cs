@@ -14,7 +14,7 @@ public class Effect : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    public void OnDead()
+    public virtual void OnDead()
     {
         spriteRenderer.sprite = deadImage;
     }

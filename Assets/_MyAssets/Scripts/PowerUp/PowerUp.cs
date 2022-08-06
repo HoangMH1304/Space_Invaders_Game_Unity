@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         GetReference();
-        isMagnet = player.GetMagnetItem();
+        if (player != null) isMagnet = player.GetMagnetItem();
         if (isMagnet == false) Move();
     }
 

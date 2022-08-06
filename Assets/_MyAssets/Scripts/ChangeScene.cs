@@ -37,4 +37,9 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    public void SwitchScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
 }

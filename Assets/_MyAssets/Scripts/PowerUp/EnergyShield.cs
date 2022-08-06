@@ -24,7 +24,7 @@ public class EnergyShield : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        Debug.Log(time);
+        // Debug.Log(time);
         if (time > endTime)
         {
             Destroy(gameObject);

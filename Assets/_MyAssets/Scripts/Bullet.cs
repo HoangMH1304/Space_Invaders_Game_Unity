@@ -19,11 +19,12 @@ public class Bullet : MonoBehaviour
     protected AlienManager alienManager;
     protected Alien[] aliens;
     private Player player;
+    private Effect effect;
     private ItemManager itemManager;
 
     protected void Start()
     {
-        if (this.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
+        // if (this.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
         aliens = FindObjectsOfType<Alien>();
         GetReference();
         Move();
@@ -34,6 +35,7 @@ public class Bullet : MonoBehaviour
         alienManager = FindObjectOfType<AlienManager>();
         itemManager = FindObjectOfType<ItemManager>();
         player = FindObjectOfType<Player>();
+        effect = FindObjectOfType<Effect>();
     }
 
     public float GetSpeed()
@@ -66,7 +68,8 @@ public class Bullet : MonoBehaviour
         }
         if (other.tag == SHIELD_TAG)
         {
-            Destroy(other.gameObject);
+            other.GetComponent<ShieldEffect>().OnDead();
+            Destroy(other.gameObject, 0.1f);
         }
         if (other.tag == ENERGY_SHIELD && this.tag == ALIEN_BULLET)
         {

@@ -17,7 +17,7 @@ public class PowerUpContainer : MonoBehaviour
     public PowerUp RandomPowerUp()
     {
         int index = Random.Range(0, powerUps.Count * 100) % powerUps.Count;
-        Debug.Log($"Index: {index}");
+        // Debug.Log($"Index: {index}");
         return powerUps[index];
     }
 

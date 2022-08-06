@@ -18,7 +18,6 @@ public class PauseHandler : MonoBehaviour
     private void Start()
     {
         Init();
-
     }
 
     private void Init()
@@ -67,12 +66,11 @@ public class PauseHandler : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
-
 }

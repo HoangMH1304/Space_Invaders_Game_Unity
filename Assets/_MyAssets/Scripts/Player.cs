@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Player : Ship
 {
@@ -16,6 +17,8 @@ public class Player : Ship
     private SpaceShipEffect spaceshipEffect;
     private SpriteRenderer spriteRenderer;
     private float time = 0f;
+    private float oldSpeed;
+    private float deltaX, deltaY;
     bool isEnableMagnet = false;
 
     void Start()
@@ -27,10 +30,31 @@ public class Player : Ship
     void Update()
     {
         IsFreeze();
-        // MoveSpaceShip1();
-        MoveSpaceShip();
+        MoveSpaceShip1();
+        // MoveSpaceShip();
         Shoot();
-        // Shoot1();
+    }
+
+    private void MoveSpaceShip1()
+    {
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    deltaX = touchPos.x - transform.position.x;
+                    deltaY = touchPos.y - transform.position.y;
+                    break;
+                case TouchPhase.Moved:
+                    rigidBody.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
+                    break;
+                case TouchPhase.Ended:
+                    rigidBody.velocity = Vector2.zero;
+                    break;
+            }
+        }
     }
 
     private void GetReference()
@@ -45,8 +69,9 @@ public class Player : Ship
 
     private void Init()
     {
-        // speed = 1;
-        speed = 10f;
+        // speed = 10f;
+        speed = 0.1f;
+        oldSpeed = speed;
         gun = gunStore.ChooseGun(GunManager.Instance.GetGun());
         health = GameManager.Instance.GetSpaceShipHealth();
         uIHandler.UpdateHealth();
@@ -67,16 +92,17 @@ public class Player : Ship
         // SetReloadTime(reloadBefore);
     }
 
-    // public void SetSpeed(float x)
-    // {
-    //     speed = x;
-    // }
+    public void SetSpeed(float x)
+    {
+        speed = x;
+    }
 
-    // public void ShowSpeedText(float x)
-    // {
-    //     var textUI = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
-    //     textUI.text = "Speed: " + x.ToString();
-    // }
+    public void ShowSpeedText(float x)
+    {
+        var textUI = GameObject.Find("Speed").GetComponent<TextMeshProUGUI>();
+        textUI.text = "Speed: " + x.ToString();
+    }
+
     public float GetReloadTime()
     {
         return gun.GetReloadTime();
@@ -109,20 +135,20 @@ public class Player : Ship
 
     private void IsFreeze()
     {
-        if (speed == 1)
+        if (speed != oldSpeed)
         {
             time += Time.deltaTime;
         }
         if (time >= 5.5f)
         {
-            speed = 10;
+            speed = oldSpeed;
             time = 0;
         }
     }
 
     public void TurnIntoFreeze()
     {
-        speed = 1;
+        speed /= 10;
     }
 
     private void MoveSpaceShip()
@@ -133,20 +159,6 @@ public class Player : Ship
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * speed);
     }
 
-    //Build for Mobile
-    // private void MoveSpaceShip1()
-    // {
-    //     if (Input.touchCount > 0)
-    //     {
-    //         touch = Input.GetTouch(0);
-    //         if (touch.phase == TouchPhase.Moved)
-    //         {
-    //             transform.position = new Vector3(transform.position.x +
-    //             touch.deltaPosition.x * Time.deltaTime * speed, transform.position.y +
-    //             touch.deltaPosition.y * Time.deltaTime * speed, transform.position.z);
-    //         }
-    //     }
-    // }
 
     override public void TakeDamage(int damage)
     {

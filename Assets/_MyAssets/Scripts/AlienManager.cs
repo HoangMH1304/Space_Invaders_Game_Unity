@@ -158,7 +158,7 @@ public class AlienManager : MonoBehaviour
 
     private bool IsWin()
     {
-        return aliens.Count <= 0 && wave == WAVES;
+        return aliens.Count <= 0 && wave == WAVES && GameObject.FindGameObjectWithTag("Player") != null;
     }
 
     private bool IsClearWave()
