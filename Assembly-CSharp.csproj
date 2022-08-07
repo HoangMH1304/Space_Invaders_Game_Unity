@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\_MyAssets\Scripts\Gun.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\Item.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\StayInside.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\UI\Animation\Intro.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\IHunter.cs" />
@@ -83,10 +84,10 @@
      <Compile Include="Assets\_MyAssets\Scripts\GameManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GunStore.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\TargetBullet.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\NormalBullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\ContinuePlayMusic.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Player.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\StayInside.cs" />
      <None Include="Assets\_MyAssets\Data\alien1.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

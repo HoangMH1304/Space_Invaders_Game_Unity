@@ -22,7 +22,7 @@ public class SpaceShipEffect : Effect
             {
                 spriteRenderer.color = Color.white;
             }
-            if (time > 5) break;
+            if (time > 3) break;
             yield return new WaitForSeconds(countdownTime);
             time += 0.5f;
             Debug.Log($"Time: {time}");

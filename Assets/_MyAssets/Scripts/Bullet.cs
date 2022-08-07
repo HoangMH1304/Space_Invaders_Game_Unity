@@ -75,6 +75,11 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        Destroy();
+    }
+
+    protected virtual void Destroy()
+    {
         Destroy(gameObject);
     }
 

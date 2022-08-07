@@ -11,6 +11,7 @@ public class Player : Ship
     [SerializeField]
     private Camera mainCamera;
     private bool dead = false;
+    private bool isFreeze = false;
     private Touch touch;
     private UIHandler uIHandler;
     private GunStore gunStore;
@@ -48,7 +49,8 @@ public class Player : Ship
                     deltaY = touchPos.y - transform.position.y;
                     break;
                 case TouchPhase.Moved:
-                    rigidBody.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
+                    if (isFreeze == false) rigidBody.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
+                    else rigidBody.velocity = Vector2.zero;
                     break;
                 case TouchPhase.Ended:
                     rigidBody.velocity = Vector2.zero;
@@ -135,20 +137,30 @@ public class Player : Ship
 
     private void IsFreeze()
     {
-        if (speed != oldSpeed)
+        if (isFreeze == true)
         {
             time += Time.deltaTime;
         }
-        if (time >= 5.5f)
+        if (time >= 3.5f)
         {
-            speed = oldSpeed;
+            isFreeze = false;
             time = 0;
         }
+        // if (speed != oldSpeed)
+        // {
+        //     time += Time.deltaTime;
+        // }
+        // if (time >= 5.5f)
+        // {
+        //     speed = oldSpeed;
+        //     time = 0;
+        // }
     }
 
     public void TurnIntoFreeze()
     {
-        speed /= 10;
+        isFreeze = true;
+        // speed /= 10;
     }
 
     private void MoveSpaceShip()
