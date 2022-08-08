@@ -15,6 +15,7 @@ TagManager:
   - EnergyShield
   - Aim
   - SpaceShipSpecialBullet
+  - UIButton
   layers:
   - Default
   - TransparentFX

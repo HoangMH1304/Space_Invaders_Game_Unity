@@ -89,6 +89,14 @@ public class Alien : Ship
             TurnDirection(-1);
             MoveDown();
         }
+        if (other.gameObject.tag == PLAYER_TAG)
+        {
+            var spaceShip = other.gameObject.GetComponent<IHealth>();
+            spaceShip.TakeDamage(1);
+            Die();
+        }
+        if (other.gameObject.tag == SHIELD_TAG)
+            Destroy(other.gameObject);
     }
 
     private bool GetChance()
@@ -96,17 +104,18 @@ public class Alien : Ship
         return Random.Range(1, 100) <= 1;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == SHIELD_TAG)
-            Destroy(other.gameObject);
-        if (other.tag == PLAYER_TAG)
-        {
-            var spaceShip = other.GetComponent<IHealth>();
-            spaceShip.TakeDamage(1);
-            Die();
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.tag == SHIELD_TAG)
+    //         Destroy(other.gameObject);
+    //     // if (other.tag == PLAYER_TAG)
+    //     // {
+    //     //     var spaceShip = other.GetComponent<IHealth>();
+    //     //     spaceShip.TakeDamage(1);
+    //     //     Die();
+    //     // }
+    // }
+
 
     override public void TakeDamage(int damage)
     {

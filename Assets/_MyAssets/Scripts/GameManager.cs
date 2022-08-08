@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     private GameState gameState;
     private UIHandler uIHandler;
-    private TurnUpDownVolume changeVolume;
     private AudioSource audioSourceMusic;
     private AudioSource audioSourceSFX;
 

@@ -28,4 +28,10 @@ public class Intro : MonoBehaviour
         animator = GameObject.Find("Play").GetComponent<Animator>();
         animator.enabled = !animator.enabled;
     }
+
+    public void TestButton()
+    {
+        animator = GameObject.Find("TestScene").GetComponent<Animator>();
+        animator.enabled = !animator.enabled;
+    }
 }

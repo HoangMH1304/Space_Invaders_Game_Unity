@@ -6,8 +6,9 @@ using System;
 
 public class Player : Ship
 {
-    private const float TOP_RANGE = -12f;
-    private const float BOTTOM_RANGE = -30f;
+    private const float TOP_RANGE = 20f;   //-12
+    private const float BOTTOM_RANGE = -30f;  //-30
+    private const float FREEZE_TIME = 3.5f;
     [SerializeField]
     private Camera mainCamera;
     private bool dead = false;
@@ -31,8 +32,8 @@ public class Player : Ship
     void Update()
     {
         IsFreeze();
-        MoveSpaceShip1();
-        // MoveSpaceShip();
+        // MoveSpaceShip1();     //touch
+        MoveSpaceShip();
         Shoot();
     }
 
@@ -41,7 +42,8 @@ public class Player : Ship
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPos.z = 0;
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -71,9 +73,9 @@ public class Player : Ship
 
     private void Init()
     {
-        // speed = 10f;
-        speed = 0.1f;
-        oldSpeed = speed;
+        speed = 10f;
+        // speed = 0.1f;
+        // oldSpeed = speed;
         gun = gunStore.ChooseGun(GunManager.Instance.GetGun());
         health = GameManager.Instance.GetSpaceShipHealth();
         uIHandler.UpdateHealth();
@@ -89,9 +91,6 @@ public class Player : Ship
             temp = gunStore.RandomGun();
         }
         gun = temp;
-        // GunManager.Instantiate.SetBulletSpeed()
-        // SetSpeedBullet(speedBefore);
-        // SetReloadTime(reloadBefore);
     }
 
     public void SetSpeed(float x)
@@ -141,7 +140,7 @@ public class Player : Ship
         {
             time += Time.deltaTime;
         }
-        if (time >= 3.5f)
+        if (time >= FREEZE_TIME)
         {
             isFreeze = false;
             time = 0;

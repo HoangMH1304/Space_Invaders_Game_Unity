@@ -23,6 +23,12 @@ public abstract class Ship : MonoBehaviour, IHealth, IHunter
         OnDeath?.Invoke(this);
     }
 
+    // virtual public void SilentDie()
+    // {
+    //     Destroy(gameObject, 0.2f);
+    //     OnDeath?.Invoke(this);
+    // }
+
     public void SetHealth(int hp)
     {
         health = hp;

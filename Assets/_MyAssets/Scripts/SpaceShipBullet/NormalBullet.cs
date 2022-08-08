@@ -18,6 +18,6 @@ public class NormalBullet : Bullet
 
     protected override void Destroy()
     {
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.05f);
     }
 }

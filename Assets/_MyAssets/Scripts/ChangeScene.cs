@@ -33,13 +33,20 @@ public class ChangeScene : MonoBehaviour
         sceneIndex = LAST_SCENE;
         Invoke("OpenNextScene", 1.5f);
     }
+
+    public void SwitchScene(int index)
+    {
+        sceneIndex = index;
+        Invoke("OpenTestScene", 1.5f);
+        // SceneManager.LoadScene(index);
+    }
     void OpenNextScene()
     {
         SceneManager.LoadScene(sceneIndex);
     }
 
-    public void SwitchScene(int index)
+    void OpenTestScene()
     {
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(5);
     }
 }

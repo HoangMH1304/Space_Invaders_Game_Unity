@@ -83,6 +83,7 @@ public class UIHandler : MonoBehaviour
 
     public void DestroyButton()         //On Click
     {
+        var alienManager = FindObjectOfType<AlienManager>();
         alienManager.DestroyAliens();
     }
 
@@ -93,12 +94,14 @@ public class UIHandler : MonoBehaviour
 
     public void ChangeGunButton()  //On Click
     {
-
+        var player = FindObjectOfType<Player>();
+        player.ChangeGun();
     }
 
     public void DecreaseHealth()    //On Click
     {
-
+        var alienManager = FindObjectOfType<AlienManager>();
+        alienManager.DamageAliens();
     }
 
     public void StoreButton()   //On Click

@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
     private AudioSource audioSourceMusic;
     private AudioSource audioSourceSFX;
     private SoundState soundState;
-    public Dictionary<string, AudioSource> sounds = new Dictionary<string, AudioSource>();
+    // public Dictionary<string, AudioSource> sounds = new Dictionary<string, AudioSource>();
 
     protected override void Awake()
     {
@@ -70,23 +70,23 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
         audioSourceSFX.volume = x;
     }
 
-    // public void PlayOneShot(AudioClip clip)
-    // {
-    //     soundEffectAudio.PlayOneShot(clip);
-    // }
-
-    public void PlayOneShot(AudioClip sound)   //constant volume
+    public void PlayOneShot(AudioClip clip)
     {
-        //Check if AudioSource has been created for this clip
-        if (!sounds.ContainsKey(sound.name))
-        {
-            sounds.Add(sound.name, gameObject.AddComponent<AudioSource>());
-        }
-        AudioSource audioSource = sounds[sound.name]; //Using AudioSource for the clip
-
-        audioSource.clip = sound;
-
-        audioSource.Stop(); //Preventing previous sound from being played
-        audioSource.Play();
+        soundEffectAudio.PlayOneShot(clip);
     }
+
+    // public void PlayOneShot(AudioClip sound)   //constant volume
+    // {
+    //     //Check if AudioSource has been created for this clip
+    //     if (!sounds.ContainsKey(sound.name))
+    //     {
+    //         sounds.Add(sound.name, gameObject.AddComponent<AudioSource>());
+    //     }
+    //     AudioSource audioSource = sounds[sound.name]; //Using AudioSource for the clip
+
+    //     audioSource.clip = sound;
+
+    //     audioSource.Stop(); //Preventing previous sound from being played
+    //     audioSource.Play();
+    // }
 }

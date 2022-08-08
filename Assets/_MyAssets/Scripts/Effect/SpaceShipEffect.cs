@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpaceShipEffect : Effect
 {
+    private const int FREEZE_TIME = 3;
+
     public void TurnColor()
     {
         StartCoroutine(ChangeColor());
@@ -22,7 +24,7 @@ public class SpaceShipEffect : Effect
             {
                 spriteRenderer.color = Color.white;
             }
-            if (time > 3) break;
+            if (time > FREEZE_TIME) break;
             yield return new WaitForSeconds(countdownTime);
             time += 0.5f;
             Debug.Log($"Time: {time}");

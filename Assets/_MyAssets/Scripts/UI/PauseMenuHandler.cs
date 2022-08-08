@@ -12,8 +12,6 @@ public class PauseMenuHandler : MonoBehaviour
     private GameManager gameManager;
     private SoundManager soundManager;
     private UIHandler uIHandler;
-    // private MusicSliderSaver musicSliderSaver;
-    // private MusicSliderSaver sfxSliderSaver;
 
     private void Start()
     {
