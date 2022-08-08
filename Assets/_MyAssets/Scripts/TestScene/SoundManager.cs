@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviourSingleton<SoundManager>
 {
@@ -11,10 +12,10 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
     public AudioClip alienBuzz2;
     public AudioClip alienDies;
     private AudioSource soundEffectAudio;
-    private UIHandler uIHandler;
     private AudioSource audioSourceMusic;
     private AudioSource audioSourceSFX;
     private SoundState soundState;
+    public Dictionary<string, AudioSource> sounds = new Dictionary<string, AudioSource>();
 
     protected override void Awake()
     {
@@ -38,7 +39,6 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
     private void GetReferences()
     {
         soundEffectAudio = GetComponent<AudioSource>();
-        uIHandler = FindObjectOfType<UIHandler>();
         //Write back again
         audioSourceMusic = GameObject.Find(BACKGROUND_MUSIC).GetComponent<AudioSource>();
         audioSourceSFX = GameObject.Find(SOUND_MANAGER).GetComponent<AudioSource>();
@@ -70,8 +70,23 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
         audioSourceSFX.volume = x;
     }
 
-    public void PlayOneShot(AudioClip clip)
+    // public void PlayOneShot(AudioClip clip)
+    // {
+    //     soundEffectAudio.PlayOneShot(clip);
+    // }
+
+    public void PlayOneShot(AudioClip sound)   //constant volume
     {
-        soundEffectAudio.PlayOneShot(clip);
+        //Check if AudioSource has been created for this clip
+        if (!sounds.ContainsKey(sound.name))
+        {
+            sounds.Add(sound.name, gameObject.AddComponent<AudioSource>());
+        }
+        AudioSource audioSource = sounds[sound.name]; //Using AudioSource for the clip
+
+        audioSource.clip = sound;
+
+        audioSource.Stop(); //Preventing previous sound from being played
+        audioSource.Play();
     }
 }
