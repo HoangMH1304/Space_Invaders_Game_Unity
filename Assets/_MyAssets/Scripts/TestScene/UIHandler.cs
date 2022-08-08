@@ -40,17 +40,8 @@ public class UIHandler : MonoBehaviour
     private void GetReference()
     {
         ship = GameObject.Find("SpaceShip").GetComponent<Player>();
-        // gameManager = FindObjectOfType<GameManager>();
         alienManager = FindObjectOfType<AlienManager>();
-        // Debug.LogError($"alien manager: {alienManager.gameObject.name}");
-
     }
-
-    public void DestroyButton()
-    {
-        alienManager.DestroyAliens();
-    }
-
     public void CountWave(int waves)
     {
         var textUI = GameObject.Find("Wave").GetComponent<TextMeshProUGUI>();
@@ -88,5 +79,36 @@ public class UIHandler : MonoBehaviour
         incresePoint.SetActive(true);
         yield return new WaitForSeconds(2);
         incresePoint.SetActive(false);
+    }
+
+    public void DestroyButton()         //On Click
+    {
+        alienManager.DestroyAliens();
+    }
+
+    public void TestButton()    //On Click
+    {
+
+    }
+
+    public void ChangeGunButton()  //On Click
+    {
+
+    }
+
+    public void DecreaseHealth()    //On Click
+    {
+
+    }
+
+    public void StoreButton()   //On Click
+    {
+
+    }
+
+    public void PauseButton()   //On Click
+    {
+        // var pauseButton = FindObjectOfType<PauseMenuHandler>();
+        // pau
     }
 }

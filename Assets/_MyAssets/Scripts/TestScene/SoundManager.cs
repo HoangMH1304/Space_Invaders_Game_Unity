@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviourSingleton<SoundManager>
 {
+    private const string BACKGROUND_MUSIC = "Music(Clone)";
+    private const string SOUND_MANAGER = "SoundManager";
     public AudioClip alienBuzz1;
     public AudioClip alienBuzz2;
     public AudioClip alienDies;
     private AudioSource soundEffectAudio;
     private UIHandler uIHandler;
-    private TurnUpDownVolume changeVolume;
     private AudioSource audioSourceMusic;
     private AudioSource audioSourceSFX;
     private SoundState soundState;
@@ -38,10 +39,9 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
     {
         soundEffectAudio = GetComponent<AudioSource>();
         uIHandler = FindObjectOfType<UIHandler>();
-        changeVolume = FindObjectOfType<TurnUpDownVolume>();
         //Write back again
-        audioSourceMusic = GameObject.Find("Music(Clone)").GetComponent<AudioSource>();
-        audioSourceSFX = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+        audioSourceMusic = GameObject.Find(BACKGROUND_MUSIC).GetComponent<AudioSource>();
+        audioSourceSFX = GameObject.Find(SOUND_MANAGER).GetComponent<AudioSource>();
     }
 
     // getter, setter music
@@ -65,6 +65,7 @@ public class SoundManager : MonoBehaviourSingleton<SoundManager>
 
     public void SetVolumeSFX(float x)
     {
+        Debug.Log($"SetSFXMusic: {x}");
         soundState.volumeSFX = x;
         audioSourceSFX.volume = x;
     }

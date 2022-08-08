@@ -10,21 +10,21 @@ public class MusicSliderSaver : MonoBehaviour
     private Slider sfxSlider;
     public void GetMusicSliderChange()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicSliderSaver");
+        musicSlider.value = PlayerPrefs.GetFloat("Music");
     }
 
-    public void SetMusicSliderChange(float value)
-    {
-        PlayerPrefs.SetFloat("MusicSliderSaver", value);
-    }
+    // public void SetMusicSliderChange(float value)
+    // {
+    //     PlayerPrefs.SetFloat("Music", value);
+    // }
 
     public void GetSFXSliderChange()
     {
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXSliderSaver");
+        sfxSlider.value = PlayerPrefs.GetFloat("SFX");
     }
 
-    public void SetSFXSliderChange(float value)
-    {
-        PlayerPrefs.SetFloat("SFXSliderSaver", value);
-    }
+    // public void SetSFXSliderChange(float value)
+    // {
+    //     PlayerPrefs.SetFloat("SFX", value);
+    // }
 }
