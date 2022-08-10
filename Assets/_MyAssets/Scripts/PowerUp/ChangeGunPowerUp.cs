@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ChangeGunPowerUp : PowerUp
 {
-    protected override void CollideWithPlayer(Collider2D other)
+    protected override void CollideWithPlayer(Collision2D other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             var player = FindObjectOfType<Player>();
             player.ChangeGun();

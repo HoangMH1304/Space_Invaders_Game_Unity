@@ -88,6 +88,7 @@ public class ItemManager : MonoBehaviour
 
     private void IncreseBulletSpeed()
     {
+        var player = FindObjectOfType<Player>();
         // float speed = player.GetSpeedBullet();
         float speed = GunManager.Instance.GetSpeed();
         speed *= 1.1f;
@@ -97,7 +98,7 @@ public class ItemManager : MonoBehaviour
     }
     private void DecreaseReloadSpeed()
     {
-        // float reloadTime = player.GetReloadTime();
+        var player = FindObjectOfType<Player>();
         float reloadTime = GunManager.Instance.GetReloadTime();
         reloadTime *= 0.9f;
         Debug.Log($"Reload Time: {reloadTime}");
@@ -106,6 +107,7 @@ public class ItemManager : MonoBehaviour
     }
     private void MagnetItem()
     {
+        var player = FindObjectOfType<Player>();
         player.SetMagnetItem(true);
         magnet.SetActive(true);
     }

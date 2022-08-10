@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void GetReferences()
     {
         uIHandler = FindObjectOfType<UIHandler>();
-        // changeVolume = FindObjectOfType<TurnUpDownVolume>();
-        // audioSourceMusic = GameObject.Find("Music(Clone)").GetComponent<AudioSource>();
-        // audioSourceSFX = GameObject.Find("SoundManager").GetComponent<AudioSource>();
     }
 
     public void InitData()
@@ -36,37 +33,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         gameState.score = 8000;
         gameState.result = "";
         gameState.IsWin = false;
-        // gameState.volumeMusic = 0.5f;
-        // gameState.volumeSFX = 0.5f;
-        // gameState.volumeMusic = audioSourceMusic.volume;
-        // gameState.volumeSFX = audioSourceSFX.volume;
     }
-
-    // //getter, setter music
-    // public float GetVolumeMusic()
-    // {
-    //     return gameState.volumeMusic;
-    // }
-
-    // public void SetVolumeMusic(float x)
-    // {
-    //     Debug.Log($"SetVolumeMusic: {x}");
-    //     gameState.volumeMusic = x;
-    //     audioSourceMusic.volume = x;
-    // }
-
-    // //getter, setter sfx
-    // public float GetVolumeSFX()
-    // {
-    //     return gameState.volumeSFX;
-    // }
-
-    // public void SetVolumeSFX(float x)
-    // {
-    //     gameState.volumeSFX = x;
-    //     audioSourceSFX.volume = x;
-    // }
-
 
     public void SetResultState(bool logic)
     {

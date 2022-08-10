@@ -48,7 +48,9 @@
      <Compile Include="Assets\_MyAssets\Scripts\Shop\UiItemHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemMenu.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\DestroyNormalAlien.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\LongTermCanvas.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\TargetArrow.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\CreateCanvas.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\DeathZone.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\ShieldEffect.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUpContainer.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\Ship.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\EnergyShield.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\UIHandler.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\Test.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GunDetail\GunManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SoundState.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\BonusHealth.cs" />
@@ -87,9 +90,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\ContinuePlayMusic.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Player.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\Test.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\AdjustTimeScale.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\LongTermCanvas.cs" />
      <None Include="Assets\_MyAssets\Data\alien1.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

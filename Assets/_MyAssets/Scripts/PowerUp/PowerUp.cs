@@ -41,29 +41,57 @@ public class PowerUp : MonoBehaviour
         player.transform.position, moveSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     HandleTriggerEnter(other);
+    // }
+
+
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        HandleTriggerEnter(other);
+        HandleCollisionEnter2D(other);
     }
 
-    private void HandleTriggerEnter(Collider2D other)
+    private void HandleCollisionEnter2D(Collision2D other)
     {
         CollideWithPlayer(other);
         CollideWithWall(other);
     }
 
-    protected virtual void CollideWithPlayer(Collider2D other)
+    protected virtual void CollideWithPlayer(Collision2D other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
     }
-    private void CollideWithWall(Collider2D other)
+
+    private void CollideWithWall(Collision2D other)
     {
-        if (other.tag == "Wall")
+        if (other.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
         }
     }
+    // private void HandleTriggerEnter(Collider2D other)
+    // {
+    //     CollideWithPlayer(other);
+    //     CollideWithWall(other);
+    // }
+
+    // protected virtual void CollideWithPlayer(Collider2D other)
+    // {
+    //     if (other.tag == "Player")
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
+    // private void CollideWithWall(Collider2D other)
+    // {
+    //     if (other.tag == "Wall")
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 }

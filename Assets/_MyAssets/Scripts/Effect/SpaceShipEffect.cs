@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpaceShipEffect : Effect
 {
-    private const int FREEZE_TIME = 3;
+    private const int FREEZE_TIME = 5;
 
     public void TurnColor()
     {

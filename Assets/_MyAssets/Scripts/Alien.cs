@@ -77,7 +77,34 @@ public class Alien : Ship
         transform.position = position;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.name == LEFTWALL_TAG)
+    //     {
+    //         TurnDirection(1);
+    //         MoveDown();
+    //     }
+    //     if (other.gameObject.name == RIGHTWALL_TAG)
+    //     {
+    //         TurnDirection(-1);
+    //         MoveDown();
+    //     }
+    //     if (other.gameObject.tag == PLAYER_TAG)
+    //     {
+    //         var spaceShip = other.gameObject.GetComponent<IHealth>();
+    //         spaceShip.TakeDamage(1);
+    //     }
+    //     // if (other.gameObject.tag == SHIELD_TAG)
+    //     // {
+    //     //     other.gameObject.GetComponent<ShieldEffect>().OnDead();
+    //     //     Destroy(other.gameObject, 0.1f);
+    //     //     // Destroy(other.gameObject);
+    //     //     Debug.Log(dirX);
+    //     //     TurnDirection(dirX);
+    //     // }
+    // }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == LEFTWALL_TAG)
         {
@@ -92,30 +119,21 @@ public class Alien : Ship
         if (other.gameObject.tag == PLAYER_TAG)
         {
             var spaceShip = other.gameObject.GetComponent<IHealth>();
+            //add effect
             spaceShip.TakeDamage(1);
-            Die();
+            Handheld.Vibrate();
         }
         if (other.gameObject.tag == SHIELD_TAG)
-            Destroy(other.gameObject);
+        {
+            other.gameObject.GetComponent<ShieldEffect>().OnDead();
+            Destroy(other.gameObject, 0.1f);
+        }
     }
 
     private bool GetChance()
     {
-        return Random.Range(1, 100) <= 1;
+        return Random.Range(1, 500) <= 1;
     }
-
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.tag == SHIELD_TAG)
-    //         Destroy(other.gameObject);
-    //     // if (other.tag == PLAYER_TAG)
-    //     // {
-    //     //     var spaceShip = other.GetComponent<IHealth>();
-    //     //     spaceShip.TakeDamage(1);
-    //     //     Die();
-    //     // }
-    // }
-
 
     override public void TakeDamage(int damage)
     {

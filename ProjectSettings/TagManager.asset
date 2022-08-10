@@ -16,6 +16,7 @@ TagManager:
   - Aim
   - SpaceShipSpecialBullet
   - UIButton
+  - Canvas
   layers:
   - Default
   - TransparentFX

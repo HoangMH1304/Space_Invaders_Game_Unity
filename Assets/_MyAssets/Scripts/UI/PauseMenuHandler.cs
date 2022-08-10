@@ -50,6 +50,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void Restart()   //On Click
     {
         Time.timeScale = 1f;
+        Destroy(GameObject.Find("Canvas"));
         SceneManager.LoadScene(FIRST_SCENE);
     }
 

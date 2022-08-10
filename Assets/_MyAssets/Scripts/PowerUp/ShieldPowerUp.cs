@@ -7,9 +7,9 @@ public class ShieldPowerUp : PowerUp
     [SerializeField]
     private GameObject shield;
 
-    protected override void CollideWithPlayer(Collider2D other)
+    protected override void CollideWithPlayer(Collision2D other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             GameObject player = GameObject.Find("SpaceShip");
             Instantiate(shield, player.transform.position, Quaternion.identity);

@@ -6,6 +6,12 @@ using TMPro;
 public class UILastSceneHandler : MonoBehaviour
 {
     private GameManager gameManager;
+
+    void Awake()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        if (canvas != null) Destroy(canvas);
+    }
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -14,7 +20,7 @@ public class UILastSceneHandler : MonoBehaviour
 
     void UpdateUI()
     {
-        var textUI = FindObjectOfType<TextMeshProUGUI>();
+        var textUI = GameObject.Find("Result").GetComponent<TextMeshProUGUI>();
         if (GameManager.Instance.GetResultState() == true)
         {
             textUI.text = "You Win";

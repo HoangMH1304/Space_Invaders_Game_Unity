@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongTermCanvas : MonoBehaviour
+public class LongTermCanvas : MonoBehaviourSingleton<LongTermCanvas>
 {
-    void Start()
+    protected override void Awake()
     {
-        DontDestroyOnLoad(this);
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
     }
-
 }
