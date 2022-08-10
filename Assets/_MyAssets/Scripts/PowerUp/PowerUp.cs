@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    private const string PLAYER_TAG = "Player";
+    private const string WALL_TAG = "Wall";
     [SerializeField]
     protected float moveSpeed = 30f;
     [SerializeField]
@@ -61,7 +63,7 @@ public class PowerUp : MonoBehaviour
 
     protected virtual void CollideWithPlayer(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == PLAYER_TAG)
         {
             Destroy(gameObject);
         }
@@ -69,29 +71,9 @@ public class PowerUp : MonoBehaviour
 
     private void CollideWithWall(Collision2D other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == WALL_TAG)
         {
             Destroy(gameObject);
         }
     }
-    // private void HandleTriggerEnter(Collider2D other)
-    // {
-    //     CollideWithPlayer(other);
-    //     CollideWithWall(other);
-    // }
-
-    // protected virtual void CollideWithPlayer(Collider2D other)
-    // {
-    //     if (other.tag == "Player")
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
-    // private void CollideWithWall(Collider2D other)
-    // {
-    //     if (other.tag == "Wall")
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    // }
 }

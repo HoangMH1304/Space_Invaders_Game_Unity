@@ -113,6 +113,7 @@ public class TargetBullet : Bullet
         {
             Destroy(other.gameObject);
         }
+        if (other.tag == ALIEN_BULLET_TAG) return;
         Destroy(gameObject);
     }
 

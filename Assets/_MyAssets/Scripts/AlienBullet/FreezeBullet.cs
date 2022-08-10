@@ -11,4 +11,18 @@ public class FreezeBullet : Bullet
         var spaceshipEffect = other.GetComponent<SpaceShipEffect>();
         spaceshipEffect.TurnColor();
     }
+
+    protected override void HandleBulletCollider(Collider2D other)
+    {
+        var bulletSpeed = other.GetComponent<Bullet>();
+        if (bulletSpeed.GetFreezeState() == false)
+        {
+            bulletSpeed.IsFreeze(true);
+            float speed = bulletSpeed.GetSpeed();
+            Debug.Log($"Original speed: {speed}");
+            speed /= 3;
+            bulletSpeed.SetSpeed(speed);
+            Debug.Log(bulletSpeed.GetSpeed());
+        }
+    }
 }

@@ -31,7 +31,7 @@ public class BombBullet : Bullet
         {
             DealDamage(other);
         }
-        if (other.tag != ENERGY_SHIELD) Destroy(gameObject);
+        if (other.tag != ENERGY_SHIELD && other.tag != ALIEN_BULLET_TAG) Destroy(gameObject);
         // Destroy(gameObject);
     }
 
