@@ -21,6 +21,9 @@ public class Player : Ship
     private float time = 0f;
     private float oldSpeed;
     private float deltaX, deltaY;
+    private Vector3 oldPos;
+    private Vector3 newPos;
+    bool firstTouch = true;
     bool isEnableMagnet = false;
 
     void Start()
@@ -33,7 +36,8 @@ public class Player : Ship
     {
         IsFreeze();
         // MoveSpaceShip1();     //touch
-        MoveSpaceShip();
+        // MoveSpaceShip();
+        MoveSpaceShip2();
         if (!alienManager.IsEmpty()) Shoot();
     }
 
@@ -62,6 +66,32 @@ public class Player : Ship
         }
     }
 
+    private void MoveSpaceShip2()
+    {
+        Vector3 direction = new Vector3();
+        if (Input.GetMouseButton(0))
+        {
+            newPos = Input.mousePosition;
+            Debug.Log($"Cordinate: {newPos}");
+            if (firstTouch)
+            {
+                firstTouch = false;
+                oldPos = newPos;
+                return;
+            }
+            direction = newPos - oldPos;
+            oldPos = newPos;
+            rigidBody.velocity = direction.normalized * speed * Time.deltaTime;
+            // rigidBody.MovePosition(transform.position + direction);
+        }
+        else
+        {
+            rigidBody.velocity = Vector2.zero;
+            firstTouch = true;
+            // oldPos = newPos;
+        }
+    }
+
     private void GetReference()
     {
         alienManager = FindObjectOfType<AlienManager>();
@@ -75,7 +105,7 @@ public class Player : Ship
 
     private void Init()
     {
-        speed = 10f;
+        speed = 1000f;
         // speed = 0.1f;
         oldSpeed = speed;
         gun = gunStore.ChooseGun(GunManager.Instance.GetGun());
@@ -161,7 +191,7 @@ public class Player : Ship
     public void TurnIntoFreeze()
     {
         // isFreeze = true;
-        speed /= 10;
+        speed /= 3;
     }
 
     private void MoveSpaceShip()
@@ -171,6 +201,7 @@ public class Player : Ship
         if (mouseWorldPosition.y > TOP_RANGE || mouseWorldPosition.y < BOTTOM_RANGE) mouseWorldPosition.y = transform.position.y;
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * speed);
     }
+
 
 
     override public void TakeDamage(int damage)
