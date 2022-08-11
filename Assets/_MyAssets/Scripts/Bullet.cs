@@ -8,10 +8,9 @@ public class Bullet : MonoBehaviour
     protected const string POWER_UP = "PowerUp";
     protected const string ENERGY_SHIELD = "EnergyShield";
     protected const string ALIEN_BULLET = "AlienBullet";
+    protected const string SPACESHIP_BULLET = "Bullet";
     [SerializeField]
     protected string ENEMY_TAG = "Player";
-    protected string SPACESHIP_BULLET_TAG = "Bullet";
-    protected string ALIEN_BULLET_TAG = "AlienBullet";
     protected string ENEMY_BULLET_TAG;
     [SerializeField]
     public Vector2 direction;
@@ -32,7 +31,7 @@ public class Bullet : MonoBehaviour
         aliens = FindObjectsOfType<Alien>();
         GetReference();
         // Move();
-        // ENEMY_BULLET_TAG = (this.tag == SPACESHIP_BULLET_TAG) ? SPACESHIP_BULLET_TAG : ALIEN_BULLET_TAG;
+        ENEMY_BULLET_TAG = (this.tag == SPACESHIP_BULLET) ? SPACESHIP_BULLET : ALIEN_BULLET;
     }
 
     private void GetReference()
@@ -61,7 +60,7 @@ public class Bullet : MonoBehaviour
     {
         if (this.tag == "Bullet")
         {
-            if (isFreeze) moveSpeed = GetSpeed();
+            if (isFreeze == true) moveSpeed = GetSpeed();
             else moveSpeed = GunManager.Instance.GetSpeed();
         }
         var rigidbody = GetComponent<Rigidbody2D>();
@@ -78,41 +77,35 @@ public class Bullet : MonoBehaviour
         return isFreeze;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         HandleTriggerEnter(other);
     }
 
     protected virtual void HandleTriggerEnter(Collider2D other)
     {
-        if (other.tag == ENEMY_TAG)
-        {
-            DealDamage(other);
-            Destroy();
-        }
-        if (other.tag == SHIELD_TAG)
-        {
-            other.GetComponent<ShieldEffect>().OnDead();
-            Destroy(other.gameObject, 0.1f);
-            Destroy();
-        }
-        if (other.tag == ENERGY_SHIELD && this.tag == ALIEN_BULLET)
-        {
-            Destroy(other.gameObject);
-            Destroy();
-        }
-        if (other.tag == SPACESHIP_BULLET_TAG)      // this is alien bullet
+        if (other.tag == SPACESHIP_BULLET)
         {
             HandleBulletCollider(other);
         }
-        // if (other.tag == ENEMY_BULLET_TAG)
-        // {
-        //     if (other.name != "FreezeBullet")
-        //     {
-        //         HandleBulletCollider(other);
-        //     }
-        // }
-        // Destroy();
+        else
+        {
+            if (other.tag == ENEMY_TAG)
+            {
+                DealDamage(other);
+            }
+            if (other.tag == SHIELD_TAG)
+            {
+                other.GetComponent<ShieldEffect>().OnDead();
+                Destroy(other.gameObject, 0.1f);
+            }
+            if (other.tag == ENERGY_SHIELD && this.tag == ALIEN_BULLET)
+            {
+                Destroy(other.gameObject);
+            }
+            if (other.tag == ENEMY_BULLET_TAG) return;
+            Destroy();
+        }
     }
 
     protected virtual void Destroy()

@@ -6,6 +6,8 @@ public class BombBullet : Bullet
 {
     [SerializeField]
     private GameObject deathZone;
+    [SerializeField]
+    private int health = 2;
     // int[] dx = { -1, 0, 1, -1, 0, 1, -1, 0, 1 };
     // int[] dy = { -1, -1, -1, 0, 0, 0, 1, 1, 1 };
 
@@ -27,17 +29,31 @@ public class BombBullet : Bullet
 
     protected override void HandleTriggerEnter(Collider2D other)
     {
+        if (other.tag == "Wall") Destroy(gameObject);
         if (other.tag == ENEMY_TAG || other.tag == SHIELD_TAG)
         {
-            DealDamage(other);
+            DealDamage();
+            return;
         }
-        if (other.tag != ENERGY_SHIELD && other.tag != ALIEN_BULLET_TAG) Destroy(gameObject);
+        if (other.name == "AlienBullet(Clone)")
+        {
+            health--;
+            Debug.Log($"health: {health}");
+            if (health <= 0)
+            {
+                DealDamage();
+                return;
+            }
+        }
+        // if (other.tag != ENERGY_SHIELD && other.tag != ALIEN_BULLET) Destroy(gameObject);
         // Destroy(gameObject);
     }
 
-    protected override void DealDamage(Collider2D other)
+    private void DealDamage()
     {
+        // if ()
         GameObject dz = Instantiate(deathZone, transform.position, Quaternion.identity);
         Destroy(dz, 0.15f);
+        Destroy(gameObject);
     }
 }

@@ -55,6 +55,7 @@ public class AlienManager : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
+    // public bool 
     public void DestroyAliens()                 //Destroy Button
     {
         // foreach (var enemy in aliens)
@@ -158,12 +159,17 @@ public class AlienManager : MonoBehaviour
 
     private bool IsWin()
     {
-        return aliens.Count <= 0 && wave == WAVES && GameObject.FindGameObjectWithTag("Player") != null;
+        return IsEmpty() && wave == WAVES && GameObject.FindGameObjectWithTag("Player") != null;
     }
 
     private bool IsClearWave()
     {
-        return aliens.Count <= 0 && wave < WAVES;
+        return IsEmpty() && wave < WAVES;
+    }
+
+    public bool IsEmpty()
+    {
+        return aliens.Count <= 0;
     }
 
     public Ship CreateAlien(int col, int row)

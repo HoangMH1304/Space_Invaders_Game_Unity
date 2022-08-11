@@ -34,7 +34,7 @@ public class Player : Ship
         IsFreeze();
         // MoveSpaceShip1();     //touch
         MoveSpaceShip();
-        Shoot();
+        if (!alienManager.IsEmpty()) Shoot();
     }
 
     private void MoveSpaceShip1()
@@ -51,14 +51,9 @@ public class Player : Ship
                     deltaY = touchPos.y - transform.position.y;
                     break;
                 case TouchPhase.Moved:
-                    // if (isFreeze == false)
-                    // {
                     // rigidBody.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
-                    Vector3 direction = touchPos - transform.position;
-                    rigidBody.MovePosition(transform.position + direction.normalized * speed);
-                    // rigidBody.velocity = new Vector2(touchPos.x - deltaX, touchPos.y - deltaY) * speed;
-                    // }
-                    // else rigidBody.velocity = Vector2.zero;
+                    Vector3 direction = touchPos - new Vector3(deltaX, deltaY, 0) - transform.position;
+                    rigidBody.MovePosition(transform.position + direction.normalized * speed * Time.deltaTime);
                     break;
                 case TouchPhase.Ended:
                     rigidBody.velocity = Vector2.zero;
@@ -69,6 +64,7 @@ public class Player : Ship
 
     private void GetReference()
     {
+        alienManager = FindObjectOfType<AlienManager>();
         rigidBody = GetComponent<Rigidbody2D>();
         uIHandler = FindObjectOfType<UIHandler>();
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();

@@ -15,7 +15,7 @@ public class FreezeBullet : Bullet
     protected override void HandleBulletCollider(Collider2D other)
     {
         var bulletSpeed = other.GetComponent<Bullet>();
-        if (bulletSpeed.GetFreezeState() == false)
+        if (bulletSpeed != null && bulletSpeed.GetFreezeState() == false)  //error
         {
             bulletSpeed.IsFreeze(true);
             float speed = bulletSpeed.GetSpeed();
@@ -24,5 +24,6 @@ public class FreezeBullet : Bullet
             bulletSpeed.SetSpeed(speed);
             Debug.Log(bulletSpeed.GetSpeed());
         }
+        Destroy(gameObject);
     }
 }

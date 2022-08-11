@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3c45023998e3a5b4494e0364fe29560e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -146,9 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ENEMY_TAG: Alien
   direction: {x: 0, y: 1}
-  moveSpeed: 15
+  moveSpeed: 19.965
   damage: 2
   rotationSpeed: 100
   target: {fileID: 1527358393390984377, guid: 4fe30ffafbe1f57419bd55a4c75eae00, type: 3}
   deathPos: {fileID: 6479175842732086742, guid: 4148f7325c5a908459d23d4ee9c4cd25, type: 3}
   deathImage: {fileID: 21300000, guid: 39e3734f95747d54fa290f145fc2e6da, type: 3}
+  health: 1

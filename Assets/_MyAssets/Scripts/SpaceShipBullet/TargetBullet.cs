@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TargetBullet : Bullet
 {
@@ -12,6 +13,8 @@ public class TargetBullet : Bullet
     private GameObject deathPos;
     [SerializeField]
     private Sprite deathImage;
+    [SerializeField]
+    private int health = 2;
     private GameObject targetIcon;
     private const int BIG_NUM = 100;
     private const string WALL_TAG = "Wall";
@@ -42,16 +45,12 @@ public class TargetBullet : Bullet
         if (chooseAlien == null) chooseAlien = FindAlien();
         if (chooseAlien == null)
         {
-            // rigidBody.gravityScale = 10;
-            // return;
             transform.position = Vector2.MoveTowards(transform.position,
             position, moveSpeed * Time.deltaTime);
             moveDirection = (position - transform.position).normalized;
             if (transform.position == position)
             {
-                var image = GetComponent<SpriteRenderer>();
-                image.sprite = deathImage;
-                Destroy(gameObject, 0.1f); //
+                Die();
             }
         }
         else
@@ -78,8 +77,17 @@ public class TargetBullet : Bullet
         // else Destroy(gameObject);
     }
 
+    private void Die()
+    {
+        var image = GetComponent<SpriteRenderer>();
+        image.sprite = deathImage;
+        image.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        Destroy(gameObject, 0.1f); //
+    }
+
     private Alien FindAlien()
     {
+        int index1 = 0;
         Alien targetAlien = null;
         for (int i = aliens.Length - 1; i >= 0; i--)
         {
@@ -87,23 +95,26 @@ public class TargetBullet : Bullet
             {
                 minn = aliens[i].GetHealth();
                 targetAlien = aliens[i];
+                index1 = i;
             }
         }
         if (targetAlien != null)
         {
+            aliens = aliens.Where((source, index) => index != index1).ToArray();
             GameObject[] junks = GameObject.FindGameObjectsWithTag("Aim");
             foreach (var junk in junks) Destroy(junk);
             targetIcon = Instantiate(target);
             Debug.Log("Aim");
             targetIcon.transform.SetParent(targetAlien.transform);
             targetIcon.transform.localPosition = new Vector2(0, 0);
+
         }
         return targetAlien;
     }
 
     protected override void HandleTriggerEnter(Collider2D other)
     {
-        // if (GameObject.FindGameObjectWithTag("Aim") != null && other.gameObject != chooseAlien.gameObject)
+        // if (GameObject.FindGameObjectWithTag("Aim") != null && chooseAlien.gameObject != null && other.gameObject != chooseAlien.gameObject)
         //     Destroy(targetIcon);
         if (other.tag == ENEMY_TAG)
         {
@@ -113,8 +124,17 @@ public class TargetBullet : Bullet
         {
             Destroy(other.gameObject);
         }
-        if (other.tag == ALIEN_BULLET_TAG) return;
+        if (other.name == "AlienBullet(Clone)")
+        {
+            health--;
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        if (other.tag == ALIEN_BULLET) return;
         Destroy(gameObject);
+        Destroy(targetIcon);
     }
 
     override protected void DealDamage(Collider2D other)
