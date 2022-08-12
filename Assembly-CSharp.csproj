@@ -41,9 +41,9 @@
      <Compile Include="Assets\_MyAssets\Scripts\StayInside.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\UI\Animation\Intro.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\SpaceShipBullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\IHunter.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\ChangeGunPowerUp.cs" />
-     <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\MonoBehaviourSingleton.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\UiItemHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Shop\ItemMenu.cs" />
@@ -62,6 +62,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\SoundManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\SpaceShipEffect.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\ShieldPowerUp.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\TestScene\TestChance.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\Effect.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Bullet.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GameState.cs" />
@@ -70,11 +71,13 @@
      <Compile Include="Assets\_MyAssets\Scripts\UI\PauseMenuHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SpaceShipBullet\BombBullet.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\TestScene\TestState.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Ship.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\EnergyShield.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\UIHandler.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Test.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GunDetail\GunManager.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\TestScene\TestManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\SoundState.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\BonusHealth.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\ChangeScene.cs" />
@@ -82,6 +85,7 @@
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\Immortal.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Effect\AlienEffect.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\UI\UILastSceneHandler.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\TestScene\ChangeAlienSpeed.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\PowerUp\PowerUp.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GameManager.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\GunStore.cs" />
@@ -91,6 +95,8 @@
      <Compile Include="Assets\_MyAssets\Scripts\MusicSliderSaver.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\Player.cs" />
      <Compile Include="Assets\_MyAssets\Scripts\TestScene\AdjustTimeScale.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\AlienBullet\AlienBullet.cs" />
+     <Compile Include="Assets\_MyAssets\Scripts\ISpeed.cs" />
      <None Include="Assets\_MyAssets\Data\alien1.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

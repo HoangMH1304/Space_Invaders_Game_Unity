@@ -23,6 +23,7 @@ public class ChangeScene : MonoBehaviour
         {
             GameManager.Instance.InitData();
             GunManager.Instance.InitData();
+            TestManager.Instance.InitData();
         }
         Invoke("OpenNextScene", secTillSceneLoad);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class Player : Ship
+public class Player : Ship, ISpeed
 {
     private const float TOP_RANGE = 20f;   //-12
     private const float BOTTOM_RANGE = -30f;  //-30
@@ -25,7 +25,7 @@ public class Player : Ship
     private Vector3 newPos;
     bool firstTouch = true;
     bool isEnableMagnet = false;
-
+    bool turnColor = false;
     void Start()
     {
         GetReference();
@@ -34,7 +34,7 @@ public class Player : Ship
 
     void Update()
     {
-        IsFreeze();
+        // IsFreeze();
         // MoveSpaceShip1();     //touch
         // MoveSpaceShip();
         MoveSpaceShip2();
@@ -72,7 +72,7 @@ public class Player : Ship
         if (Input.GetMouseButton(0))
         {
             newPos = Input.mousePosition;
-            Debug.Log($"Cordinate: {newPos}");
+            // Debug.Log($"Cordinate: {newPos}");
             if (firstTouch)
             {
                 firstTouch = false;
@@ -80,6 +80,7 @@ public class Player : Ship
                 return;
             }
             direction = newPos - oldPos;
+            // Debug.Log($"direction: {direction}");
             oldPos = newPos;
             rigidBody.velocity = direction.normalized * speed * Time.deltaTime;
             // rigidBody.MovePosition(transform.position + direction);
@@ -105,7 +106,7 @@ public class Player : Ship
 
     private void Init()
     {
-        speed = 1000f;
+        speed = 1500f;
         // speed = 0.1f;
         oldSpeed = speed;
         gun = gunStore.ChooseGun(GunManager.Instance.GetGun());
@@ -123,11 +124,6 @@ public class Player : Ship
             temp = gunStore.RandomGun();
         }
         gun = temp;
-    }
-
-    public void SetSpeed(float x)
-    {
-        speed = x;
     }
 
     public void ShowSpeedText(float x)
@@ -180,11 +176,17 @@ public class Player : Ship
         if (speed != oldSpeed)
         {
             time += Time.deltaTime;
+            // if (turnColor == false)
+            // {
+            //     spaceshipEffect.TurnColor();
+            //     turnColor = true;
+            // }
         }
         if (time >= 5.5f)
         {
             speed = oldSpeed;
             time = 0;
+            // turnColor = false;
         }
     }
 
@@ -202,8 +204,6 @@ public class Player : Ship
         transform.position = Vector3.Lerp(transform.position, mouseWorldPosition, Time.deltaTime * speed);
     }
 
-
-
     override public void TakeDamage(int damage)
     {
         if (dead)
@@ -219,5 +219,21 @@ public class Player : Ship
             var changeScene = mainCamera.GetComponent<ChangeScene>();
             changeScene.ChangeLastScene();
         }
+    }
+
+    public void SetSpeed(float x)
+    {
+        speed /= x;
+        Invoke("SetOriginalSpeed", 5.5f);
+    }
+
+    public void SetOriginalSpeed()
+    {
+        speed = oldSpeed;
+    }
+
+    public void ChangeSpeedEffect()
+    {
+        spaceshipEffect.TurnColor();
     }
 }

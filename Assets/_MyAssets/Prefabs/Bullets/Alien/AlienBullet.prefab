@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8198330544584612861}
   - component: {fileID: -1361156495483691076}
   - component: {fileID: 8309644656124267926}
-  - component: {fileID: -8345507793597668259}
+  - component: {fileID: 635940644729638363}
   m_Layer: 10
   m_Name: AlienBullet
   m_TagString: AlienBullet
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8345507793597668259
+--- !u!114 &635940644729638363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,6 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ENEMY_TAG: Player
   direction: {x: 0, y: -1}
-  moveSpeed: 20
+  moveSpeed: 15
   damage: 1
-  explosion: {fileID: 21300000, guid: 45acc876e9a97f5459442be8388c92a4, type: 3}
+  explosion: {fileID: 21300000, guid: 39e3734f95747d54fa290f145fc2e6da, type: 3}

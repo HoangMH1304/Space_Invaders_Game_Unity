@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, ISpeed
 {
     protected const string SHIELD_TAG = "Shield";
     protected const string POWER_UP = "PowerUp";
     protected const string ENERGY_SHIELD = "EnergyShield";
     protected const string ALIEN_BULLET = "AlienBullet";
     protected const string SPACESHIP_BULLET = "Bullet";
+    protected const float FREEZE_TIME = 2f;
     [SerializeField]
     protected string ENEMY_TAG = "Player";
     protected string ENEMY_BULLET_TAG;
@@ -16,40 +17,27 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     [SerializeField]
     protected float moveSpeed = 30f;
+    protected float originalSpeed;
     [SerializeField]
     protected int damage;
-    protected AlienManager alienManager;
     protected Alien[] aliens;
-    private Player player;
-    private Effect effect;
-    private ItemManager itemManager;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigidBody;
     bool isFreeze = false;
 
     protected void Start()
     {
-        // if (this.tag == "Bullet") Debug.Log($"Speed: {moveSpeed}");
         aliens = FindObjectsOfType<Alien>();
         GetReference();
+        originalSpeed = moveSpeed;
         // Move();
         ENEMY_BULLET_TAG = (this.tag == SPACESHIP_BULLET) ? SPACESHIP_BULLET : ALIEN_BULLET;
     }
 
     private void GetReference()
     {
-        alienManager = FindObjectOfType<AlienManager>();
-        itemManager = FindObjectOfType<ItemManager>();
-        player = FindObjectOfType<Player>();
-        effect = FindObjectOfType<Effect>();
-    }
-
-    public float GetSpeed()
-    {
-        return moveSpeed;
-    }
-
-    public void SetSpeed(float x)
-    {
-        moveSpeed = x;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -58,13 +46,29 @@ public class Bullet : MonoBehaviour
     }
     virtual protected void Move()
     {
-        if (this.tag == "Bullet")
-        {
-            if (isFreeze == true) moveSpeed = GetSpeed();
-            else moveSpeed = GunManager.Instance.GetSpeed();
-        }
+        // if (this.tag == "Bullet")            //need fix
+        // {
+        //     if (isFreeze == true) moveSpeed = GetSpeed();
+        //     else moveSpeed = GunManager.Instance.GetSpeed();
+        // }
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
+    }
+
+    public float GetSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void GetOldSpeed()
+    {
+        moveSpeed = originalSpeed;
+    }
+
+    public void SetSpeed(float x)
+    {
+        moveSpeed /= x;
+        Invoke("GetOldSpeed", 2.5f);
     }
 
     public void IsFreeze(bool logic)
@@ -123,5 +127,35 @@ public class Bullet : MonoBehaviour
     {
         Destroy();
         // Destroy(other.gameObject);
+    }
+
+    public void ChangeSpeedEffect()
+    {
+        TurnColor();
+    }
+
+    public void TurnColor()
+    {
+        StartCoroutine(ChangeColor());
+    }
+
+    IEnumerator ChangeColor()
+    {
+        float time = 0;
+        while (true)
+        {
+            if (spriteRenderer.color == Color.white)
+            {
+                spriteRenderer.color = Color.cyan;
+            }
+            else
+            {
+                spriteRenderer.color = Color.white;
+            }
+            if (time > FREEZE_TIME) break;
+            yield return new WaitForSeconds(0.5f);
+            time += 0.5f;
+            Debug.Log($"Time: {time}");
+        }
     }
 }

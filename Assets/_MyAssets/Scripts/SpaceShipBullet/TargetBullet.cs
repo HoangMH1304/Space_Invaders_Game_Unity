@@ -122,13 +122,15 @@ public class TargetBullet : Bullet
         }
         if (other.tag == SHIELD_TAG)
         {
-            Destroy(other.gameObject);
+            other.GetComponent<ShieldEffect>().OnDead();
+            Destroy(other.gameObject, 0.1f);
         }
         if (other.name == "AlienBullet(Clone)")
         {
             health--;
             if (health <= 0)
             {
+                Destroy(targetIcon);
                 Die();
             }
         }

@@ -29,6 +29,7 @@ public class Alien : Ship
 
     private void Init()
     {
+        speed = TestManager.Instance.GetAlienSpeed();
         rigidBody.velocity = Vector2.right * speed;
         health = GetHealth();
         isPowerUpAlien = SpecialRate();
@@ -132,8 +133,15 @@ public class Alien : Ship
 
     private bool GetChance()
     {
-        return Random.Range(1, 500) <= 1;
+        int rate = TestManager.Instance.GetAlienShootRate();
+        return Random.Range(1, rate * 100) <= 1;
     }
+
+    // private bool GetChanceTest(int rate)
+    // {
+    //     rate = TestManager.Instance.GetAlienShootRate();
+    //     return Random.Range(1, rate * 100) <= 1;
+    // }
 
     override public void TakeDamage(int damage)
     {

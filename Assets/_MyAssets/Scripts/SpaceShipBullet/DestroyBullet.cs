@@ -8,7 +8,7 @@ public class DestroyBullet : Bullet
     [SerializeField]
     private int health = 2;
     [SerializeField]
-    private Sprite dead;
+    private Sprite deathImage;
 
     override protected void DealDamage(Collider2D other)
     {
@@ -30,7 +30,8 @@ public class DestroyBullet : Bullet
         }
         if (other.tag == SHIELD_TAG)
         {
-            Destroy(other.gameObject);
+            other.GetComponent<ShieldEffect>().OnDead();
+            Destroy(other.gameObject, 0.1f);
         }
         if (other.name == "AlienBullet(Clone)")
         {
@@ -47,7 +48,7 @@ public class DestroyBullet : Bullet
     private void Die()
     {
         var image = GetComponent<SpriteRenderer>();
-        image.sprite = dead;
+        image.sprite = deathImage;
         image.gameObject.transform.localScale = new Vector3(1, 1, 1);
         Destroy(gameObject, 0.1f); //
     }
