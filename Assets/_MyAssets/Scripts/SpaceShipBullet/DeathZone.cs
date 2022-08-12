@@ -6,6 +6,7 @@ public class DeathZone : MonoBehaviour
 {
     private const string SHIELD_TAG = "Shield";
     private const string WALL_TAG = "Wall";
+    private const string PLAYER_TAG = "Player";
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -15,6 +16,12 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == PLAYER_TAG)
+        {
+            var enemy = other.GetComponent<IHealth>();
+            enemy.TakeDamage(1);
+            Handheld.Vibrate();
+        }
         if (other.tag == SHIELD_TAG)
         {
             Destroy(other.gameObject);
@@ -26,6 +33,6 @@ public class DeathZone : MonoBehaviour
             other.GetComponent<Alien>().Kill();
             spriteRenderer.enabled = true;
         }
-        else if (other.tag != WALL_TAG) Destroy(other.gameObject);
+        else if (other.tag != WALL_TAG && other.tag != PLAYER_TAG) Destroy(other.gameObject);
     }
 }

@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class FreezeBullet : Bullet
 {
-    // protected override void DealDamage(Collider2D other)
-    // {
-    //     var player = other.GetComponent<Player>();
-    //     player.TurnIntoFreeze();
-    //     var spaceshipEffect = other.GetComponent<SpaceShipEffect>();
-    //     spaceshipEffect.TurnColor();
-    // }
-
     protected override void HandleTriggerEnter(Collider2D other)
     {
         var target = other.GetComponent<ISpeed>();
@@ -19,9 +11,6 @@ public class FreezeBullet : Bullet
         {
             target.ChangeSpeedEffect();
             target.SetSpeed(3);
-            // float speed = target.GetSpeed();
-            // speed /= 3;
-            // target.SetSpeed(speed);
         }
         else
         {
@@ -36,18 +25,5 @@ public class FreezeBullet : Bullet
             }
         }
         Destroy(gameObject);
-
-
-        // var bulletSpeed = other.GetComponent<Bullet>();
-        // if (bulletSpeed != null && bulletSpeed.GetFreezeState() == false)  //error
-        // {
-        //     bulletSpeed.IsFreeze(true);
-        //     float speed = bulletSpeed.GetSpeed();
-        //     Debug.Log($"Original speed: {speed}");
-        //     speed /= 3;
-        //     bulletSpeed.SetSpeed(speed);
-        //     Debug.Log(bulletSpeed.GetSpeed());
-        // }
-        // Destroy(gameObject);
     }
 }

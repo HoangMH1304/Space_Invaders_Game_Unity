@@ -7,8 +7,8 @@ public class DestroyBullet : Bullet
     private const string ALIEN_TAG = "AlienBullet(Clone)";
     [SerializeField]
     private int health = 2;
-    [SerializeField]
-    private Sprite deathImage;
+    // [SerializeField]
+    // private Sprite deathImage;
 
     override protected void DealDamage(Collider2D other)
     {
@@ -35,6 +35,7 @@ public class DestroyBullet : Bullet
         }
         if (other.name == "AlienBullet(Clone)")
         {
+            timeToExplode -= (timeToExplode / health);
             health--;
             if (health <= 0)
             {

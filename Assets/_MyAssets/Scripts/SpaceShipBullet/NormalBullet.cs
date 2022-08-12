@@ -16,8 +16,17 @@ public class NormalBullet : Bullet
         enemy.TakeDamage(damage);
     }
 
-    protected override void Destroy()
+    protected override void DestroyThis(Collider2D other)
     {
-        Destroy(gameObject, 0.05f);
+        if (other.tag != ALIEN_BULLET)
+        {
+            Destroy(gameObject, 0.05f);
+
+        }
+        if (other.name == "AlienBullet(Clone)")
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject, 0.05f);
+        }
     }
 }

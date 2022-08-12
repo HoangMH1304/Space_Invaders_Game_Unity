@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4056205527166543059}
   - component: {fileID: 2085704334699629390}
   - component: {fileID: 2945616697267321671}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: DeathZone
-  m_TagString: Bullet
+  m_TagString: DeathZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

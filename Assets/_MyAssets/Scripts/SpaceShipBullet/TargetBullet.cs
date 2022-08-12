@@ -11,8 +11,8 @@ public class TargetBullet : Bullet
     private GameObject target;
     [SerializeField]
     private GameObject deathPos;
-    [SerializeField]
-    private Sprite deathImage;
+    // [SerializeField]
+    // private Sprite deathImage;
     [SerializeField]
     private int health = 2;
     private GameObject targetIcon;
@@ -26,9 +26,10 @@ public class TargetBullet : Bullet
 
     private void Awake()
     {
+        timeToExplode = 6f;
         rigidBody = GetComponent<Rigidbody2D>();
     }
-    protected void Update()
+    private void Update()
     {
         // if (chooseAlien == null) chooseAlien = FindAlien();
         // if (chooseAlien == null)
@@ -127,6 +128,7 @@ public class TargetBullet : Bullet
         }
         if (other.name == "AlienBullet(Clone)")
         {
+            timeToExplode -= (timeToExplode / health);
             health--;
             if (health <= 0)
             {
@@ -141,12 +143,6 @@ public class TargetBullet : Bullet
 
     override protected void DealDamage(Collider2D other)
     {
-        // if (other.gameObject != chooseAlien.gameObject) Destroy(targetIcon);
-        // if (chooseAlien != null && other.gameObject == chooseAlien.gameObject)
-        // {
-        //     var aim = Instantiate(deathPos, other.transform.position, Quaternion.identity);
-        //     Destroy(aim, 1.5f);
-        // }
         other.GetComponent<Alien>().Kill();
     }
 }

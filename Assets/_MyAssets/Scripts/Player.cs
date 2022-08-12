@@ -34,7 +34,6 @@ public class Player : Ship, ISpeed
 
     void Update()
     {
-        // IsFreeze();
         // MoveSpaceShip1();     //touch
         // MoveSpaceShip();
         MoveSpaceShip2();
@@ -47,7 +46,6 @@ public class Player : Ship, ISpeed
         {
             touch = Input.GetTouch(0);
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-            // touchPos.z = 0;
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -83,13 +81,11 @@ public class Player : Ship, ISpeed
             // Debug.Log($"direction: {direction}");
             oldPos = newPos;
             rigidBody.velocity = direction.normalized * speed * Time.deltaTime;
-            // rigidBody.MovePosition(transform.position + direction);
         }
         else
         {
             rigidBody.velocity = Vector2.zero;
             firstTouch = true;
-            // oldPos = newPos;
         }
     }
 
@@ -160,34 +156,6 @@ public class Player : Ship, ISpeed
     public bool GetMagnetItem()
     {
         return isEnableMagnet;
-    }
-
-    private void IsFreeze()
-    {
-        // if (isFreeze == true)
-        // {
-        //     time += Time.deltaTime;
-        // }
-        // if (time >= FREEZE_TIME)
-        // {
-        //     isFreeze = false;
-        //     time = 0;
-        // }
-        if (speed != oldSpeed)
-        {
-            time += Time.deltaTime;
-            // if (turnColor == false)
-            // {
-            //     spaceshipEffect.TurnColor();
-            //     turnColor = true;
-            // }
-        }
-        if (time >= 5.5f)
-        {
-            speed = oldSpeed;
-            time = 0;
-            // turnColor = false;
-        }
     }
 
     public void TurnIntoFreeze()

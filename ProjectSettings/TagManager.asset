@@ -17,6 +17,7 @@ TagManager:
   - SpaceShipSpecialBullet
   - UIButton
   - Canvas
+  - DeathZone
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Spaceship
   - PowerUp
   - EnergyShield
-  - 
+  - DeathZone
   - 
   - 
   - 

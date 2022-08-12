@@ -20,17 +20,20 @@ public class Bullet : MonoBehaviour, ISpeed
     protected float originalSpeed;
     [SerializeField]
     protected int damage;
+    [SerializeField]
+    protected Sprite deathImage;
     protected Alien[] aliens;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody;
     bool isFreeze = false;
+    float time = 0;
+    protected float timeToExplode = 3.5f;
 
     protected void Start()
     {
         aliens = FindObjectsOfType<Alien>();
         GetReference();
         originalSpeed = moveSpeed;
-        // Move();
         ENEMY_BULLET_TAG = (this.tag == SPACESHIP_BULLET) ? SPACESHIP_BULLET : ALIEN_BULLET;
     }
 
@@ -42,15 +45,27 @@ public class Bullet : MonoBehaviour, ISpeed
 
     private void Update()
     {
+        timeToExplode -= Time.deltaTime;
+        if (timeToExplode <= 0 && deathImage != null)
+        {
+            TimeUp();
+            return;
+            // spriteRenderer.sprite = deathImage;
+            // gameObject.transform.localScale = new Vector3(1, 1, 1);
+            // Destroy(gameObject, 0.05f);
+            // return;
+        }
         Move();
+    }
+
+    protected virtual void TimeUp()
+    {
+        spriteRenderer.sprite = deathImage;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        Destroy(gameObject, 0.05f);
     }
     virtual protected void Move()
     {
-        // if (this.tag == "Bullet")            //need fix
-        // {
-        //     if (isFreeze == true) moveSpeed = GetSpeed();
-        //     else moveSpeed = GunManager.Instance.GetSpeed();
-        // }
         var rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * moveSpeed;
     }
@@ -69,16 +84,6 @@ public class Bullet : MonoBehaviour, ISpeed
     {
         moveSpeed /= x;
         Invoke("GetOldSpeed", 2.5f);
-    }
-
-    public void IsFreeze(bool logic)
-    {
-        isFreeze = logic;
-    }
-
-    public bool GetFreezeState()
-    {
-        return isFreeze;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -108,11 +113,11 @@ public class Bullet : MonoBehaviour, ISpeed
                 Destroy(other.gameObject);
             }
             if (other.tag == ENEMY_BULLET_TAG) return;
-            Destroy();
+            DestroyThis(other);
         }
     }
 
-    protected virtual void Destroy()
+    protected virtual void DestroyThis(Collider2D other)
     {
         Destroy(gameObject);
     }
@@ -125,7 +130,7 @@ public class Bullet : MonoBehaviour, ISpeed
 
     protected virtual void HandleBulletCollider(Collider2D other)
     {
-        Destroy();
+        DestroyThis(other);
         // Destroy(other.gameObject);
     }
 
@@ -144,6 +149,7 @@ public class Bullet : MonoBehaviour, ISpeed
         float time = 0;
         while (true)
         {
+            if (spriteRenderer == null) yield break;
             if (spriteRenderer.color == Color.white)
             {
                 spriteRenderer.color = Color.cyan;
