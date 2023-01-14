@@ -2,6 +2,7 @@
 - Công nghệ sử dụng: Unity, UI Canvas, Input System, OOP for multi bullets, aliens, Singleton for GameManager
 - Mô tả: Cách chơi giống classic Space Invaders nhưng bổ sung thêm tính năng Store, Bullet Types, Alien Bullet Types, PowerUps,
 xây dựng league of enemy theo shape được import từ file (mỗi màn là 1 shape khác nhau)
+- Demo:
 
 ![1](https://user-images.githubusercontent.com/83877650/212469133-6e6c62d0-af17-44b2-8e55-707636913b55.jpg)
 ![2](https://user-images.githubusercontent.com/83877650/212469135-1dc31c4b-ae69-453a-9058-4de47f7cf15b.jpg)
