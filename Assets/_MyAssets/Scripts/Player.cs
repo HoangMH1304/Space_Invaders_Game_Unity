@@ -25,7 +25,6 @@ public class Player : Ship, ISpeed
     private Vector3 newPos;
     bool firstTouch = true;
     bool isEnableMagnet = false;
-    bool turnColor = false;
     void Start()
     {
         GetReference();
@@ -35,9 +34,27 @@ public class Player : Ship, ISpeed
     void Update()
     {
         // MoveSpaceShip1();     //touch
-        // MoveSpaceShip();
-        MoveSpaceShip2();
+        // MoveSpaceShip2();
+        #if (UNITY_EDITOR)
+        MoveSpaceShip();      //using mouse pointer
+        #endif
+        Move();
         if (!alienManager.IsEmpty()) Shoot();
+    }
+
+    private void Move()
+    {
+        if(Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position); 
+            touchPos.z = 0;
+            Vector3 dir = (touchPos - transform.position);
+            rigidBody.velocity = new Vector2(dir.x, dir.y) * speed;
+
+            if(touch.phase == TouchPhase.Ended)
+                rigidBody.velocity = Vector2.zero;
+        }
     }
 
     private void MoveSpaceShip1()
@@ -78,8 +95,9 @@ public class Player : Ship, ISpeed
                 return;
             }
             direction = newPos - oldPos;
-            // Debug.Log($"direction: {direction}");
             oldPos = newPos;
+            if (Mathf.Abs(direction.x) < 1f || Mathf.Abs(direction.y) < 1f) return;
+            // Debug.Log($"direction: {direction}");
             rigidBody.velocity = direction.normalized * speed * Time.deltaTime;
         }
         else
@@ -91,18 +109,18 @@ public class Player : Ship, ISpeed
 
     private void GetReference()
     {
-        alienManager = FindObjectOfType<AlienManager>();
         rigidBody = GetComponent<Rigidbody2D>();
-        uIHandler = FindObjectOfType<UIHandler>();
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        spaceshipEffect = FindObjectOfType<SpaceShipEffect>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         gunStore = GameObject.Find("SpaceShipGunContainer").GetComponent<GunStore>();
+        uIHandler = FindObjectOfType<UIHandler>();
+        alienManager = FindObjectOfType<AlienManager>();
+        spaceshipEffect = FindObjectOfType<SpaceShipEffect>();
     }
 
     private void Init()
     {
-        speed = 1500f;
+        speed = 10f;
         // speed = 0.1f;
         oldSpeed = speed;
         gun = gunStore.ChooseGun(GunManager.Instance.GetGun());

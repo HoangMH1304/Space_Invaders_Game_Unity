@@ -29,9 +29,9 @@ public class Intro : MonoBehaviour
         animator.enabled = !animator.enabled;
     }
 
-    public void TestButton()
-    {
-        animator = GameObject.Find("TestScene").GetComponent<Animator>();
-        animator.enabled = !animator.enabled;
-    }
+    // public void TestButton()
+    // {
+    //     animator = GameObject.Find("TestScene").GetComponent<Animator>();
+    //     animator.enabled = !animator.enabled;
+    // }
 }

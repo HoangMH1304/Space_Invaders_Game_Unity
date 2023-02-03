@@ -21,6 +21,7 @@ public class DeathZone : MonoBehaviour
             var enemy = other.GetComponent<IHealth>();
             enemy.TakeDamage(1);
             Handheld.Vibrate();
+            return;
         }
         if (other.tag == SHIELD_TAG)
         {

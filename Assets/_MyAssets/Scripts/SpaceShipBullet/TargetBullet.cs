@@ -26,7 +26,7 @@ public class TargetBullet : Bullet
 
     private void Awake()
     {
-        timeToExplode = 6f;
+        timeToExplode = 5f;
         rigidBody = GetComponent<Rigidbody2D>();
     }
     private void Update()
